@@ -11,6 +11,7 @@ export const taskState = sqliteTable(
     revision: integer("revision").notNull().default(0),
     updatedAt: text("updated_at"),
     lastMutationId: text("last_mutation_id"),
+    definitionJson: text("definition_json"),
   },
   (table) => [primaryKey({ columns: [table.userId, table.taskId] })],
 );
@@ -29,6 +30,8 @@ export const taskEvents = sqliteTable(
     checksJson: text("checks_json").notNull(),
     revision: integer("revision").notNull(),
     createdAt: text("created_at").notNull(),
+    definitionJson: text("definition_json"),
+    changeReason: text("change_reason").notNull().default("user_update"),
   },
   (table) => [
     index("task_events_user_time").on(table.userId, table.createdAt),

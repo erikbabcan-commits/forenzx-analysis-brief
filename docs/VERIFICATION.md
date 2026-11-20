@@ -40,3 +40,42 @@ Zmeny stavov patria do D1 a exportu. Nevytvárajú automatické Git commity. His
 Dokončenie vyžaduje kritériá a textový dôkaz, ale aplikácia sama nepreveruje pravdivosť ľubovoľnej poznámky používateľa. Nové významy kritérií preto potrebujú nové ID úlohy alebo vedomé nové posúdenie.
 
 ForenZX klient, referenčná sada, vernosť AI prehľadu, nezávislé odborné review a licencie zostávajú otvorenými úlohami produktového backlogu.
+
+---
+
+## Doplnenie 21. 11. 2026 — zmena katalógu a prvá kontrola vstupu
+
+Tento dodatok nemení historický výsledok z 20. 11. 2026. Rozsah je rozšírený dashboard a samostatný lokálny validátor; celý MCP ani modelový workflow sa týmto neoveruje.
+
+### Vykonané automatické kontroly
+
+- `npm test`: **22/22 testov** správy stavu; katalóg **18 úloh, 17 brán, 30 zdrojov**.
+- Nové SQL testy vykonávajú migráciu aj produkčné SQL v SQLite. Zahŕňajú prevod pôvodných stavov podľa nemennej definície, zachovanie dôkazov, neprenášanie odškrtnutia na nové kritériá, opätovné otvorenie hotových nadväzujúcich úloh a ochranu súbežnej novšej úpravy.
+- Starý formulár musí pri zmene definície dostať konflikt; samotná aktuálna revízia nestačí.
+- `npm run test:product`: **34/34 testov** lokálneho validátora vrátane samostatného CLI procesu, identity, chýb JSON, hraničných veľkostí, viditeľných obmedzení a nemennosti vstupu.
+- `npm run typecheck`: úspech bez chýb.
+- `git diff --check`: úspech bez chýb.
+
+### Rozsah produktu
+
+FX-005 zostáva rozpracovaná. Kontrola pripnutého profilu sa vzťahuje iba na dodaný extrahovaný JSON. Výstup vždy ponechá `report_generation_allowed: false`; úplnosť transportu, kontext modelu, autenticita a podpisy zostávajú `NOT_VERIFIED`. Technické limity parsera nie sú zmeranou kapacitou AI klienta. Podrobnosti a reprodukovateľné príkazy sú v [product/README.md](../product/README.md).
+
+### Zachovanie existujúcej databázy
+
+Migrácia `0001_thick_human_fly.sql` iba pridáva tri stĺpce. Pôvodné indexy checkboxov interpretuje nemenný snapshot v `lib/legacy-task-definitions.ts`. Zosúladenie katalógu zachová poznámky a pôvodnú históriu; zmenené definície dostanú záznam dôvodu. Nezmenené úlohy FX-001, FX-002 a FX-004 sa nemajú znovu otvárať.
+
+Pred nasadením bol cez produkčné rozhranie stiahnutý a načítaný platný JSON export: 18 úloh a 2 historické udalosti. Následné porovnanie po nasadení sa zaznamená oddelene; samotný lokálny test nie je dôkazom úspešnej vzdialenej migrácie.
+
+### Produkčné overenie po nasadení, 21. 11. 2026
+
+- Zdroj nasadenej aplikácie: Sites commit `ed7c2cf92c3841b0b60c8f2d002c086cbe504714`. GitHub obsahuje rovnakú implementáciu a navyše tento následný záznam kontroly.
+- Produkčný build prešiel. Sites vrátil úspešné súkromné nasadenie `appgdep_6b00d90f61d08191aeb6be6061e5c45f`.
+- Živý dashboard po obnovení načítal 18 úloh a nové kritériá; počet hotových prípravných úloh zostal 3/18 a brán 3/17.
+- Export stiahnutý po migrácii bol programovo porovnaný s exportom pred migráciou. Všetkých 18 pôvodných stavov, dôkazových poznámok a zoznamov checkboxov sa zhodovalo. Všetky pôvodné polia oboch historických udalostí zostali zachované.
+- Revízie a časové značky nezmenených hotových úloh FX-001, FX-002 a FX-004 zostali bez zmeny.
+- História po migrácii mala 11 udalostí: pôvodné 2 a 9 nových udalostí `catalog_changed`. Nové kritériá zostali neoznačené.
+- Cez rozhranie bol do FX-005 zapísaný doložený lokálny pokrok: stav „Rozpracované“, 5/8 kritérií, poznámka s výsledkom 34 testov a zostávajúcimi hranicami.
+- Po úplnom obnovení stránky sa zachovali stav, presné checkboxy `[0, 1, 2, 3, 7]`, poznámka a revízia 2. Ostatných 17 úloh sa nezmenilo.
+- Posledný export má 18 úloh, 30 zdrojov a 12 udalostí. Všetkých 11 predchádzajúcich udalostí je zachovaných; pribudol jediný `user_update` pre FX-005.
+
+Browser QA bolo zamerané na zmenené uloženie, migráciu a export. Tento krok nezavádza tvrdenie o vykonaní mobilného alebo celého MCP/modelového testu.

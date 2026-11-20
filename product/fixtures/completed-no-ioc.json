@@ -1,0 +1,88 @@
+{
+  "job_id": "demo-job-no-ioc",
+  "pack_id": "synthetic-triage",
+  "pack_version": "0.0.0",
+  "case_id": "demo-case",
+  "evidence_id": "demo-evidence",
+  "started_at": "2026-01-01T12:00:00+00:00",
+  "completed_at": "2026-01-01T12:00:02+00:00",
+  "duration_seconds": 2,
+  "status": "COMPLETED",
+  "summary_classification": "NO_KNOWN_IOC",
+  "input_integrity": {
+    "synthetic": true,
+    "status": "DEMO_METADATA_NOT_VERIFIED"
+  },
+  "findings": [
+    {
+      "id": "demo-finding-negative",
+      "classification": "NO_KNOWN_IOC",
+      "confidence": "LOW",
+      "ioc_type": "synthetic-indicator-set",
+      "ioc_name": null,
+      "artifact_path": "",
+      "artifact_hash": null,
+      "timestamp": "2026-01-01T11:59:00",
+      "severity": "INFO",
+      "description": "Synthetic example: no known indicator match within the fictional examined subset. This is not a clean-device conclusion.",
+      "raw_evidence_ref": null,
+      "is_ai_assisted": false
+    }
+  ],
+  "timeline": [
+    {
+      "timestamp": "2026-01-01T11:59:00",
+      "event_type": "SYNTHETIC_EVENT",
+      "source_tool": "synthetic-fixture",
+      "description": "Fictional event for validator testing.",
+      "relevance_score": 0.5,
+      "original_timestamp": "2026-01-01T11:59:00",
+      "timezone": null,
+      "normalization_notes": "Source offset is unknown. No UTC conversion was performed."
+    }
+  ],
+  "warnings": [
+    "SYNTHETIC DEMO: all identifiers, events and hash metadata are fictional; no live server or original artifact was examined.",
+    "The source fixture has no artifact reference for the negative finding."
+  ],
+  "limitations": [
+    "SYNTHETIC DEMO ONLY.",
+    "The fictional indicator set and examined subset are limited; absence of a match does not establish a safe device.",
+    "The event timezone is unknown."
+  ],
+  "chain_of_custody": [
+    {
+      "timestamp": "2026-01-01T12:00:00+00:00",
+      "action": "SYNTHETIC_COPY",
+      "actor": "synthetic-analyst",
+      "sha256_before": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "sha256_after": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "details": {
+        "synthetic": true
+      }
+    }
+  ],
+  "execution_record": {
+    "record_version": "2",
+    "case_id": "demo-case",
+    "evidence_id": "demo-evidence",
+    "pack_id": "synthetic-triage",
+    "pack_version": "0.0.0",
+    "container_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "input_root_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "ioc_bundle_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "ioc_bundle_version": "synthetic-0",
+    "tool_command": [
+      "synthetic-tool",
+      "--demo"
+    ],
+    "exit_code": 0,
+    "started_at": "2026-01-01T12:00:00+00:00",
+    "completed_at": "2026-01-01T12:00:02+00:00",
+    "manifest_canonical_sha256": "",
+    "server_hmac_signature": "",
+    "signature_algorithm": "",
+    "signing_key_id": "",
+    "ed25519_signature": ""
+  }
+}

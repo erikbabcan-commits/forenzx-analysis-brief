@@ -64,7 +64,7 @@ export default function Dashboard(){
   const releaseReady=gates.length>0&&doneGates===gates.length&&openP0===0;
   const viewNames:Record<View,string>={backlog:"Backlog",quality:"Brány kvality",sources:"Odborné zdroje"};
   const saveTask=async(task:Task,patch:{status:Status;evidence:string;checks:number[]})=>{
-    const response=await fetch(`/api/tasks/${encodeURIComponent(task.id)}`,{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({...patch,revision:task.revision})});
+    const response=await fetch(`/api/tasks/${encodeURIComponent(task.id)}`,{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({...patch,revision:task.revision,definitionKey:task.definitionKey})});
     const payload=await response.json() as {task:Task;error?:string};
     if(!response.ok)throw new Error(payload.error||"Uloženie sa nepodarilo. Skús to znova.");
     setData(current=>current?{...current,tasks:current.tasks.map(t=>t.id===task.id?payload.task:t),syncedAt:new Date().toISOString()}:current);

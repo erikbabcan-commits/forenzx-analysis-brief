@@ -13,7 +13,7 @@
     "organization": "ForenZX · zdrojový kód",
     "url": "https://github.com/erikbabcan-commits/forenzx-mcp-hub/blob/0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f/core/models/forensic.py",
     "year": "2026",
-    "note": "Výsledky, nálezy, referencie a ExecutionRecord.canonical_payload. Baseline 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f."
+    "note": "Výsledky, nálezy, referencie a ExecutionRecord.canonical_payload. AnalysisResult v baseline nemá schema_version ani forenzx_version; pack_version nie je verzia schémy výsledku. Baseline 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f."
   },
   {
     "id": "CODE-BOUNDARY",
@@ -85,7 +85,7 @@
     "organization": "Agensi",
     "url": "https://www.agensi.io/docs/packaging",
     "year": "2026",
-    "note": "Požiadavky na ZIP, SKILL.md a textové podklady; overené 20. 11. 2026."
+    "note": "Požiadavky na ZIP, SKILL.md a textové podklady; skripty bežia samostatne z dočasných súborov a nemôžu predpokladať susedné súbory balíka. Rešerš 20. 11. 2026, zapracované 21. 11. 2026."
   },
   {
     "id": "AGENSI-SELL",
@@ -102,6 +102,62 @@
     "url": "https://www.agensi.io/docs/earnings-and-payouts",
     "year": "2026",
     "note": "Autorovi 70 % z čistého predaja bez DPH; pred publikáciou znovu overiť aktuálne podmienky."
+  },
+  {
+    "id": "MISTRAL-ZDR",
+    "title": "Zero data retention",
+    "organization": "Mistral · oficiálna dokumentácia",
+    "url": "https://docs.mistral.ai/admin/monitor-comply/zero-data-retention",
+    "year": "2026",
+    "note": "ZDR vyžaduje aktivované schválené nastavenie a vzťahuje sa na podporované stateless API; má výnimky a odlišuje sa od vylúčenia tréningu. Dokumentácia nepreukazuje nastavenie konkrétneho zákazníka ani právny súlad. Revízia požiadaviek 21. 11. 2026."
+  },
+  {
+    "id": "MISTRAL-LIMITS",
+    "title": "Known limitations",
+    "organization": "Mistral · oficiálna dokumentácia",
+    "url": "https://docs.mistral.ai/resources/known-limitations",
+    "year": "2026",
+    "note": "Kontextový rozpočet zahŕňa vstup a výstup; nadlimitná požiadavka vracia 400. Správanie jedného API sa nesmie zovšeobecniť na celý klientský reťazec ani všetky modely. Revízia požiadaviek 21. 11. 2026."
+  },
+  {
+    "id": "OLLAMA-LOCAL",
+    "title": "Local FAQ",
+    "organization": "Ollama · oficiálna dokumentácia",
+    "url": "https://docs.ollama.com/faq",
+    "year": "2026",
+    "note": "Lokálna prevádzka, nastavenie kontextu a vypnutie cloudových funkcií. Samotné použitie Ollama nepreukazuje lokálnosť klienta, MCP doručenia, telemetrie a celého workflowu. Revízia požiadaviek 21. 11. 2026."
+  },
+  {
+    "id": "MCP-TOOLS",
+    "title": "MCP Tools · štruktúrované výsledky a validácia",
+    "organization": "Model Context Protocol",
+    "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+    "year": "2026-07-28",
+    "note": "outputSchema a structuredContent; odporúčaná kontrola výsledku klientom pred odovzdaním LLM. Specifikácia sama nepreukazuje podporu alebo vynútenie v konkrétnom klientovi."
+  },
+  {
+    "id": "AGENSI-LOAD",
+    "title": "How agents load skills",
+    "organization": "Agensi",
+    "url": "https://www.agensi.io/docs/how-agents-load-skills",
+    "year": "2026",
+    "note": "get_skill doručuje pokyny a textové súbory cez službu; agent načítava aktuálnu živú verziu. Demo bez vlastného ForenZX servera sa tým nestáva úplne offline. Revízia požiadaviek 21. 11. 2026."
+  },
+  {
+    "id": "GDPR",
+    "title": "Nariadenie (EÚ) 2016/679",
+    "organization": "Európska únia · EUR-Lex",
+    "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng",
+    "year": "2016",
+    "note": "Najmä čl. 2, 5, 6, 28, 32 a 44: rozsah, zákonnosť, minimalizácia, roly, ochrana a prenosy. ZDR nie je všeobecné osvedčenie súladu; konkrétne spracovanie vyžaduje vlastné posúdenie."
+  },
+  {
+    "id": "EU-DIGITAL",
+    "title": "Smernica (EÚ) 2019/770 · digitálny obsah a služby",
+    "organization": "Európska únia · EUR-Lex",
+    "url": "https://eur-lex.europa.eu/eli/dir/2019/770/oj/eng",
+    "year": "2019",
+    "note": "Čl. 22: povinná povaha spotrebiteľskej ochrany podľa vykonávacích pravidiel. As-is ani pätička reportu automaticky nevylučujú práva spotrebiteľa; konkrétne podmienky závisia od predajného modelu a práva."
   }
 ]
 
