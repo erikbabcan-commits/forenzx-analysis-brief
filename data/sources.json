@@ -1,0 +1,82 @@
+[
+  {
+    "id": "APZ",
+    "title": "Pedagogická činnosť katedry kriminalistiky a forenzných vied",
+    "organization": "Akadémia Policajného zboru v Bratislave",
+    "url": "https://www.akademiapz.sk/sk/akademia/katedry/katedra-kriminalistiky-forenznych-vied/pedagogicka-cinnost",
+    "year": "neuvedený",
+    "note": "Oficiálny sylabus na rozlíšenie kriminalistickej taktiky. Nie doslovná všeobecná definícia. Overené 2026-11-20."
+  },
+  {
+    "id": "NIST-86",
+    "title": "NIST SP 800-86: Guide to Integrating Forensic Techniques into Incident Response",
+    "organization": "NIST",
+    "url": "https://csrc.nist.gov/pubs/sp/800/86/final",
+    "year": "2006",
+    "note": "Fázy forenzného procesu a integrita; IT perspektíva, nie úplný policajný alebo právny postup."
+  },
+  {
+    "id": "NIST-CUSTODY",
+    "title": "CSRC Glossary: Chain of custody",
+    "organization": "NIST",
+    "url": "https://csrc.nist.gov/glossary/term/chain_of_CUSTODY",
+    "year": "neuvedený",
+    "note": "Osoby, časy a účel manipulácie alebo odovzdania. Glosár odkazuje na SP 800-72 a SP 800-101 Rev. 1."
+  },
+  {
+    "id": "SWGDE-REPORT",
+    "title": "18-Q-002: Requirements for Report Writing in Digital and Multimedia Forensics",
+    "organization": "SWGDE",
+    "url": "https://www.swgde.org/documents/published-complete-listing/18-q-002-swgde-requirements-for-report-writing-in-digital-and-multimedia-forensics/",
+    "year": "2018",
+    "note": "Version 1.0, 2018-11-20. Prvky správy, podklady názorov, autorizácia a opravy; tool report nemusí byť úplnou správou."
+  },
+  {
+    "id": "SWGDE-TEST",
+    "title": "18-Q-001-2.1: Minimum Requirements for Testing Tools Used in Digital and Multimedia Forensics",
+    "organization": "SWGDE",
+    "url": "https://www.swgde.org/documents/published-complete-listing/18-q-001-minimum-requirements-for-testing-tools-used-in-digital-and-multimedia-forensics/",
+    "year": "2024",
+    "note": "Version 2.1, 2024-03-07. §5.3.3 agregácia a súhrny; §3 výslovne vylučuje softvér na interpretáciu."
+  },
+  {
+    "id": "ENFSI",
+    "title": "ENFSI-BPM-FIT-01: Best Practice Manual for the Forensic Examination of Digital Technology",
+    "organization": "ENFSI",
+    "url": "https://enfsi.eu/wp-content/uploads/2016/09/enfsi-bpm-fit-01_1.pdf",
+    "year": "2015",
+    "note": "Version 01, november 2015. Neistoty, proveniencia, odborné review a oddelenie technických faktov od hodnotiaceho názoru."
+  },
+  {
+    "id": "ISO-27041",
+    "title": "ISO/IEC 27041:2015: Guidance on assuring suitability and adequacy of incident investigative method",
+    "organization": "ISO/IEC",
+    "url": "https://www.iso.org/standard/44405.html",
+    "year": "2015",
+    "note": "Prečítaný verejný oficiálny abstrakt; vhodnosť metód pre účel. Plný platený text ani audit zhody neboli vykonané."
+  },
+  {
+    "id": "NIST-AI",
+    "title": "NIST AI 600-1: Artificial Intelligence Risk Management Framework — Generative Artificial Intelligence Profile",
+    "organization": "NIST",
+    "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence",
+    "year": "2024",
+    "note": "Verejne dostupné pasáže o konfabuláciách, automatizačnom skreslení a integrite informácií; nie úplný audit rámca."
+  },
+  {
+    "id": "NIST-TERMS",
+    "title": "NIST TN 1297: Appendix D1 — Terminology",
+    "organization": "NIST",
+    "url": "https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-appendix-d1-terminology",
+    "year": "1994",
+    "note": "Terminológia meraní: opakovateľnosť a reprodukovateľnosť. Použitie na stabilitu faktov v AI výstupe je pracovná adaptácia projektu."
+  },
+  {
+    "id": "MVT",
+    "title": "Tech Guide: Detecting NoviSpy spyware with AndroidQF and the Mobile Verification Toolkit",
+    "organization": "Amnesty International Security Lab",
+    "url": "https://securitylab.amnesty.org/latest/2024/12/tech-guide-detecting-novispy-spyware-with-androidqf-and-the-mobile-verification-toolkit-mvt/",
+    "year": "2024",
+    "note": "Výstupy nástrojov majú pred záverom interpretovať odborníci; návod k NoviSpy nie je doklad úplného pokrytia hrozieb."
+  }
+]

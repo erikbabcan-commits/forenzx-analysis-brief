@@ -1,0 +1,523 @@
+[
+  {
+    "id": "FX-001",
+    "title": "Zafixovať zdrojový kód a inventár nástrojov",
+    "phase": "Základ",
+    "priority": "P0",
+    "description": "Doložiť, z ktorého stavu ForenZX vychádza návrh. Ide o kontrolu kódu, nie o dôkaz funkčného servera.",
+    "acceptance": [
+      "Zaznamenaný úplný commit upstream repozitára.",
+      "Overené kontrakty forenzx_analysis_status a forenzx_analysis_results s job_id.",
+      "Vymenované hranice kontroly: bez spustenia servera a bez reálneho AI klienta."
+    ],
+    "dependencies": [],
+    "estimate": "Dokončená kontrola kódu",
+    "gate": true,
+    "sourceIds": [
+      "CODE-TOOLS",
+      "CODE-MODEL"
+    ],
+    "status": "done",
+    "evidence": "Kontrola zdrojov 20. 11. 2026: erikbabcan-commits/forenzx-mcp-hub @ 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f. Overené definície v core/server.py a core/models/forensic.py. Runtime ani klient neboli týmto overené.",
+    "checks": [
+      0,
+      1,
+      2
+    ],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-002",
+    "title": "Uzavrieť rozsah prvého produktu",
+    "phase": "Základ",
+    "priority": "P0",
+    "description": "Existujúca dokončená analýza → návrh prehľadu pre analytika. Prvé vydanie má jeden jasný účel.",
+    "acceptance": [
+      "Zdokumentovaný vstup job_id a výstup v docs/PRODUCT_CONTRACT.md.",
+      "Vymedzené povolené čítania a vylúčené spúšťanie či rušenie analýz.",
+      "Výstup označený ako AI návrh s kontrolou analytikom, bez sľubov certifikácie."
+    ],
+    "dependencies": [
+      "FX-001"
+    ],
+    "estimate": "Produktový návrh pripravený",
+    "gate": true,
+    "sourceIds": [
+      "NIST-86",
+      "CODE-BOUNDARY"
+    ],
+    "status": "done",
+    "evidence": "docs/PRODUCT_CONTRACT.md: návrh rozsahu v0.1, vstup/výstup, povolené čítania a vylúčené schopnosti. Implementácia a hodnotenie skillu zostávajú úlohami FX-005 až FX-016.",
+    "checks": [
+      0,
+      1,
+      2
+    ],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-003",
+    "title": "Rozhodnúť licenciu servera aj plateného skillu",
+    "phase": "Základ",
+    "priority": "P0",
+    "description": "Zákazník potrebuje jasné oprávnenie prevádzkovať vlastný ForenZX a používať zakúpený skill. Rozhoduje vlastník projektu.",
+    "acceptance": [
+      "Vlastník schválil podmienky použitia servera; zaznamenaná konkrétna verzia.",
+      "Samostatne určené podmienky distribúcie a používania skillu.",
+      "LICENSE-TODO.md vyriešený alebo doložená oprávnená cesta k vlastnej inštancii."
+    ],
+    "dependencies": [],
+    "estimate": "Rozhodnutie vlastníka + úprava podmienok",
+    "gate": true,
+    "sourceIds": [
+      "CODE-LICENSE"
+    ],
+    "status": "blocked",
+    "evidence": "Upstream LICENSE-TODO.md ponecháva externé použitie nevyriešené. Automaticky sa nevolí MIT ani iná licencia.",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-004",
+    "title": "Spísať terminológiu a pravidlá tvrdení",
+    "phase": "Základ",
+    "priority": "P0",
+    "description": "Pracovné definície, primárne zdroje a hranice forenzného reportovania. Nezávislé odborné posúdenie má vlastnú úlohu FX-016.",
+    "acceptance": [
+      "Existuje metodika s rozlíšením faktov, interpretácie, integrity a pôvodu.",
+      "Každý odborný zdroj má URL, verziu alebo rok a obmedzenie rozsahu.",
+      "Merateľné brány sú označené ako naše kritériá; odborné review zostáva otvorené."
+    ],
+    "dependencies": [
+      "FX-002"
+    ],
+    "estimate": "Výskumný návrh pripravený",
+    "gate": true,
+    "sourceIds": [
+      "APZ",
+      "NIST-86",
+      "SWGDE-REPORT",
+      "ENFSI",
+      "ISO-27041"
+    ],
+    "status": "done",
+    "evidence": "docs/METHODOLOGY.md, docs/QUALITY_GATES.md a docs/SOURCES.md pripravené z primárnych zdrojov 20. 11. 2026. ISO: iba verejný abstrakt. Žiadna certifikácia ani odborné schválenie sa týmto netvrdí.",
+    "checks": [
+      0,
+      1,
+      2
+    ],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-005",
+    "title": "Overiť schému výsledkov a identitu úlohy",
+    "phase": "Integrácia",
+    "priority": "P0",
+    "description": "Pred sumarizáciou odmietnuť nekonzistentný alebo neúplný zdroj a presne pomenovať chýbajúce údaje.",
+    "acceptance": [
+      "Definované povinné polia a správanie pri neplatnej schéme.",
+      "Požadované a vrátené job_id, case_id a evidence_id sa kontrolujú na konzistenciu.",
+      "Chýbajúce referencie a rozporné údaje vytvoria viditeľný limit alebo chybu."
+    ],
+    "dependencies": [
+      "FX-001",
+      "FX-002"
+    ],
+    "estimate": "2–4 h, pracovný odhad",
+    "gate": true,
+    "sourceIds": [
+      "CODE-MODEL",
+      "SWGDE-TEST"
+    ],
+    "status": "todo",
+    "evidence": "",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-006",
+    "title": "Pripraviť syntetickú referenčnú sadu",
+    "phase": "Integrácia",
+    "priority": "P0",
+    "description": "Najprv zapísať očakávania, potom ladiť prompt. Demo dáta musia byť jasne označené ako syntetické.",
+    "acceptance": [
+      "Pokryté dokončené, bežiace, zlyhané, zrušené, zablokované a chýbajúce úlohy aj odmietnutý prístup.",
+      "Existujú nálezy s chýbajúcou referenciou, neznámou zónou a rozpornou identitou.",
+      "Pridaný negatívny IOC výsledok a text artefaktu s vloženými škodlivými inštrukciami.",
+      "Očakávané hodnoty a výstupné správanie zaznamenané pred hodnotením."
+    ],
+    "dependencies": [
+      "FX-005"
+    ],
+    "estimate": "3–6 h, pracovný odhad",
+    "gate": true,
+    "sourceIds": [
+      "SWGDE-TEST",
+      "NIST-AI",
+      "MVT"
+    ],
+    "status": "todo",
+    "evidence": "",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-007",
+    "title": "Preukázať pripojenie jedného reálneho klienta",
+    "phase": "Integrácia",
+    "priority": "P0",
+    "description": "Overiť celý tok v konkrétnom AI klientovi a verzii. Samostatný dispatcher test nestačí na tvrdenie o kompatibilite.",
+    "acceptance": [
+      "Zaznamenaný klient, jeho verzia, server commit a presná konfigurácia bez tajomstiev.",
+      "Prešli autentifikácia, objavenie nástrojov a volania status/results.",
+      "Overená skutočná cesta vyjednania MCP verzie alebo podporované priame pripnutie verzie.",
+      "Uložený redigovaný záznam behu; opravy upstreamu evidované samostatne."
+    ],
+    "dependencies": [
+      "FX-001",
+      "FX-006"
+    ],
+    "estimate": "0,5–2 pracovné dni podľa prekážok",
+    "gate": true,
+    "sourceIds": [
+      "CODE-TOOLS",
+      "CODE-HTTP",
+      "MCP-2026",
+      "MCP-SDK"
+    ],
+    "status": "todo",
+    "evidence": "NOT_VERIFIED. Súčasný MCP 2026-07-28 už nevyžaduje starý inicializačný handshake. Nepovažovať jeho absenciu automaticky za chybu; otestovať reálnu kompatibilitu.",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-008",
+    "title": "Obmedziť prístup na reportovanie",
+    "phase": "Integrácia",
+    "priority": "P0",
+    "description": "Rozlíšiť pokyny skillu od technicky vynútených oprávnení. Aktuálny analytický kľúč sám osebe nemusí zakazovať zápisové nástroje.",
+    "acceptance": [
+      "Zdokumentované a otestované povolené čítania a zakázané start/cancel volania.",
+      "Návod správne rozlišuje X-API-Key alebo APIKey od Bearer JWT.",
+      "Pozitívny aj negatívny test prístupu k úlohe; bez potreby admin kľúča.",
+      "Výslovne uvedené, ktoré obmedzenia vynucuje server/klient a ktoré sú iba pokynom."
+    ],
+    "dependencies": [
+      "FX-002",
+      "FX-007"
+    ],
+    "estimate": "3–6 h + prípadná oprava servera",
+    "gate": true,
+    "sourceIds": [
+      "CODE-HTTP",
+      "CODE-ACL",
+      "CODE-BOUNDARY"
+    ],
+    "status": "todo",
+    "evidence": "",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-009",
+    "title": "Opísať tok dát a zachádzanie s kľúčmi",
+    "phase": "Integrácia",
+    "priority": "P0",
+    "description": "Kupujúci musí vedieť, kam idú výsledky a kto ich spracúva. Vlastný MCP server automaticky neznamená lokálny AI model.",
+    "acceptance": [
+      "Endpoint je používateľský; žiadne skryté odosielanie na nové služby.",
+      "ZIP, demo a logy neobsahujú kľúče ani skutočné dôkazové dáta.",
+      "Návod opisuje spracovanie výsledkov zvoleným AI klientom/poskytovateľom.",
+      "Nastavenie, rotácia a chybné poverenia majú overený postup."
+    ],
+    "dependencies": [
+      "FX-008"
+    ],
+    "estimate": "2–3 h, pracovný odhad",
+    "gate": true,
+    "sourceIds": [
+      "NIST-AI",
+      "CODE-HTTP"
+    ],
+    "status": "todo",
+    "evidence": "",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-010",
+    "title": "Vytvoriť šablónu prehľadu s referenciami",
+    "phase": "Kvalita",
+    "priority": "P0",
+    "description": "Každý fakt sa musí dať dohľadať v prijatom zdrojovom výstupe. Odkaz na JSON nie je nezávislé skúmanie artefaktu.",
+    "acceptance": [
+      "Každý nález má pôvodné ID a dostupnú referenciu na artefakt alebo JSON položku.",
+      "Zachované všetky zdrojové upozornenia a obmedzenia.",
+      "Uvedené job/case/evidence ID, dostupné verzie a identita zdrojového výstupu.",
+      "Chýbajúci údaj je označený; nikdy doplnený odhadom."
+    ],
+    "dependencies": [
+      "FX-004",
+      "FX-005"
+    ],
+    "estimate": "3–5 h, pracovný odhad",
+    "gate": true,
+    "sourceIds": [
+      "SWGDE-REPORT",
+      "ENFSI",
+      "CODE-MODEL"
+    ],
+    "status": "todo",
+    "evidence": "",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-011",
+    "title": "Oddeliť zdrojové fakty od vysvetlenia AI",
+    "phase": "Kvalita",
+    "priority": "P0",
+    "description": "Jazykový model môže vysvetľovať, ale nesmie meniť nálezy, vyrábať istotu alebo vydávať negatívnu zhodu IOC za bezpečné zariadenie.",
+    "acceptance": [
+      "Klasifikácie a závažnosti zostávajú zhodné so zdrojom.",
+      "Interpretácia AI je oddelená, označená a má uvedené podklady.",
+      "Nevzniká číselná istota ani atribúcia bez zdrojového podkladu.",
+      "NO_KNOWN_IOC sa vzťahuje iba na skúmaný rozsah a použité indikátory."
+    ],
+    "dependencies": [
+      "FX-010"
+    ],
+    "estimate": "2–4 h, pracovný odhad",
+    "gate": true,
+    "sourceIds": [
+      "NIST-AI",
+      "ENFSI",
+      "MVT",
+      "CODE-BOUNDARY"
+    ],
+    "status": "todo",
+    "evidence": "",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-012",
+    "title": "Pravdivo zobraziť hash a rozsah podpisu",
+    "phase": "Kvalita",
+    "priority": "P0",
+    "description": "Existujúci podpis execution record nepokrýva nálezy, časovú os, upozornenia ani AI prehľad. Zobrazenie metadát nie je overenie.",
+    "acceptance": [
+      "Predvolený stav metadát je NOT_VERIFIED, kým neexistuje skutočný overovací krok.",
+      "Presne pomenovaný podpísaný payload a väzba na overovací kľúč.",
+      "Žiadna značka naznačujúca overenie celého výsledku alebo AI prehľadu.",
+      "Ak pribudne verifier, prejde aj test zmeneného payloadu a nedôveryhodného kľúča."
+    ],
+    "dependencies": [
+      "FX-005",
+      "FX-010"
+    ],
+    "estimate": "2–4 h; verifier by bol samostatný rozsah",
+    "gate": true,
+    "sourceIds": [
+      "CODE-MODEL",
+      "CODE-SIGNING",
+      "NIST-CUSTODY"
+    ],
+    "status": "todo",
+    "evidence": "",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-013",
+    "title": "Zachovať časové údaje a neistotu",
+    "phase": "Kvalita",
+    "priority": "P0",
+    "description": "Časová os má vychádzať zo zdroja. Neznáma zóna ani chýbajúci čas sa nesmú potichu domyslieť.",
+    "acceptance": [
+      "Zachované pôvodné časy, offsety a zdrojové poznámky k normalizácii.",
+      "Konverzia na UTC iba pri známom východisku.",
+      "Neznáma časová zóna a rozpory sú viditeľné.",
+      "Bez vymysleného poradia, času alebo osoby vykonávajúcej udalosť."
+    ],
+    "dependencies": [
+      "FX-010"
+    ],
+    "estimate": "1–3 h, pracovný odhad",
+    "gate": true,
+    "sourceIds": [
+      "ENFSI",
+      "CODE-MODEL"
+    ],
+    "status": "todo",
+    "evidence": "",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-014",
+    "title": "Otestovať vložené pokyny a chybové stavy",
+    "phase": "Kvalita",
+    "priority": "P0",
+    "description": "Obsah artefaktov sa spracúva ako dáta. Zlyhanie alebo odmietnutie prístupu sa nesmie premeniť na predstieraný úspešný prehľad.",
+    "acceptance": [
+      "Text artefaktu nevyvolá nové nástroje, endpointy ani vyzradenie kľúčov.",
+      "Volania zostanú v povolenom rozsahu čítania.",
+      "Nedokončená alebo zlyhaná úloha vráti stav a limit, nie úspešný findings brief.",
+      "Chyby, timeouty a neúplné odpovede majú uchovaný testovací výsledok."
+    ],
+    "dependencies": [
+      "FX-006",
+      "FX-008",
+      "FX-009",
+      "FX-010",
+      "FX-011",
+      "FX-012",
+      "FX-013"
+    ],
+    "estimate": "3–6 h, pracovný odhad",
+    "gate": true,
+    "sourceIds": [
+      "NIST-AI",
+      "CODE-BOUNDARY"
+    ],
+    "status": "todo",
+    "evidence": "",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-015",
+    "title": "Zabaliť skill a overiť čistú inštaláciu",
+    "phase": "Balenie",
+    "priority": "P0",
+    "description": "Pripraviť malý textový balík pre presne otestovaného klienta; samotný dashboard nie je predajný skill.",
+    "acceptance": [
+      "SKILL.md v koreni má name/description a presný workflow.",
+      "Priložené setup/auth pokyny, konfiguračná šablóna, šablóna prehľadu a syntetický príklad.",
+      "Predpoklady servera/modelu a verzie sú výslovne uvedené.",
+      "Čistá inštalácia a celý príklad prešli bez neverejných závislostí a tajomstiev."
+    ],
+    "dependencies": [
+      "FX-007",
+      "FX-008",
+      "FX-009",
+      "FX-010",
+      "FX-011",
+      "FX-012",
+      "FX-013",
+      "FX-014"
+    ],
+    "estimate": "3–6 h, pracovný odhad",
+    "gate": true,
+    "sourceIds": [
+      "AGENSI-PACK"
+    ],
+    "status": "todo",
+    "evidence": "",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-016",
+    "title": "Dokončiť hodnotenie a nezávislé odborné review",
+    "phase": "Kvalita",
+    "priority": "P0",
+    "description": "Doložiť vhodnosť pre konkrétny účel. Druhý AI model nenahrádza kompetentného nezávislého forenzného hodnotiteľa.",
+    "acceptance": [
+      "Referenčná sada má 100 % zhodu kontrolovaných faktov a všetky varovania/limity.",
+      "Nula nepodložených faktických tvrdení, nepovolených zápisov a únikov tajomstiev v testovanej sade.",
+      "Aspoň tri opakované behy na scenár podľa nášho navrhnutého minima; verzie a model zaznamenané.",
+      "Menovitý odborný hodnotiteľ posúdil výstupy; kritické pripomienky vyriešené.",
+      "Zostávajúce hranice pokrytia a neistoty sú zaznamenané."
+    ],
+    "dependencies": [
+      "FX-015"
+    ],
+    "estimate": "1–2 dni testovania + dostupnosť hodnotiteľa",
+    "gate": true,
+    "sourceIds": [
+      "SWGDE-TEST",
+      "NIST-AI",
+      "ENFSI",
+      "NIST-TERMS"
+    ],
+    "status": "todo",
+    "evidence": "Nezávislý odborný hodnotiteľ zatiaľ nebol zabezpečený. Tri behy sú projektový návrh, nie norma ani dôkaz všeobecnej spoľahlivosti.",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-017",
+    "title": "Pripraviť demo, ponuku a príjem výplat",
+    "phase": "Predaj",
+    "priority": "P1",
+    "description": "Ukázať skutočný vstup a výstup z overeného balíka. Navrhovaná úvodná cena je 19 USD jednorazovo.",
+    "acceptance": [
+      "Krátke funkčné demo používa označené syntetické dáta.",
+      "Listing uvádza vlastný ForenZX, podporovaného klienta a ďalšie možné náklady.",
+      "Cena/podmienky a spôsob prijímania výplat skontrolované v Agensi.",
+      "Marketing neobsahuje nepodložené certified/court-grade ani sľub súdnej prípustnosti."
+    ],
+    "dependencies": [
+      "FX-003",
+      "FX-016"
+    ],
+    "estimate": "2–4 h + nastavenie výplat",
+    "gate": true,
+    "sourceIds": [
+      "AGENSI-SELL",
+      "AGENSI-PAYOUT"
+    ],
+    "status": "todo",
+    "evidence": "19 USD je úvodný návrh, nie overená ochota trhu zaplatiť.",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  },
+  {
+    "id": "FX-018",
+    "title": "Odoslať na posúdenie a potvrdiť vydanie",
+    "phase": "Predaj",
+    "priority": "P1",
+    "description": "Až po splnení všetkých brán podať verziovaný balík. Posúdenie Agensi sa eviduje oddelene od nášho testovania.",
+    "acceptance": [
+      "Všetky predchádzajúce brány majú splnené kritériá a dohľadateľné dôkazy.",
+      "Uložené číslo verzie, hash ZIP a changelog.",
+      "Zaznamenané odoslanie, výsledok kontroly Agensi a vyriešenie pripomienok.",
+      "Živý listing overený až po skutočnom schválení a publikácii."
+    ],
+    "dependencies": [
+      "FX-003",
+      "FX-016",
+      "FX-017"
+    ],
+    "estimate": "Verejný odhad Agensi 24–48 h od podania",
+    "gate": false,
+    "sourceIds": [
+      "AGENSI-SELL"
+    ],
+    "status": "blocked",
+    "evidence": "Zatiaľ nepodané. Joeri neuviedol termín, do ktorého musíme produkt dodať. Jeho odhad kontroly začína až podaním.",
+    "checks": [],
+    "revision": 0,
+    "updatedAt": null
+  }
+]

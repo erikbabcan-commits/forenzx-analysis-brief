@@ -1,0 +1,107 @@
+[
+  {
+    "id": "CODE-TOOLS",
+    "title": "MCP nástroje a dispatcher",
+    "organization": "ForenZX · zdrojový kód",
+    "url": "https://github.com/erikbabcan-commits/forenzx-mcp-hub/blob/0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f/core/server.py",
+    "year": "2026",
+    "note": "Definície status/results; čítanie kódu nie je integračný test. Baseline 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f."
+  },
+  {
+    "id": "CODE-MODEL",
+    "title": "Modely výsledkov a podpisovaný payload",
+    "organization": "ForenZX · zdrojový kód",
+    "url": "https://github.com/erikbabcan-commits/forenzx-mcp-hub/blob/0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f/core/models/forensic.py",
+    "year": "2026",
+    "note": "Výsledky, nálezy, referencie a ExecutionRecord.canonical_payload. Baseline 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f."
+  },
+  {
+    "id": "CODE-BOUNDARY",
+    "title": "AI evidence boundary",
+    "organization": "ForenZX · zdrojový kód",
+    "url": "https://github.com/erikbabcan-commits/forenzx-mcp-hub/blob/0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f/docs/security/AI_EVIDENCE_BOUNDARY.md",
+    "year": "2026",
+    "note": "Hranice AI návrhu, kontrola analytikom a otvorené vynucovanie. Baseline 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f."
+  },
+  {
+    "id": "CODE-HTTP",
+    "title": "HTTP endpoint a autentifikácia",
+    "organization": "ForenZX · zdrojový kód",
+    "url": "https://github.com/erikbabcan-commits/forenzx-mcp-hub/blob/0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f/core/main.py",
+    "year": "2026",
+    "note": "APIKey a Bearer JWT majú odlišný význam. Interoperabilita potrebuje reálny test. Baseline 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f."
+  },
+  {
+    "id": "CODE-ACL",
+    "title": "Prístupové oprávnenia",
+    "organization": "ForenZX · zdrojový kód",
+    "url": "https://github.com/erikbabcan-commits/forenzx-mcp-hub/blob/0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f/core/acl.py",
+    "year": "2026",
+    "note": "Organizačný prístup; analytický kľúč nie je automaticky iba na reportovanie. Baseline 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f."
+  },
+  {
+    "id": "CODE-SIGNING",
+    "title": "Podpisovanie Ed25519",
+    "organization": "ForenZX · zdrojový kód",
+    "url": "https://github.com/erikbabcan-commits/forenzx-mcp-hub/blob/0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f/core/signing.py",
+    "year": "2026",
+    "note": "Treba rozlišovať overenie konkrétneho payloadu od overenia celého výsledku. Baseline 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f."
+  },
+  {
+    "id": "CODE-LICENSE",
+    "title": "Otvorené licenčné rozhodnutie",
+    "organization": "ForenZX · zdrojový kód",
+    "url": "https://github.com/erikbabcan-commits/forenzx-mcp-hub/blob/0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f/LICENSE-TODO.md",
+    "year": "2026",
+    "note": "Externé použitie zostáva podľa kontrolovaného commitu nevyriešené. Baseline 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f."
+  },
+  {
+    "id": "CODE-README",
+    "title": "Prevádzkové predpoklady",
+    "organization": "ForenZX · zdrojový kód",
+    "url": "https://github.com/erikbabcan-commits/forenzx-mcp-hub/blob/0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f/README.md",
+    "year": "2026",
+    "note": "Vercel je označený PREVIEW_ONLY; funkčný MCP potrebuje trvalý backend. Baseline 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f."
+  },
+  {
+    "id": "MCP-2026",
+    "title": "MCP release 2026-07-28",
+    "organization": "Model Context Protocol",
+    "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+    "year": "2026",
+    "note": "Aktualizovaný životný cyklus; absencia starého inicializačného handshake sama nepreukazuje chybu."
+  },
+  {
+    "id": "MCP-SDK",
+    "title": "Protocol versions",
+    "organization": "Oficiálny MCP Python SDK",
+    "url": "https://py.sdk.modelcontextprotocol.io/protocol-versions/",
+    "year": "2026",
+    "note": "Discovery, fallback a explicitné pripnutie verzie; overiť zvoleného klienta."
+  },
+  {
+    "id": "AGENSI-PACK",
+    "title": "Package your skill",
+    "organization": "Agensi",
+    "url": "https://www.agensi.io/docs/packaging",
+    "year": "2026",
+    "note": "Požiadavky na ZIP, SKILL.md a textové podklady; overené 20. 11. 2026."
+  },
+  {
+    "id": "AGENSI-SELL",
+    "title": "Sell agent skills",
+    "organization": "Agensi",
+    "url": "https://www.agensi.io/sell",
+    "year": "2026",
+    "note": "Podanie a kontrola. Verejný odhad 24–48 hodín nie je náš dodací termín."
+  },
+  {
+    "id": "AGENSI-PAYOUT",
+    "title": "Earnings and payouts",
+    "organization": "Agensi",
+    "url": "https://www.agensi.io/docs/earnings-and-payouts",
+    "year": "2026",
+    "note": "Autorovi 70 % z čistého predaja bez DPH; pred publikáciou znovu overiť aktuálne podmienky."
+  }
+]
+
