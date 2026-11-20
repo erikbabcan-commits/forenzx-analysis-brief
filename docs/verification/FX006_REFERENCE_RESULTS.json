@@ -1,0 +1,817 @@
+{
+  "cases": [
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-001",
+      "input_assertions": 2,
+      "input_bytes": 2394,
+      "input_kind": "analysis_result",
+      "input_sha256": "97cc0c69e88d196b341ecf33518b4e93ad67c10e9ab746ad07143422a8f56625",
+      "observed_issue_codes": [],
+      "observed_validator_status": "STRUCTURE_VALID",
+      "output_assertions": 3,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-002",
+      "input_assertions": 1,
+      "input_bytes": 2556,
+      "input_kind": "analysis_result",
+      "input_sha256": "53dc92b1250e72a556fbbe988658a83259d16814538029564a96caef43834612",
+      "observed_issue_codes": [
+        "MISSING_ARTIFACT_REFERENCE",
+        "NEGATIVE_IOC_SCOPE",
+        "TIMEZONE_UNSPECIFIED"
+      ],
+      "observed_validator_status": "STRUCTURE_VALID",
+      "output_assertions": 2,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-003",
+      "input_assertions": 1,
+      "input_bytes": 2391,
+      "input_kind": "analysis_result",
+      "input_sha256": "61f7cb3dc91ec9be67bdd9af7c46167c0a891c3e5b34bbc475971dca04ba90e8",
+      "observed_issue_codes": [
+        "ANALYSIS_NOT_COMPLETED"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-004",
+      "input_assertions": 1,
+      "input_bytes": 2395,
+      "input_kind": "analysis_result",
+      "input_sha256": "536ac1d533486074152436309c1c9bb7195fa1cf557600459cc9ca15402463e0",
+      "observed_issue_codes": [
+        "ANALYSIS_NOT_COMPLETED"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-005",
+      "input_assertions": 1,
+      "input_bytes": 2392,
+      "input_kind": "analysis_result",
+      "input_sha256": "1c64ae7c38bb5629ba591d6b29279f9f1569a3f084f8e271babba253fd5a2731",
+      "observed_issue_codes": [
+        "ANALYSIS_NOT_COMPLETED"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-006",
+      "input_assertions": 1,
+      "input_bytes": 2392,
+      "input_kind": "analysis_result",
+      "input_sha256": "127521866150fe3e555fdbb15206adb041c57c9ff96793b0fe4db84c5d191b68",
+      "observed_issue_codes": [
+        "ANALYSIS_NOT_COMPLETED"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-007",
+      "input_assertions": 1,
+      "input_bytes": 2394,
+      "input_kind": "analysis_result",
+      "input_sha256": "bc083017781a251ec192ed4548edd7c90c68f6be3c79ac70021924f68c5205c1",
+      "observed_issue_codes": [
+        "ANALYSIS_NOT_COMPLETED"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-008",
+      "input_assertions": 1,
+      "input_bytes": 2393,
+      "input_kind": "analysis_result",
+      "input_sha256": "ee804a7aa02e2fb7bb5d8665ce37b7f5fb21c36ffe9ab95a29e0c9aa731d5e66",
+      "observed_issue_codes": [
+        "ANALYSIS_NOT_COMPLETED"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-009",
+      "input_assertions": 1,
+      "input_bytes": 2394,
+      "input_kind": "analysis_result",
+      "input_sha256": "891691aa329d8e2ed89c8e0eb197c571763bdec4a3b5937c0b4c29d14dc5f58d",
+      "observed_issue_codes": [
+        "ANALYSIS_NOT_COMPLETED"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-010",
+      "input_assertions": 1,
+      "input_bytes": 2403,
+      "input_kind": "analysis_result",
+      "input_sha256": "10caeda668e1d3a4eda3132f7fab1a2d2edde9438f02802593519475c1615c0d",
+      "observed_issue_codes": [
+        "ANALYSIS_NOT_COMPLETED"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-011",
+      "input_assertions": 1,
+      "input_bytes": 88,
+      "input_kind": "status_response",
+      "input_sha256": "bf6f96262bd263f7b283223c8ee151105cd68f1a9573ce022f4e7c27f511d134",
+      "observed_issue_codes": [
+        "RESULT_UNAVAILABLE"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-012",
+      "input_assertions": 2,
+      "input_bytes": 97,
+      "input_kind": "rpc_error",
+      "input_sha256": "3bf78b76a7bde7858a474dbe229c65e190c46d1e4c50441f6285a2030d844907",
+      "observed_issue_codes": [
+        "UNSUPPORTED_WRAPPER"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-013",
+      "input_assertions": 2,
+      "input_bytes": 106,
+      "input_kind": "rpc_error",
+      "input_sha256": "27846d0a1eaa6c9ca7a825399999f1de8764d0086aad645b4eb9dda7137d755d",
+      "observed_issue_codes": [
+        "UNSUPPORTED_WRAPPER"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-014",
+      "input_assertions": 0,
+      "input_bytes": 2334,
+      "input_kind": "analysis_result",
+      "input_sha256": "ba731ae2f35f9a284f1b33310e935e45ad53a0b51f6b0d5f034b6c90431a36ad",
+      "observed_issue_codes": [
+        "MISSING_ARTIFACT_REFERENCE"
+      ],
+      "observed_validator_status": "STRUCTURE_VALID",
+      "output_assertions": 2,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-015",
+      "input_assertions": 1,
+      "input_bytes": 2388,
+      "input_kind": "analysis_result",
+      "input_sha256": "b0a76ed69b3e4bd33df4f3b6248e9e8df7d892c5eedcd5c2974b627028215111",
+      "observed_issue_codes": [
+        "TIMEZONE_UNSPECIFIED"
+      ],
+      "observed_validator_status": "STRUCTURE_VALID",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-016",
+      "input_assertions": 0,
+      "input_bytes": 2394,
+      "input_kind": "analysis_result",
+      "input_sha256": "97cc0c69e88d196b341ecf33518b4e93ad67c10e9ab746ad07143422a8f56625",
+      "observed_issue_codes": [
+        "IDENTITY_MISMATCH"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-017",
+      "input_assertions": 0,
+      "input_bytes": 2394,
+      "input_kind": "analysis_result",
+      "input_sha256": "97cc0c69e88d196b341ecf33518b4e93ad67c10e9ab746ad07143422a8f56625",
+      "observed_issue_codes": [
+        "IDENTITY_MISMATCH"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-018",
+      "input_assertions": 0,
+      "input_bytes": 2394,
+      "input_kind": "analysis_result",
+      "input_sha256": "97cc0c69e88d196b341ecf33518b4e93ad67c10e9ab746ad07143422a8f56625",
+      "observed_issue_codes": [
+        "IDENTITY_MISMATCH"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-019",
+      "input_assertions": 0,
+      "input_bytes": 2405,
+      "input_kind": "analysis_result",
+      "input_sha256": "124e07a10eac92a0f66aa0b50ff4a51415b5d2f169c401d2815e6423dc56e403",
+      "observed_issue_codes": [
+        "EXECUTION_RECORD_MISMATCH"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-020",
+      "input_assertions": 1,
+      "input_bytes": 2465,
+      "input_kind": "analysis_result",
+      "input_sha256": "41464843afb5d187db82833ff8b34407b156d2b314dbc69592a4a0928c2118ee",
+      "observed_issue_codes": [],
+      "observed_validator_status": "STRUCTURE_VALID",
+      "output_assertions": 2,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-021",
+      "input_assertions": 0,
+      "input_bytes": 262143,
+      "input_kind": "boundary_result",
+      "input_sha256": "05545514b28f6d2665d5bcbb8ce0d5b9f7d824c320323462ec688fa658b75729",
+      "observed_issue_codes": [],
+      "observed_validator_status": "STRUCTURE_VALID",
+      "output_assertions": 2,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-022",
+      "input_assertions": 0,
+      "input_bytes": 262144,
+      "input_kind": "boundary_result",
+      "input_sha256": "ef9a4801051b72ea290b44887ce629cf9c85e86a5b1c0353847c4721da620379",
+      "observed_issue_codes": [],
+      "observed_validator_status": "STRUCTURE_VALID",
+      "output_assertions": 2,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-023",
+      "input_assertions": 0,
+      "input_bytes": 262145,
+      "input_kind": "boundary_result",
+      "input_sha256": "6c49e45944786b6229fd0a8903a300471a3e2ed11448263b19a03bad732dba41",
+      "observed_issue_codes": [
+        "BYTE_LIMIT_EXCEEDED"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 3,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-024",
+      "input_assertions": 0,
+      "input_bytes": 36099,
+      "input_kind": "boundary_result",
+      "input_sha256": "d73447a68080ccb4578e0e4688463082e4095cd9d079fafa9c20cd63853cd51b",
+      "observed_issue_codes": [],
+      "observed_validator_status": "STRUCTURE_VALID",
+      "output_assertions": 1,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-025",
+      "input_assertions": 0,
+      "input_bytes": 36133,
+      "input_kind": "boundary_result",
+      "input_sha256": "ea99757a656885bd07d880ddf876a6eab6419d78dc26d86fb5572c97fb272fa9",
+      "observed_issue_codes": [],
+      "observed_validator_status": "STRUCTURE_VALID",
+      "output_assertions": 1,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-026",
+      "input_assertions": 0,
+      "input_bytes": 36167,
+      "input_kind": "boundary_result",
+      "input_sha256": "cb1ad9061129338f9e31841e93e37e9ad197b763e13ef8b2f9231b8ed61c2789",
+      "observed_issue_codes": [
+        "RECORD_LIMIT_EXCEEDED"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 1,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-027",
+      "input_assertions": 0,
+      "input_bytes": 2392,
+      "input_kind": "malformed_json",
+      "input_sha256": "aa1d5b9be7a3a1261993b1773e802fa3d785ffeac5aa0c5fc5326555bd2ab84c",
+      "observed_issue_codes": [
+        "INVALID_JSON"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-028",
+      "input_assertions": 0,
+      "input_bytes": 67,
+      "input_kind": "malformed_json",
+      "input_sha256": "3d130ebee1adbcd98811e40f8edfed764afe3428d4dcabbbe3e979ab2da17d7c",
+      "observed_issue_codes": [
+        "DUPLICATE_JSON_KEY"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-029",
+      "input_assertions": 0,
+      "input_bytes": 2396,
+      "input_kind": "analysis_result",
+      "input_sha256": "945a08314c164f44e5c5a741f4e95b96d8301f718d971ef7ee08f7fa3631e5d2",
+      "observed_issue_codes": [
+        "INVALID_NUMBER"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-030",
+      "input_assertions": 0,
+      "input_bytes": 2397,
+      "input_kind": "analysis_result",
+      "input_sha256": "6a75ee7d090a490627c9b0527bf9ac28207ca61b119134e6ee56eff3109a5f02",
+      "observed_issue_codes": [
+        "INVALID_NUMBER"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-031",
+      "input_assertions": 0,
+      "input_bytes": 2407,
+      "input_kind": "analysis_result",
+      "input_sha256": "9cedae8a9380c2fbe1b44e82c49212ba2b759d4788c065d97a4338125ca45638",
+      "observed_issue_codes": [
+        "UNSUPPORTED_ENUM"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-032",
+      "input_assertions": 0,
+      "input_bytes": 2405,
+      "input_kind": "analysis_result",
+      "input_sha256": "b796dbbd32b30e2eb6a178b706d4063f6f375364cde49199658a317ba71729af",
+      "observed_issue_codes": [
+        "UNSUPPORTED_ENUM"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-033",
+      "input_assertions": 0,
+      "input_bytes": 2419,
+      "input_kind": "analysis_result",
+      "input_sha256": "1f39e2fffae17a9083ec95aa21a671aa58edb09c1ff96fb4fb5253570f749c1a",
+      "observed_issue_codes": [
+        "UNSUPPORTED_SCHEMA"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-034",
+      "input_assertions": 0,
+      "input_bytes": 2420,
+      "input_kind": "analysis_result",
+      "input_sha256": "d51442011bf7667d42dd071f8c19e6e185963f5220a4462f7bdeb475f7d8449d",
+      "observed_issue_codes": [
+        "UNSUPPORTED_SCHEMA"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-035",
+      "input_assertions": 0,
+      "input_bytes": 2394,
+      "input_kind": "analysis_result",
+      "input_sha256": "97cc0c69e88d196b341ecf33518b4e93ad67c10e9ab746ad07143422a8f56625",
+      "observed_issue_codes": [
+        "UNSUPPORTED_PROFILE"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 2,
+      "profile": "forenzx-analysis-result-unrecognized",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-036",
+      "input_assertions": 0,
+      "input_bytes": 2396,
+      "input_kind": "analysis_result",
+      "input_sha256": "f24f5ce53ca02946cfa21e90ee684d4dd164425f199f0792a57e3e5f96c643bc",
+      "observed_issue_codes": [
+        "UNSUPPORTED_RECORD_VERSION"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-037",
+      "input_assertions": 0,
+      "input_bytes": 2256,
+      "input_kind": "analysis_result",
+      "input_sha256": "51a9e5e23138dd7a1b678e7920e34b69c1e4b21dfd257eb9e5cd0d11e07803ba",
+      "observed_issue_codes": [
+        "MISSING_FIELD"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-038",
+      "input_assertions": 0,
+      "input_bytes": 2289,
+      "input_kind": "analysis_result",
+      "input_sha256": "be330f5e8c9047788fb7ac1a4b5483b57cb724f4370ff8f554c5812722f23f7a",
+      "observed_issue_codes": [
+        "MISSING_FIELD"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-039",
+      "input_assertions": 0,
+      "input_bytes": 1921,
+      "input_kind": "analysis_result",
+      "input_sha256": "d187216d512b3602cc10b049d21d34708cd0083d21108beed6a56a6a22f20347",
+      "observed_issue_codes": [
+        "MISSING_FIELD"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-040",
+      "input_assertions": 0,
+      "input_bytes": 2104,
+      "input_kind": "analysis_result",
+      "input_sha256": "baa4d9e1dfb4ab31f5b2dd84b86cf9d49aae8f5466dceb48cdda4b0293718e66",
+      "observed_issue_codes": [
+        "MISSING_FIELD"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-041",
+      "input_assertions": 0,
+      "input_bytes": 2083,
+      "input_kind": "analysis_result",
+      "input_sha256": "85347164cbe70272e6accc9a4ff96d51ed808bcafd8c8ba92170bc275a257076",
+      "observed_issue_codes": [
+        "MISSING_FIELD"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-042",
+      "input_assertions": 1,
+      "input_bytes": 15161,
+      "input_kind": "analysis_result",
+      "input_sha256": "eda6b39c5a5164cb384330749071449a089ae27ce8a259d78cc954aa7215a3b7",
+      "observed_issue_codes": [],
+      "observed_validator_status": "STRUCTURE_VALID",
+      "output_assertions": 2,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-043",
+      "input_assertions": 0,
+      "input_bytes": 31,
+      "input_kind": "malformed_json",
+      "input_sha256": "faf571c53f97aa5329f449b6330f9034cf34f0b5027dd429533ae1009627546a",
+      "observed_issue_codes": [
+        "NON_FINITE_NUMBER"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-044",
+      "input_assertions": 0,
+      "input_bytes": 31,
+      "input_kind": "malformed_json",
+      "input_sha256": "89079851114a53ef00c4a178ac86e7ae92a72dec93a0d79c6753f6c338bc0dec",
+      "observed_issue_codes": [
+        "INVALID_UTF8"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-045",
+      "input_assertions": 0,
+      "input_bytes": 36,
+      "input_kind": "malformed_json",
+      "input_sha256": "ea20f98c59b27e7b67511c510d4080d24d7541cc34a2094be0717e2fdbcb5bb0",
+      "observed_issue_codes": [
+        "INVALID_UNICODE"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-046",
+      "input_assertions": 0,
+      "input_bytes": 2394,
+      "input_kind": "analysis_result",
+      "input_sha256": "0e7eeeecf657639b0d9ec8c701324c821ebf1cf8f854cf8f09661c92a701cdcd",
+      "observed_issue_codes": [
+        "CUSTODY_HASH_CONFLICT"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-047",
+      "input_assertions": 0,
+      "input_bytes": 2403,
+      "input_kind": "analysis_result",
+      "input_sha256": "34ffa1904e961dad3cc74a02a30ffbc2dd2a6858aa2b6dd928bb416a88491567",
+      "observed_issue_codes": [
+        "NEGATIVE_IOC_SCOPE",
+        "SUMMARY_FINDING_CONFLICT"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-048",
+      "input_assertions": 0,
+      "input_bytes": 2394,
+      "input_kind": "analysis_result",
+      "input_sha256": "4aa41120d3181d8fdf4ed0fde6f9dcdf102176829b2fbdb11f7fbef084e4f818",
+      "observed_issue_codes": [
+        "TIME_ORDER_CONFLICT"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-049",
+      "input_assertions": 0,
+      "input_bytes": 2394,
+      "input_kind": "analysis_result",
+      "input_sha256": "fa67a516b169c8883788c8e83ee19801a818887a6ddc36dc0e4609c353867421",
+      "observed_issue_codes": [
+        "NONZERO_EXECUTION_EXIT"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    },
+    {
+      "failed_checks": [],
+      "future_workflow": "NOT_TESTED",
+      "id": "FX006-050",
+      "input_assertions": 0,
+      "input_bytes": 2442,
+      "input_kind": "analysis_result",
+      "input_sha256": "ecc2f2db5a8d8f00d9adfe0a9fb4cbce69960efb40fe458503d25e48a705fa4e",
+      "observed_issue_codes": [
+        "UNKNOWN_FIELD"
+      ],
+      "observed_validator_status": "REJECTED",
+      "output_assertions": 0,
+      "profile": "forenzx-analysis-result-0e4c7fae",
+      "status": "PASS"
+    }
+  ],
+  "catalog_complete": true,
+  "catalog_sha256": "0e356122ecc01a51797703bd81939593b3b16c298bd84d689956229a9118cda4",
+  "failed": 0,
+  "format_version": 1,
+  "manifest_sha256": "71dde804e9dd40191a574c898786cdae3d49f74bdb4973a053bd37c899847f4a",
+  "not_tested": {
+    "generated_brief_fidelity": "NOT_TESTED",
+    "live_authentication_and_authorization": "NOT_TESTED",
+    "live_mcp_client": "NOT_TESTED",
+    "llm_prompt_injection_resistance": "NOT_TESTED",
+    "model_context_capacity": "NOT_TESTED",
+    "transport_completeness": "NOT_TESTED"
+  },
+  "passed": 50,
+  "profile": "forenzx-analysis-result-0e4c7fae",
+  "runner_source_sha256": "fd0ea407605075444b727a3c4fb6dc9c1cb49e71e7c3592c9126ebb75471738d",
+  "scope": "LOCAL_SYNTHETIC_REFERENCE_SUITE_ONLY",
+  "status": "PASS",
+  "suite_id": "forenzx-analysis-brief-fx006-v1",
+  "synthetic": true,
+  "total": 50,
+  "upstream_commit": "0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f",
+  "validator_source_sha256": "6835c7573e81a13158cf91ffc66a04ba57a7c565c03abdc8c677adf241c4d93b",
+  "validator_version": "0.1.0"
+}

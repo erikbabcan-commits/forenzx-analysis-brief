@@ -10,7 +10,8 @@ Súkromný pracovný dashboard pre prípravu **ForenZX Analysis Brief**. Obsahuj
 - Pripravený návrh rozsahu a metodiky. Tri prípravné úlohy sú hotové.
 - FX-005 je rozpracovaná: samostatný lokálny validátor a dva syntetické príklady, 34/34 testov. Úspech kontroly vstupu nepovoľuje generovanie prehľadu.
 - Reálny MCP klient, celkové produktové testy, nezávislé odborné review a licencia zostávajú otvorené.
-- Ďalší krok: dokončiť syntetickú sadu FX-006, preukázať klienta FX-007 a potom uzavrieť zostávajúce tri podmienky FX-005.
+- FX-006 je hotová ako syntetická referenčná sada: 50/50 scenárov a 46/46 produktových testov; [záznam overenia](docs/FX006_REFERENCE_VERIFICATION.md).
+- Ďalší krok: preukázať reálneho klienta FX-007 na syntetických dátach a potom uzavrieť zostávajúce tri podmienky FX-005.
 - Navrhovaná cena skillu: 19 USD jednorazovo.
 - Z poskytnutej komunikácie nevyplýva externý termín odovzdania. Agensi uvádza odhad kontroly až od podania.
 
@@ -28,6 +29,8 @@ Do poznámok nevkladajte poverenia ani reálny dôkazový materiál. Tento board
 
 - [Doplnenia po kontrole šiestich pripomienok](docs/REVIEW_ADDENDUM_2026-11-21.md)
 - [Prvá implementácia kontroly vstupu FX-005](product/README.md)
+- [Syntetická referenčná sada FX-006](product/reference/README.md)
+- [Vykonaný prompt pre FX-006](docs/prompts/FX006_REFERENCE_SUITE_PROMPT.md)
 - [Produktový kontrakt](docs/PRODUCT_CONTRACT.md)
 - [Metodika a pracovný slovník](docs/METHODOLOGY.md)
 - [Brány kvality](docs/QUALITY_GATES.md)
@@ -46,6 +49,8 @@ Vinext / React, serverové API a Cloudflare D1. Prístup obmedzuje súkromné Si
 Node 22.13+ a závislosti z lockfile. Inštalácia: `npm ci`. Typová kontrola: `npm run typecheck`. Overenie backlogu a stavu: `npm test`. Schému meniť cez `db/schema.ts` a `npm run db:generate`; vygenerované migrácie sa verziujú a spätne neupravujú.
 
 Lokálny validátor produktového vstupu je samostatný Python 3.10+ skript bez externých závislostí. Jeho testy sa spúšťajú cez `npm run test:product` alebo `python3 -m unittest discover -s product/tests -v`. Úspech tejto sady je dôkazom lokálnych kontrol na syntetických vstupoch, nie úspešného MCP spojenia, bezpečného modelového kontextu ani hotového skillu.
+
+Autorskú referenčnú sadu spustí `npm run test:reference`. Očakávania sú verziované v `product/reference/catalog.json`; veľké hraničné vstupy sa vytvárajú deterministicky. Samostatný príkaz `python3 product/run_reference_suite.py --materialize /tmp/forenzx-fx006-fixtures --report /tmp/forenzx-fx006-results.json` zachová aj vygenerované vstupy a report. Použite nové cesty; existujúce súbory sa štandardne neprepisujú. Tento beh overuje lokálny kontrakt a explicitne ponecháva živý klient aj LLM ako neotestované.
 
 Používajte dodané Sites skripty na build a nasadenie. Produkčné tajomstvá nepatria do zdrojov. Lokálny náhľad bez autentifikačných hlavičiek môže vrátiť 401; nejde o dôvod vypnúť kontrolu identity v produkcii.
 

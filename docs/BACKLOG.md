@@ -1,8 +1,8 @@
-# Backlog v0.2
+# Backlog v0.3
 
-Katalóg aktualizovaný 21. 11. 2026 (Europe/Bratislava). Aktuálne pracovné stavy a história sú v dashboarde; tento súbor je verziovaný snapshot katalógu. Tri hotové úlohy označujú prípravu. FX-005 je rozpracovaná s lokálne otestovaným validátorom; celý produkt nie je validovaný.
+Katalóg aktualizovaný 21. 11. 2026 (Europe/Bratislava). Aktuálne pracovné stavy a história sú v dashboarde; tento súbor je verziovaný snapshot katalógu. Tri prípravné úlohy a referenčná sada FX-006 sú hotové. FX-005 zostáva rozpracovaná; celý produkt nie je validovaný.
 
-Poradie dokončenia integračných krokov: syntetická sada FX-006 z pripnutého kontraktu → reálny klient FX-007 → uzavretie rozšírenej FX-005 vrátane úplnosti a modelových limitov. Prvý lokálny základ FX-005 je už implementovaný.
+Ďalší krok je FX-007: test reálneho klienta na syntetickej sade. Až následne sa uzavrú integračné a modelové podmienky FX-005.
 
 ## FX-001 — Zafixovať zdrojový kód a inventár nástrojov
 
@@ -83,20 +83,20 @@ Dôkaz: 21. 11. 2026: product/validate_input.py a product/README.md — samostat
 
 ## FX-006 — Pripraviť syntetickú referenčnú sadu
 
-**Integrácia · P0 · todo**
+**Integrácia · P0 · done**
 
 Najprv zapísať očakávania, potom ladiť prompt. Demo dáta musia byť jasne označené ako syntetické.
 
 Závislosti: FX-001, FX-002. Odhad: 3–6 h, pracovný odhad.
 
-- [ ] Pokryté dokončené, bežiace, zlyhané, zrušené, zablokované a chýbajúce úlohy aj odmietnutý prístup.
-- [ ] Existujú nálezy s chýbajúcou referenciou, neznámou zónou a rozpornou identitou.
-- [ ] Pridaný negatívny IOC výsledok a text artefaktu s vloženými škodlivými inštrukciami.
-- [ ] Očakávané hodnoty a výstupné správanie zaznamenané pred hodnotením.
-- [ ] Pripravené vstupy pod limitom, na limite a nad limitom; skrátený JSON, duplicitné kľúče, neplatné typy a nové enum hodnoty majú očakávané chyby.
-- [ ] Neznáma alebo nesprávne deklarovaná verzia schémy, chýbajúca povinná sekcia a upozornenie na konci veľkého vstupu majú referenčný výsledok.
+- [x] Pokryté dokončené, bežiace, zlyhané, zrušené, zablokované a chýbajúce úlohy aj odmietnutý prístup.
+- [x] Existujú nálezy s chýbajúcou referenciou, neznámou zónou a rozpornou identitou.
+- [x] Pridaný negatívny IOC výsledok a text artefaktu s vloženými škodlivými inštrukciami.
+- [x] Očakávané hodnoty a výstupné správanie zaznamenané pred hodnotením.
+- [x] Pripravené vstupy pod limitom, na limite a nad limitom; skrátený JSON, duplicitné kľúče, neplatné typy a nové enum hodnoty majú očakávané chyby.
+- [x] Neznáma alebo nesprávne deklarovaná verzia schémy, chýbajúca povinná sekcia a upozornenie na konci veľkého vstupu majú referenčný výsledok.
 
-Dôkaz: Zatiaľ nedoložené.
+Dôkaz: 21. 11. 2026: FX-006 — pripravená syntetická referenčná sada v1. 50/50 scenárov PASS; 46/46 produktových testov (34 pôvodných + 12 testov runnera). Očakávania zafixované pred hodnotením, bez úpravy podľa výsledkov: catalog SHA-256 0e356122ecc01a51797703bd81939593b3b16c298bd84d689956229a9118cda4. Podklady: product/reference/catalog.json, docs/FX006_REFERENCE_VERIFICATION.md, docs/verification/FX006_REFERENCE_RESULTS.json. Pokrytie všetkých 6 kritérií je doložené mapou scenárov. NOT_TESTED: živý MCP klient, autentifikácia/autorizácia, transport, modelový kontext, odolnosť LLM a vernosť finálneho briefu. FX-005 ani FX-007 tým nie sú uzavreté.
 
 ## FX-007 — Preukázať pripojenie jedného reálneho klienta
 

@@ -104,6 +104,8 @@ Testy spustili aj skutočný CLI proces zo samostatnej kópie skriptu v dočasno
 
 ## Čo zostáva otvorené pred dokončením FX-005 a balíka
 
+Nadväzujúca [referenčná sada FX-006](reference/README.md) rozširuje dva príklady na verziovaný katalóg scenárov s nezávislými očakávaniami. Spúšťa sa cez `python3 product/run_reference_suite.py`. Príkaz `unittest discover` teraz zahŕňa aj testy jej hodnotiaceho mechanizmu; uvedených 34 testov opisuje pôvodnú sadu validátora.
+
 1. Podporovaný MCP klient a adaptér, ktorý správne získa a extrahuje úplnú odpoveď **pred** odovzdaním modelu. Lokálny súbor môže byť už skrátený; tento validátor to bez ďalšieho dôkazu nezistí.
 2. Dôveryhodné potvrdenie serverovej verzie/kontraktu a transportnej úplnosti. Počty položiek v prijatom JSON samy nepreukazujú úplnosť predchádzajúceho exportu.
 3. Zmeraný rozpočet kontextu konkrétneho modelu a klienta vrátane pokynov, nástrojov, histórie a rezervy výstupu. Limity v tomto programe nie sú jeho náhradou.

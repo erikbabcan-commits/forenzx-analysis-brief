@@ -183,9 +183,16 @@
       "MVT",
       "MISTRAL-LIMITS"
     ],
-    "status": "todo",
-    "evidence": "",
-    "checks": [],
+    "status": "done",
+    "evidence": "21. 11. 2026: FX-006 — pripravená syntetická referenčná sada v1. 50/50 scenárov PASS; 46/46 produktových testov (34 pôvodných + 12 testov runnera). Očakávania zafixované pred hodnotením, bez úpravy podľa výsledkov: catalog SHA-256 0e356122ecc01a51797703bd81939593b3b16c298bd84d689956229a9118cda4. Podklady: product/reference/catalog.json, docs/FX006_REFERENCE_VERIFICATION.md, docs/verification/FX006_REFERENCE_RESULTS.json. Pokrytie všetkých 6 kritérií je doložené mapou scenárov. NOT_TESTED: živý MCP klient, autentifikácia/autorizácia, transport, modelový kontext, odolnosť LLM a vernosť finálneho briefu. FX-005 ani FX-007 tým nie sú uzavreté.",
+    "checks": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
     "revision": 0,
     "updatedAt": null
   },

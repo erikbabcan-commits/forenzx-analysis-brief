@@ -85,3 +85,11 @@ Browser QA bolo zamerané na zmenené uloženie, migráciu a export. Tento krok 
 Po rozšírení FX-005 by jej dokončenie implicitne vyžadovalo FX-007, kým FX-007 čakalo cez FX-006 späť na FX-005. Opravené závislosti: FX-006 vychádza z FX-001/002; dokončenie FX-005 závisí aj od FX-007. Kritériá ani doložený čiastkový pokrok sa nezmenili. Spresnenie syntetických scenárov a hraníc jednotlivých fáz je v dodatku k review.
 
 Katalóg po úprave prešiel kontrolou referencií a acyklickosti: 18 úloh, 17 brán, 30 zdrojov. Produkčný build prešiel. Sites potvrdil úspešné súkromné nasadenie zdroja `56a32b14564676884959c0fc07e70a2c2813b3d2`, deployment `appgdep_6b00d9f683a08191b241ba73ab461f0b`. Táto následná zmena nemení implementáciu uloženia; browserové porovnanie exportov vyššie patrí k predchádzajúcej revízii katalógu a netvrdí sa ako druhé nové meranie.
+
+## FX-006 — vykonanie bodu 4.1
+
+V nadväzujúcom kroku 21. 11. 2026 vznikla referenčná sada a runner: **50/50 scenárov PASS**, **46/46 produktových testov PASS** (34 pôvodných + 12 nových). Katalóg očakávaní bol zafixovaný pred prvým vyhodnotením a výsledky si nevyžiadali jeho zmenu. Podrobný rozsah, mapovanie všetkých šiestich kritérií, príkazy a neotestované oblasti uvádza [záznam FX-006](FX006_REFERENCE_VERIFICATION.md).
+
+Pred aktualizáciou pracovného stavu bol stiahnutý export s 18 úlohami a 14 historickými udalosťami. FX-006 mala stav `todo`, prázdne checkboxy a revíziu 2. Dokončenie tejto úlohy znamená pripravenú syntetickú sadu, nie úspech živého klienta alebo modelu.
+
+Po nasadení zdroja `20a9ff5c9bb4bbc118dd6c20a671c33ce316216e` a uložení cez rozhranie bolo úplným obnovením a porovnaním exportu potvrdené: FX-006 `done`, 6/6 kritérií, revízia 3; ostatných 17 úloh nezmenených; všetkých 14 pôvodných udalostí zachovaných a jediná nová aktualizácia. Dashboard má 4/18 hotových úloh a ponúka FX-007 ako ďalší krok. Podrobnosti sú v zázname FX-006.
