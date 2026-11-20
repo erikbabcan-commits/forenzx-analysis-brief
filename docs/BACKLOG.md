@@ -2,6 +2,8 @@
 
 Katalóg aktualizovaný 21. 11. 2026 (Europe/Bratislava). Aktuálne pracovné stavy a história sú v dashboarde; tento súbor je verziovaný snapshot katalógu. Tri hotové úlohy označujú prípravu. FX-005 je rozpracovaná s lokálne otestovaným validátorom; celý produkt nie je validovaný.
 
+Poradie dokončenia integračných krokov: syntetická sada FX-006 z pripnutého kontraktu → reálny klient FX-007 → uzavretie rozšírenej FX-005 vrátane úplnosti a modelových limitov. Prvý lokálny základ FX-005 je už implementovaný.
+
 ## FX-001 — Zafixovať zdrojový kód a inventár nástrojov
 
 **Základ · P0 · done**
@@ -66,7 +68,7 @@ Dôkaz: docs/METHODOLOGY.md, docs/QUALITY_GATES.md a docs/SOURCES.md pripravené
 
 Pred sumarizáciou odmietnuť nekonzistentný alebo neúplný zdroj a presne pomenovať chýbajúce údaje.
 
-Závislosti: FX-001, FX-002. Odhad: 2–4 h, pracovný odhad.
+Závislosti: FX-001, FX-002, FX-007. Odhad: 2–4 h, pracovný odhad.
 
 - [x] Definované povinné polia a správanie pri neplatnej schéme.
 - [x] Požadované a vrátené job_id, case_id a evidence_id sa kontrolujú na konzistenciu.
@@ -85,7 +87,7 @@ Dôkaz: 21. 11. 2026: product/validate_input.py a product/README.md — samostat
 
 Najprv zapísať očakávania, potom ladiť prompt. Demo dáta musia byť jasne označené ako syntetické.
 
-Závislosti: FX-005. Odhad: 3–6 h, pracovný odhad.
+Závislosti: FX-001, FX-002. Odhad: 3–6 h, pracovný odhad.
 
 - [ ] Pokryté dokončené, bežiace, zlyhané, zrušené, zablokované a chýbajúce úlohy aj odmietnutý prístup.
 - [ ] Existujú nálezy s chýbajúcou referenciou, neznámou zónou a rozpornou identitou.

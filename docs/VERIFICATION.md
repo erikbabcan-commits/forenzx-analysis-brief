@@ -79,3 +79,9 @@ Pred nasadením bol cez produkčné rozhranie stiahnutý a načítaný platný J
 - Posledný export má 18 úloh, 30 zdrojov a 12 udalostí. Všetkých 11 predchádzajúcich udalostí je zachovaných; pribudol jediný `user_update` pre FX-005.
 
 Browser QA bolo zamerané na zmenené uloženie, migráciu a export. Tento krok nezavádza tvrdenie o vykonaní mobilného alebo celého MCP/modelového testu.
+
+### Následná úprava poradia integračných krokov
+
+Po rozšírení FX-005 by jej dokončenie implicitne vyžadovalo FX-007, kým FX-007 čakalo cez FX-006 späť na FX-005. Opravené závislosti: FX-006 vychádza z FX-001/002; dokončenie FX-005 závisí aj od FX-007. Kritériá ani doložený čiastkový pokrok sa nezmenili. Spresnenie syntetických scenárov a hraníc jednotlivých fáz je v dodatku k review.
+
+Katalóg po úprave prešiel kontrolou referencií a acyklickosti: 18 úloh, 17 brán, 30 zdrojov. Produkčný build prešiel. Sites potvrdil úspešné súkromné nasadenie zdroja `56a32b14564676884959c0fc07e70a2c2813b3d2`, deployment `appgdep_6b00d9f683a08191b241ba73ab461f0b`. Táto následná zmena nemení implementáciu uloženia; browserové porovnanie exportov vyššie patrí k predchádzajúcej revízii katalógu a netvrdí sa ako druhé nové meranie.

@@ -53,6 +53,12 @@ Schému, identitu, limity, úplnosť a oprávnenia treba kontrolovať kódom na 
 
 Pôvodný baseline, forenzné definície a dôkazy prípravných úloh zostávajú zachované. Nové podmienky sa nesmú označiť za splnené len preto, že boli doplnené do textu. Zmena významu kritéria vyžaduje nové posúdenie; uložené dôkazy a história sa pri nasadení nesmú potichu zmazať alebo preniesť na nový význam.
 
-Ďalší technický krok zostáva FX-005: explicitný vstupný kontrakt a deterministická kontrola. Nadväzuje referenčná sada, reálny klient, šablóna a hodnotenie, balík, odborné review a predaj. Licenčné rozhodnutie sa rieši súbežne.
+Lokálny základ FX-005 je implementovaný; výsledok má 34 testov, ale úloha zostáva rozpracovaná. Poradie ďalšieho dokončovania je FX-006 (syntetická sada z pripnutého kontraktu) → FX-007 (reálny klient) → uzavretie FX-005 vrátane úplnosti prenosu a zmeraného kontextu. FX-006 preto závisí od zdrojového a produktového kontraktu FX-001/002; úplné dokončenie FX-005 závisí aj od FX-007. Tým sa odstráni metodická slučka, v ktorej by klient čakal na kontrolu, ktorá už vyžaduje klienta. Kritériá sa tým neoslabujú. Nasledujú šablóna a hodnotenie, balík, odborné review a predaj. Licenčné rozhodnutie sa rieši súbežne.
+
+Hranice tohto poradia:
+
+- FX-006 pripraví parametrické scenáre alebo scenáre voči explicitnému pracovnému profilu. Ich existencia ešte nedokazuje odmeranú kapacitu modelu. Po meraní FX-005 sa príslušné hraničné scenáre zopakujú.
+- FX-007 preveruje reálneho klienta na syntetických dátach. Reálne prípadové údaje čakajú na príslušné overenie toku dát vo FX-009.
+- FX-005 preukáže vstupnú kontrolu a kontrolu úplnosti/dokončenia odpovede v pomenovanom integračnom postupe. Vernosť finálnej šablóny a celkové hodnotenie briefu patria do FX-010/014/016; nevyžadujú sa spätne ako podmienka prípravy vstupného kontraktu.
 
 Podklady: [register zdrojov](SOURCES.md), [produktový kontrakt](PRODUCT_CONTRACT.md), [brány kvality](QUALITY_GATES.md), [metodika](METHODOLOGY.md).

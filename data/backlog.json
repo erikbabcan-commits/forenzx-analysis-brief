@@ -134,7 +134,8 @@
     ],
     "dependencies": [
       "FX-001",
-      "FX-002"
+      "FX-002",
+      "FX-007"
     ],
     "estimate": "2–4 h, pracovný odhad",
     "gate": true,
@@ -171,7 +172,8 @@
       "Neznáma alebo nesprávne deklarovaná verzia schémy, chýbajúca povinná sekcia a upozornenie na konci veľkého vstupu majú referenčný výsledok."
     ],
     "dependencies": [
-      "FX-005"
+      "FX-001",
+      "FX-002"
     ],
     "estimate": "3–6 h, pracovný odhad",
     "gate": true,

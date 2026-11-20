@@ -10,6 +10,7 @@ Súkromný pracovný dashboard pre prípravu **ForenZX Analysis Brief**. Obsahuj
 - Pripravený návrh rozsahu a metodiky. Tri prípravné úlohy sú hotové.
 - FX-005 je rozpracovaná: samostatný lokálny validátor a dva syntetické príklady, 34/34 testov. Úspech kontroly vstupu nepovoľuje generovanie prehľadu.
 - Reálny MCP klient, celkové produktové testy, nezávislé odborné review a licencia zostávajú otvorené.
+- Ďalší krok: dokončiť syntetickú sadu FX-006, preukázať klienta FX-007 a potom uzavrieť zostávajúce tri podmienky FX-005.
 - Navrhovaná cena skillu: 19 USD jednorazovo.
 - Z poskytnutej komunikácie nevyplýva externý termín odovzdania. Agensi uvádza odhad kontroly až od podania.
 
