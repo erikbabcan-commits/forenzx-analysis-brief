@@ -133,3 +133,9 @@ Integračný skript vyžaduje Python 3.11+, vytvorí vlastný venv a pripnutý c
 - Kontrola výstupov nenašla serializované JWT ani súkromné kľúče. Poverenia sa nezapisujú do reportov ani Gitu.
 
 Tieto hashe identifikujú naše testovacie súbory. Neoverujú autenticitu forenzných artefaktov ani podpisy serverových výsledkov.
+
+## Záverečné overenie dodania
+
+Súkromný Site bol úspešne nasadený zo zdroja `57a9f8f06d15446b522c3bf85a840ecb58310370`. GitHub commit s implementáciou `e90ea672ffa919fa7d55582530ad5314ee47360e` má presne rovnaký Git strom. Po obnovení živej stránky sa zachovalo všetkých 18 stavov úloh a 16 udalostí histórie.
+
+Čerstvý lokálny Git klon tohto overeného stromu nemal `node_modules` ani managed profil. Celý bootstrap vrátane novej inštalácie, testov, buildu a lokálneho HTTP/D1 toku skončil kódom 0. Priamy klon súkromného GitHubu cez shell tu zastavilo chýbajúce GitHub prihlásenie; prenos a kontrola súkromného repozitára cez pripojené GitHub API prešli. Preto sa netvrdí overené súkromné GitHub prihlásenie v shelli. [Záznam dodania](verification/FX007_DELIVERY.json).

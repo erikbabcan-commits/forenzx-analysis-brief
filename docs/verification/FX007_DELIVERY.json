@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-21",
+  "timezone": "Europe/Bratislava",
+  "site_source_commit": "57a9f8f06d15446b522c3bf85a840ecb58310370",
+  "github_feature_commit": "e90ea672ffa919fa7d55582530ad5314ee47360e",
+  "identical_source_tree": "cb35778e1271480efdb5ebe2f6d8e87802b0b1e7",
+  "private_repository_verified": true,
+  "site_audience": "owner-only",
+  "deployment_id": "appgdep_6b00e28889988191bff2ff6ad15d4d89",
+  "deployment_status": "succeeded",
+  "production_reload": {
+    "fx007": "blocked",
+    "checks": [
+      0,
+      3
+    ],
+    "all_task_states_preserved": 18,
+    "all_history_events_preserved": 16
+  },
+  "portable_clone": {
+    "source": "local Git clone of the exact tree independently verified against private GitHub",
+    "initial_node_modules": false,
+    "managed_execution_profile": false,
+    "command": "bash scripts/local-bootstrap.sh --check-only",
+    "exit_code": 0,
+    "tests_install_build_http_persistence": "PASS",
+    "log_sha256": "7a373d79d683951704d1875d6dab6760a910ab9eec678a1f78ddf463c9223e7e"
+  },
+  "github_cli_clone": {
+    "result": "AUTHENTICATION_UNAVAILABLE_IN_EXECUTOR",
+    "message": "fatal: could not read Username for https://github.com: No such device or address",
+    "clarification": "Connected GitHub API successfully wrote and verified the private repository. The shell has no GitHub login; private network cloning was not proven in this executor. User must use an authenticated Git credential helper or gh auth login."
+  }
+}
