@@ -77,7 +77,7 @@
     "fx009": "todo 0/8",
     "fx010": "todo"
   },
-  "live_dashboard_write": "PENDING; final persistence outcome belongs to COORDINATION_DELIVERY.json",
+  "live_dashboard_write": "PASS: two saved UI changes verified by complete D1 readback; see COORDINATION_DELIVERY.json",
   "not_tested": [
     "renderer implementation",
     "real AI client/model",

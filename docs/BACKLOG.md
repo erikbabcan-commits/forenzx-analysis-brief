@@ -2,7 +2,9 @@
 
 Katalóg aktualizovaný 21. 11. 2026 (Europe/Bratislava). Aktuálne pracovné stavy a história sú v dashboarde; tento súbor je verziovaný snapshot katalógu. Tri prípravné úlohy a referenčná sada FX-006 sú hotové. FX-005 zostáva rozpracovaná; celý produkt nie je validovaný.
 
-Ďalší krok je FX-007: test reálneho klienta na syntetickej sade. Až následne sa uzavrú integračné a modelové podmienky FX-005.
+Koordinačný cyklus 21. 11. 2026: živé záznamy FX-007/008/009 sú zosúladené do tohto snapshotu. FX-008 je blokovaná 3/4 po doloženom zlyhaní report-only politiky; FX-009 má pripravenú mapu toku, ale zostáva rozpracovaná 0/8. Definície ani závislosti sa nemenili. [Uloženie a zachovanie histórie](verification/COORDINATION_DELIVERY.json).
+
+Najbližší krok vlastní hlavný koordinátor: samostatná oprava discovery/verziovania upstreamu pre FX-007, ak dovtedy nepríde FX-010 od Codexu. Rovnaký klientsky beh sa v nezmenenom read-only prostredí neopakuje. Až doložený celý tok môže uzavrieť integračné a modelové podmienky FX-005.
 
 ## FX-001 — Zafixovať zdrojový kód a inventár nástrojov
 
@@ -100,37 +102,37 @@ Dôkaz: 21. 11. 2026: FX-006 — pripravená syntetická referenčná sada v1. 5
 
 ## FX-007 — Preukázať pripojenie jedného reálneho klienta
 
-**Integrácia · P0 · todo**
+**Integrácia · P0 · blocked**
 
 Overiť celý tok v konkrétnom AI klientovi a verzii. Samostatný dispatcher test nestačí na tvrdenie o kompatibilite.
 
 Závislosti: FX-001, FX-006. Odhad: 0,5–2 pracovné dni podľa prekážok.
 
-- [ ] Zaznamenaný klient, jeho verzia, server commit a presná konfigurácia bez tajomstiev.
+- [x] Zaznamenaný klient, jeho verzia, server commit a presná konfigurácia bez tajomstiev.
 - [ ] Prešli autentifikácia, objavenie nástrojov a volania status/results.
 - [ ] Overená skutočná cesta vyjednania MCP verzie alebo podporované priame pripnutie verzie.
-- [ ] Uložený redigovaný záznam behu; opravy upstreamu evidované samostatne.
+- [x] Uložený redigovaný záznam behu; opravy upstreamu evidované samostatne.
 
-Dôkaz: NOT_VERIFIED. Súčasný MCP 2026-07-28 už nevyžaduje starý inicializačný handshake. Nepovažovať jeho absenciu automaticky za chybu; otestovať reálnu kompatibilitu.
+Dôkaz: 21. 11. 2026: vykonaný bod 4.2. Nezmenený upstream 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f; skutočný HTTP proces, 13/13 kontrol autentifikácie, discovery, status/results, identity a úplnej zhody syntetického výsledku PASS. Codex CLI 0.172.0-alpha.2 bol spustený, ale skončil pred MCP: Read-only file system (os error 30); server zaznamenal 0 požiadaviek Codexu. FX-007 nie je hotová: kritériá klientského spojenia a jeho protokolovej cesty zostávajú otvorené. Python MCP SDK 1.29.0 odmietol protokol 2026-07-28. Samostatné upstream zistenia: chýbajúci server/discover a neštandardná odpoveď na nepodporovanú verziu. Podklady: docs/FX007_LIVE_VERIFICATION.md, docs/verification/fx007-live/report.json; report SHA-256 0eaa9476efa44852cb79ed1da630877ee20d6dbbd225caa8e46bd616f6bf630f. Opakovanie v lokálnej inštalácii: bash scripts/fx007-mcp-check.sh --with-codex --with-legacy-sdk. Bez vykonania forenznej analýzy, overenia podpisov alebo kvality LLM briefu.
 
 ## FX-008 — Obmedziť prístup na reportovanie
 
-**Integrácia · P0 · todo**
+**Integrácia · P0 · blocked**
 
 Rozlíšiť pokyny skillu od technicky vynútených oprávnení. Aktuálny analytický kľúč sám osebe nemusí zakazovať zápisové nástroje.
 
 Závislosti: FX-002, FX-007. Odhad: 3–6 h + prípadná oprava servera.
 
 - [ ] Zdokumentované a otestované povolené čítania a zakázané start/cancel volania.
-- [ ] Návod správne rozlišuje X-API-Key alebo APIKey od Bearer JWT.
-- [ ] Pozitívny aj negatívny test prístupu k úlohe; bez potreby admin kľúča.
-- [ ] Výslovne uvedené, ktoré obmedzenia vynucuje server/klient a ktoré sú iba pokynom.
+- [x] Návod správne rozlišuje X-API-Key alebo APIKey od Bearer JWT.
+- [x] Pozitívny aj negatívny test prístupu k úlohe; bez potreby admin kľúča.
+- [x] Výslovne uvedené, ktoré obmedzenia vynucuje server/klient a ktoré sú iba pokynom.
 
-Dôkaz: Zatiaľ nedoložené.
+Dôkaz: 21. 11. 2026: zdrojový audit a dva nezávislé syntetické ASGI behy nad Hubom 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f. Každý beh: 53/53 pozorovaní zodpovedá baseline; report-only brána FAIL. Deväť skutočných zrušení syntetických queued jobov a štyri prechody start ACL po sentinel; žiadna analýza ani model neboli spustené. Bežné poverenie umožňuje čítanie aj cancel; roles=[] ani neimplementovaný reporter label ho neobmedzia. Cudzia organizácia bez dostupného case bola odmietnutá. Doložené X-API-Key/APIKey vs Bearer JWT, pozitívny/negatívny prístup bez admina a hranice server/klient/prompt. Podklady: docs/reviews/FX008_AUTHORIZATION_REVIEW.md, integration/fx008/README.md, docs/verification/FX008_AUTHORIZATION_RESULTS.json a FX008_REPRODUCTION_RESULTS.json. Commit 5d0b2b8faba26f9ca2a5d8a7dda919a88d62255f, vetva chore/fx008-fx009-coordination. Kritérium zákazu start/cancel ostáva nesplnené; treba samostatnú upstream opravu reportovacieho scope a konkrétnu case/org politiku. FX-007 je otvorená závislosť; FX-008 nie je done.
 
 ## FX-009 — Opísať tok dát a zachádzanie s kľúčmi
 
-**Integrácia · P0 · todo**
+**Integrácia · P0 · in_progress**
 
 Kupujúci musí vedieť, kam idú výsledky a kto ich spracúva. Vlastný MCP server automaticky neznamená lokálny AI model.
 
@@ -145,7 +147,7 @@ Závislosti: FX-008. Odhad: 2–3 h, pracovný odhad.
 - [ ] Pri chybe sa údaje bez výslovne schválenej konfigurácie neposielajú inému poskytovateľovi; je doložené, ktoré ochrany sú technicky vynútené.
 - [ ] Neznáma konfigurácia nemá schválený tok reálnych dát; lokálny režim sa deklaruje až po overení celej cesty.
 
-Dôkaz: Zatiaľ nedoložené.
+Dôkaz: 21. 11. 2026: dokončený zdrojový review toku údajov, nie celý produktový tok. docs/reviews/FX009_DATA_FLOW_REVIEW.md mapuje Hub → MCP výsledok → klient → zatiaľ neurčený modelový endpoint, históriu, diagnostiku a úložiská. Hub vydáva celý AnalysisResult; FX007 validuje samostatne získaný súbor a jeho kontrola nie je bránou na klientovej vlastnej MCP ceste. Presný model/provider/endpoint, retencia, tréning a zákaz fallbacku zostávajú NOT_TESTED/BLOCKED. Úplné syntetické payloady a logy FX007 pretrvávajú v reportoch/Gite; 30-dňová retencia Hubu sa týka len registry_events. Pripravených 10 podmienok overenia dátového toku a návrh kontrolovaného adaptéra v docs/reviews/FX010_INTEGRATION_PRECHECK.md (18 kontrol rendereru + 8 integračných skúšok). Commit 5d0b2b8faba26f9ca2a5d8a7dda919a88d62255f, vetva chore/fx008-fx009-coordination. Checkboxy ponechané 0/8: dokumentačný rozbor nenahrádza skúšku presnej podporovanej konfigurácie. Reálne vstupy nie sú povolené; FX-008 zostáva blokovaná. Nový klientský ani modelový beh sa nekonal.
 
 ## FX-010 — Vytvoriť šablónu prehľadu s referenciami
 

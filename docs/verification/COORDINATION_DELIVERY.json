@@ -1,0 +1,105 @@
+{
+  "schema": "forenzx.coordination.delivery/1",
+  "recorded_at": "2026-11-21T10:11:27.737100+00:00",
+  "user_timezone": "Europe/Bratislava",
+  "evidence_commit": "5d0b2b8faba26f9ca2a5d8a7dda919a88d62255f",
+  "evidence_tree": "8f63d7bd22c32e1533173b840d1e889863a2a4c7",
+  "evidence_parent": "fb6b03f57297358381bf7b91ee7c811fc08146c6",
+  "branch": "chore/fx008-fx009-coordination",
+  "private_repository": "erikbabcan-commits/forenzx-analysis-brief",
+  "persistence": "PASS: GitHub branch ref and exact tree verified; local history reconstructed to identical commit",
+  "dashboard": {
+    "url": "https://forenzx-analysis-brief-vorkei.erikbabcan.chatgpt.site/",
+    "write_method": "existing signed-in UI; save confirmed; D1 connector readback",
+    "status": "PASS",
+    "task_count": 18,
+    "events_before": 16,
+    "events_after": 18,
+    "all_old_events_preserved": true,
+    "unrelated_task_rows_unchanged": 16,
+    "definitions_unchanged": true,
+    "new_done_tasks": 0,
+    "done_tasks": 4,
+    "updates": [
+      {
+        "id": "FX-008",
+        "before": {
+          "status": "todo",
+          "checks": [],
+          "revision": 0
+        },
+        "after": {
+          "status": "blocked",
+          "checks": [
+            1,
+            2,
+            3
+          ],
+          "revision": 1,
+          "updated_at": "2026-11-21T10:10:06.319Z"
+        },
+        "evidence": "21. 11. 2026: zdrojový audit a dva nezávislé syntetické ASGI behy nad Hubom 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f. Každý beh: 53/53 pozorovaní zodpovedá baseline; report-only brána FAIL. Deväť skutočných zrušení syntetických queued jobov a štyri prechody start ACL po sentinel; žiadna analýza ani model neboli spustené. Bežné poverenie umožňuje čítanie aj cancel; roles=[] ani neimplementovaný reporter label ho neobmedzia. Cudzia organizácia bez dostupného case bola odmietnutá. Doložené X-API-Key/APIKey vs Bearer JWT, pozitívny/negatívny prístup bez admina a hranice server/klient/prompt. Podklady: docs/reviews/FX008_AUTHORIZATION_REVIEW.md, integration/fx008/README.md, docs/verification/FX008_AUTHORIZATION_RESULTS.json a FX008_REPRODUCTION_RESULTS.json. Commit 5d0b2b8faba26f9ca2a5d8a7dda919a88d62255f, vetva chore/fx008-fx009-coordination. Kritérium zákazu start/cancel ostáva nesplnené; treba samostatnú upstream opravu reportovacieho scope a konkrétnu case/org politiku. FX-007 je otvorená závislosť; FX-008 nie je done."
+      },
+      {
+        "id": "FX-009",
+        "before": {
+          "status": "todo",
+          "checks": [],
+          "revision": 1
+        },
+        "after": {
+          "status": "in_progress",
+          "checks": [],
+          "revision": 2,
+          "updated_at": "2026-11-21T10:10:23.612Z"
+        },
+        "evidence": "21. 11. 2026: dokončený zdrojový review toku údajov, nie celý produktový tok. docs/reviews/FX009_DATA_FLOW_REVIEW.md mapuje Hub → MCP výsledok → klient → zatiaľ neurčený modelový endpoint, históriu, diagnostiku a úložiská. Hub vydáva celý AnalysisResult; FX007 validuje samostatne získaný súbor a jeho kontrola nie je bránou na klientovej vlastnej MCP ceste. Presný model/provider/endpoint, retencia, tréning a zákaz fallbacku zostávajú NOT_TESTED/BLOCKED. Úplné syntetické payloady a logy FX007 pretrvávajú v reportoch/Gite; 30-dňová retencia Hubu sa týka len registry_events. Pripravených 10 podmienok overenia dátového toku a návrh kontrolovaného adaptéra v docs/reviews/FX010_INTEGRATION_PRECHECK.md (18 kontrol rendereru + 8 integračných skúšok). Commit 5d0b2b8faba26f9ca2a5d8a7dda919a88d62255f, vetva chore/fx008-fx009-coordination. Checkboxy ponechané 0/8: dokumentačný rozbor nenahrádza skúšku presnej podporovanej konfigurácie. Reálne vstupy nie sú povolené; FX-008 zostáva blokovaná. Nový klientský ani modelový beh sa nekonal."
+      }
+    ]
+  },
+  "seed_sync": {
+    "direction": "live state to versioned snapshot only; no seed written over live database",
+    "tasks": [
+      "FX-007",
+      "FX-008",
+      "FX-009"
+    ],
+    "fx007": "historical evidence aligned from current live row; no new client run"
+  },
+  "verification": {
+    "fx008_each_run": "53/53 baseline matches",
+    "root_reproduction_semantic_match": true,
+    "reporting_policy_gate": "FAIL",
+    "product_and_fx007_implementation_changed": false,
+    "upstream_changed": false,
+    "review_static_checks": "PASS: syntax, JSON, local links, fences and 18+8 checklist IDs",
+    "catalog_command": "node scripts/check-backlog.mjs",
+    "catalog_result": "PASS: 18 tasks, 17 gates, 30 sources; exit 0",
+    "git_diff_check": "PASS; exit 0",
+    "seed_changed_fields_only": [
+      "checks",
+      "evidence",
+      "revision",
+      "status",
+      "updatedAt"
+    ],
+    "definitions_and_dependencies_preserved": true
+  },
+  "release_permission": false,
+  "next_step": {
+    "task": "FX-007 upstream discovery/version correction",
+    "owner": "main technical coordinator",
+    "condition": "if FX010 handoff is still unavailable; separate upstream branch with targeted synthetic reproduction"
+  },
+  "parallel_owner": {
+    "task": "FX-010 renderer",
+    "owner": "external Codex",
+    "handoff_at_start": "NOT_AVAILABLE"
+  },
+  "final_remote_observation": {
+    "observed_at": "2026-11-21T10:11:59.395693+00:00",
+    "fx010_matching_branches": [],
+    "main_head": "fb6b03f57297358381bf7b91ee7c811fc08146c6"
+  },
+  "record_note": "This delivery record is committed after evidence_commit; its own commit is the containing Git revision, not a self-referential field."
+}
