@@ -1,0 +1,97 @@
+{
+  "schema": "forenzx.user-reported-reproduction/1",
+  "reported_date": "2026-11-21",
+  "user_timezone": "Europe/Bratislava",
+  "evidence_origin": "USER_SUPPLIED_TEXT_SUMMARY",
+  "raw_artifacts_received": false,
+  "independent_artifact_review": "NOT_TESTED",
+  "reported_product_commit": "c2ad1baacfa8b82429eb109514c6b5c4cc8bc3ac",
+  "reported_branch": "chore/fx008-fx009-coordination",
+  "reported_checkout_clean": true,
+  "reported_results": {
+    "whole_block_exit_code": 0,
+    "bootstrap": "PASS",
+    "product_tests": {"passed": 46, "total": 46},
+    "reference_scenarios": {"passed": 50, "total": 50},
+    "fx007": {
+      "http_checks_passed": 13,
+      "http_checks_total": 13,
+      "http_acceptance": true,
+      "requested_acceptance": true,
+      "codex_status": "NOT_REQUESTED"
+    },
+    "fx008": {
+      "checks": 53,
+      "baseline_matches": 53,
+      "baseline_status": "PASS",
+      "reporting_policy_gate": "FAIL",
+      "policy_counterexamples": 13,
+      "reporting_policy_failures": [
+        "cancel-owner",
+        "cancel-same-org",
+        "cancel-owner-other-org",
+        "cancel-case-grant",
+        "cancel-empty-roles",
+        "cancel-reporter-label",
+        "cancel-api-owner",
+        "cancel-api-other-key",
+        "cancel-reporter-label-legacy",
+        "start_owner",
+        "start_empty_roles",
+        "start_reporter_label",
+        "start_reporter_label_legacy"
+      ]
+    },
+    "codex_client": {
+      "version": "codex-cli 0.170.0",
+      "login_status": "Not logged in",
+      "integration_run_started": false
+    }
+  },
+  "reported_artifact_locations": [
+    "~/Projekty/forenzx-analysis-brief-review/.fx007-runtime/local-checks/bootstrap.log",
+    "~/Projekty/forenzx-analysis-brief-review/.fx007-runtime/local-checks/http.log",
+    "~/Projekty/forenzx-analysis-brief-review/.fx007-runtime/local-checks/fx008.log",
+    "~/Projekty/forenzx-analysis-brief-review/.fx007-runtime/runs/20261121T150119Z-8e9cbbc6/report.json",
+    "~/Projekty/forenzx-analysis-brief-review/.fx007-runtime/runs/fx008-local-aps2Io/report.json"
+  ],
+  "artifact_hashes": null,
+  "independently_observed": {
+    "github_branch_head_before_documentation_update": "c2ad1baacfa8b82429eb109514c6b5c4cc8bc3ac",
+    "fx010_branch_search": "NO_MATCHES"
+  },
+  "codex_source_compatibility": {
+    "evidence_kind": "PINNED_SOURCE_REVIEW",
+    "repository": "openai/codex",
+    "tag": "rust-v0.170.0",
+    "commit": "29eb79e9866b3262a777fdf8195c1b9e63684c91",
+    "status": "PASS",
+    "scope": "Presence of CLI options and MCP configuration fields used by the existing FX007 probe; not runtime integration acceptance.",
+    "verified_settings": [
+      "--ephemeral",
+      "--ignore-user-config",
+      "--skip-git-repo-check",
+      "--output-schema",
+      "mcp_servers.fx007.enabled_tools",
+      "mcp_servers.fx007.tools.<tool>.approval_mode",
+      "mcp_servers.fx007.bearer_token_env_var"
+    ],
+    "reviewed_files": [
+      "codex-rs/exec/src/cli.rs",
+      "codex-rs/config/src/mcp_types.rs",
+      "codex-rs/config/src/mcp_types_tests.rs"
+    ],
+    "runtime_with_codex_0_170_0": "NOT_TESTED",
+    "upstream_rust_tests_executed": false,
+    "credentials_inspected": false,
+    "login_attempted_by_coordinator": false,
+    "model_called_by_coordinator": false
+  },
+  "live_dashboard_changed": false,
+  "acceptance_criteria_changed": false,
+  "report_generation_allowed": false,
+  "next_step": {
+    "owner": "user on own PC",
+    "action": "Complete Codex login, then run existing synthetic FX007 probe with --with-codex; provide original JSON reports."
+  }
+}
