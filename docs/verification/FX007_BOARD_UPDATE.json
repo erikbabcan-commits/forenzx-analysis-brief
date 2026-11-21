@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-21",
+  "scope": "live authenticated dashboard update before source redeployment",
+  "tasks": 18,
+  "only_changed_task": [
+    "FX-007"
+  ],
+  "old_history_events_preserved": 15,
+  "new_history_events": 1,
+  "history_events_after": 16,
+  "fx007_status": "blocked",
+  "fx007_checks": [
+    0,
+    3
+  ],
+  "fx007_revision": 1,
+  "done_tasks": 4,
+  "before_export_sha256": "265e8936ac8b6a7ded193feaea8a0081d1b43d7f9718ffcc4dc88ee105b1a983",
+  "after_export_sha256": "93d5c82de1b006bbaafa56026cdec786d97dac119a12912b9afa4f4d8f970c9f"
+}

@@ -1,0 +1,67 @@
+{
+  "date": "2026-11-21",
+  "timezone": "Europe/Bratislava",
+  "dashboard_bootstrap": {
+    "command": "bash scripts/local-bootstrap.sh --check-only",
+    "exit_code": 0,
+    "state_tests": {
+      "passed": 22,
+      "total": 22
+    },
+    "product_tests": {
+      "passed": 46,
+      "total": 46
+    },
+    "reference_cases": {
+      "passed": 50,
+      "total": 50
+    },
+    "gateway_tests": {
+      "passed": 9,
+      "total": 9
+    },
+    "typecheck": "PASS",
+    "build": "PASS",
+    "http_d1_smoke": [
+      "HTML",
+      "18 seeded tasks",
+      "PATCH save",
+      "export with history",
+      "foreign Origin rejected",
+      "persistence across restart"
+    ],
+    "occupied_port_preserves_other_process": "PASS",
+    "signal_cleans_owned_process_tree": "PASS"
+  },
+  "integration_cleanup_tests": {
+    "passed": 2,
+    "total": 2
+  },
+  "clean_integration_wrapper": {
+    "command": "bash scripts/fx007-mcp-check.sh --with-legacy-sdk",
+    "exit_code": 0,
+    "fresh_upstream_clone": true,
+    "fresh_venv": true,
+    "locked_requirements_installed": true,
+    "http_checks": {
+      "passed": 13,
+      "total": 13
+    },
+    "codex": "NOT_REQUESTED",
+    "legacy_sdk": {
+      "status": "INCOMPATIBLE_OR_FAILED",
+      "client": "mcp-python 1.29.0",
+      "error_type": "ExceptionGroup",
+      "errors": [
+        "RuntimeError: Unsupported protocol version from the server: 2026-07-28"
+      ]
+    },
+    "report_sha256": "7bca39cff23641582718f44dbc5524031ddea61a83d0f6d84057a4de237bfbe2"
+  },
+  "not_claimed": [
+    "macOS or WSL execution",
+    "AI-client acceptance",
+    "full MCP protocol compliance",
+    "forensic report validity"
+  ]
+}

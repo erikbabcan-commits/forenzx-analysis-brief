@@ -15,6 +15,9 @@
     "test": "node scripts/check-backlog.mjs && node scripts/test-state.mjs",
     "test:product": "python3 -m unittest discover -s product/tests -v",
     "test:reference": "python3 product/run_reference_suite.py",
+    "test:local": "node --test tests/local-dashboard.test.mjs",
+    "local": "node scripts/local-dashboard.mjs",
+    "local:check": "bash scripts/local-bootstrap.sh --check-only",
     "typecheck": "tsc --noEmit --pretty false"
   },
   "dependencies": {

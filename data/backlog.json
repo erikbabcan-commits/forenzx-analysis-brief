@@ -220,9 +220,12 @@
       "MCP-2026",
       "MCP-SDK"
     ],
-    "status": "todo",
-    "evidence": "NOT_VERIFIED. Súčasný MCP 2026-07-28 už nevyžaduje starý inicializačný handshake. Nepovažovať jeho absenciu automaticky za chybu; otestovať reálnu kompatibilitu.",
-    "checks": [],
+    "status": "blocked",
+    "evidence": "21. 11. 2026: vykonaný bod 4.2. Nezmenený upstream 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f; skutočný HTTP proces, 13/13 kontrol autentifikácie, discovery, status/results, identity a úplnej zhody syntetického výsledku PASS. Codex CLI 0.172.0-alpha.2 bol spustený, ale skončil pred MCP: Read-only file system (os error 30); server zaznamenal 0 požiadaviek Codexu. FX-007 nie je hotová: kritériá klientského spojenia a jeho protokolovej cesty zostávajú otvorené. Python MCP SDK 1.29.0 odmietol protokol 2026-07-28. Samostatné upstream zistenia: chýbajúci server/discover a neštandardná odpoveď na nepodporovanú verziu. Podklady: docs/FX007_LIVE_VERIFICATION.md, docs/verification/fx007-live/report.json; report SHA-256 0eaa9476efa44852cb79ed1da630877ee20d6dbbd225caa8e46bd616f6bf630f. Opakovanie v lokálnej inštalácii: bash scripts/fx007-mcp-check.sh --with-codex --with-legacy-sdk. Bez vykonania forenznej analýzy, overenia podpisov alebo kvality LLM briefu.",
+    "checks": [
+      0,
+      3
+    ],
     "revision": 0,
     "updatedAt": null
   },

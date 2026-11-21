@@ -7,11 +7,11 @@ Súkromný pracovný dashboard pre prípravu **ForenZX Analysis Brief**. Obsahuj
 ## Priebežný stav k 21. 11. 2026
 
 - Overený upstream commit: `0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f`.
-- Pripravený návrh rozsahu a metodiky. Tri prípravné úlohy sú hotové.
+- Hotové sú FX-001, FX-002, FX-004 a FX-006: zdrojový základ, rozsah, metodika a syntetická referenčná sada.
 - FX-005 je rozpracovaná: samostatný lokálny validátor a dva syntetické príklady, 34/34 testov. Úspech kontroly vstupu nepovoľuje generovanie prehľadu.
-- Reálny MCP klient, celkové produktové testy, nezávislé odborné review a licencia zostávajú otvorené.
+- FX-007 má vykonaný živý HTTP test: 13/13 kontrol PASS. Codex CLI 0.172.0-alpha.2 zablokoval štart vlastného úložiska pred MCP komunikáciou; úloha zostáva blokovaná s 2/4 doloženými kritériami. [Podrobný záznam](docs/FX007_LIVE_VERIFICATION.md).
 - FX-006 je hotová ako syntetická referenčná sada: 50/50 scenárov a 46/46 produktových testov; [záznam overenia](docs/FX006_REFERENCE_VERIFICATION.md).
-- Ďalší krok: preukázať reálneho klienta FX-007 na syntetických dátach a potom uzavrieť zostávajúce tri podmienky FX-005.
+- Ďalší krok: zopakovať pripravený test v funkčnej lokálnej inštalácii AI klienta a samostatne opraviť zistené moderné discovery/verziovanie upstreamu. Potom uzavrieť zostávajúce tri podmienky FX-005.
 - Navrhovaná cena skillu: 19 USD jednorazovo.
 - Z poskytnutej komunikácie nevyplýva externý termín odovzdania. Agensi uvádza odhad kontroly až od podania.
 
@@ -31,6 +31,9 @@ Do poznámok nevkladajte poverenia ani reálny dôkazový materiál. Tento board
 - [Prvá implementácia kontroly vstupu FX-005](product/README.md)
 - [Syntetická referenčná sada FX-006](product/reference/README.md)
 - [Vykonaný prompt pre FX-006](docs/prompts/FX006_REFERENCE_SUITE_PROMPT.md)
+- [Vykonaný prompt pre bod 4.2 / FX-007](docs/prompts/FX007_LIVE_CLIENT_PROMPT.md)
+- [Výsledky živého testu FX-007](docs/FX007_LIVE_VERIFICATION.md)
+- [Lokálne klonovanie, spustenie a testy](docs/LOCAL_SETUP.md)
 - [Produktový kontrakt](docs/PRODUCT_CONTRACT.md)
 - [Metodika a pracovný slovník](docs/METHODOLOGY.md)
 - [Brány kvality](docs/QUALITY_GATES.md)
@@ -46,13 +49,47 @@ Vinext / React, serverové API a Cloudflare D1. Prístup obmedzuje súkromné Si
 
 ## Vývoj
 
+### Naklonovať, overiť a spustiť lokálne
+
+Predpoklady: Git, Node **22.13+**, npm a Python **3.10+**. Použite Bash na Linuxe, macOS alebo vo WSL; prístup k súkromnému repozitáru musí mať váš Git alebo GitHub CLI.
+
+```bash
+gh repo clone erikbabcan-commits/forenzx-analysis-brief
+cd forenzx-analysis-brief
+bash scripts/local-bootstrap.sh
+```
+
+Bez GitHub CLI použite `git clone https://github.com/erikbabcan-commits/forenzx-analysis-brief.git` s vlastným Git credential helperom. Kompletný opatrný obal na klonovanie do nového adresára je [scripts/clone-and-test.sh](scripts/clone-and-test.sh).
+
+Bootstrap nainštaluje závislosti, keď treba, spustí kontroly, vytvorí build, overí lokálne uloženie a export a otvorí lokálnu službu na **http://127.0.0.1:5173**. URL vypíše v termináli; prehliadač otvorte sami. `Ctrl+C` službu ukončí. Len kontroly bez trvalo bežiaceho dashboardu: `bash scripts/local-bootstrap.sh --check-only`. Obsadený port: `bash scripts/local-bootstrap.sh --port 5174` alebo `--port 0` pre automatický výber.
+
+Lokálny režim používa označený syntetický účet a samostatnú lokálnu D1. **Aktuálne zmeny zo živého dashboardu sa doň automaticky neprenesú.** Produkčné prihlásenie ani hostovanú databázu nemení. [Úplný lokálny návod](docs/LOCAL_SETUP.md).
+
+### Samostatné kontroly
+
 Node 22.13+ a závislosti z lockfile. Inštalácia: `npm ci`. Typová kontrola: `npm run typecheck`. Overenie backlogu a stavu: `npm test`. Schému meniť cez `db/schema.ts` a `npm run db:generate`; vygenerované migrácie sa verziujú a spätne neupravujú.
 
 Lokálny validátor produktového vstupu je samostatný Python 3.10+ skript bez externých závislostí. Jeho testy sa spúšťajú cez `npm run test:product` alebo `python3 -m unittest discover -s product/tests -v`. Úspech tejto sady je dôkazom lokálnych kontrol na syntetických vstupoch, nie úspešného MCP spojenia, bezpečného modelového kontextu ani hotového skillu.
 
 Autorskú referenčnú sadu spustí `npm run test:reference`. Očakávania sú verziované v `product/reference/catalog.json`; veľké hraničné vstupy sa vytvárajú deterministicky. Samostatný príkaz `python3 product/run_reference_suite.py --materialize /tmp/forenzx-fx006-fixtures --report /tmp/forenzx-fx006-results.json` zachová aj vygenerované vstupy a report. Použite nové cesty; existujúce súbory sa štandardne neprepisujú. Tento beh overuje lokálny kontrakt a explicitne ponecháva živý klient aj LLM ako neotestované.
 
-Používajte dodané Sites skripty na build a nasadenie. Produkčné tajomstvá nepatria do zdrojov. Lokálny náhľad bez autentifikačných hlavičiek môže vrátiť 401; nejde o dôvod vypnúť kontrolu identity v produkcii.
+`npm run test:local` overí lokálnu bránu; `npm run local:check` vykoná celý lokálny bootstrap vrátane HTTP/D1 smoke testu. `npm run local` spustí už vytvorený build. Priame `npm run dev` nemá lokálnu syntetickú identitu; na funkčné lokálne odškrtávanie použite dodaný launcher.
+
+Pre nasadenie používajte dodané Sites skripty. Produkčné tajomstvá nepatria do zdrojov.
+
+### Bod 4.2 — živý MCP test
+
+Prompt je v [docs/prompts/FX007_LIVE_CLIENT_PROMPT.md](docs/prompts/FX007_LIVE_CLIENT_PROMPT.md). Reprodukovateľný test skutočného upstream procesu je oddelený od offline referenčnej sady:
+
+```bash
+# Vyžaduje Python 3.11+; vytvorí vlastný venv a čistý pinned checkout.
+bash scripts/fx007-mcp-check.sh
+
+# Na skutočné overenie AI klienta treba aj nainštalovaný a prihlásený Codex CLI.
+bash scripts/fx007-mcp-check.sh --with-codex --with-legacy-sdk
+```
+
+Prvý príkaz overuje priamo HTTP, autentifikáciu a čítanie syntetického výsledku. Druhý navyše spustí skutočný AI klient a samostatný diagnostický test staršieho SDK. Dostupnosť klienta, modelu a siete sa nesmie zameniť za úspech. Skript generuje iba dočasné testovacie poverenia; nepotrebuje vaše produkčné kľúče. Reporty ukladá do ignorovaného adresára `.fx007-runtime/runs/`. [Integračný návod](integration/fx007/README.md).
 
 ## Licencie a publikácia
 

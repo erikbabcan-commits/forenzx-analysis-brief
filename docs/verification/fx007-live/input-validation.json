@@ -1,0 +1,53 @@
+{
+  "coverage": {
+    "counts": {
+      "chain_of_custody": 1,
+      "findings": 1,
+      "limitations": 1,
+      "timeline": 1,
+      "warnings": 1
+    },
+    "finding_references": [
+      {
+        "artifact_path_pointer": "/findings/0/artifact_path",
+        "finding_pointer": "/findings/0",
+        "raw_evidence_ref_pointer": "/findings/0/raw_evidence_ref"
+      }
+    ],
+    "limitation_pointers": [
+      "/limitations/0"
+    ],
+    "model_context": "NOT_VERIFIED",
+    "scope": "RECEIVED_JSON_ONLY",
+    "transport_completeness": "NOT_VERIFIED",
+    "upstream_total": "UNKNOWN",
+    "warning_pointers": [
+      "/warnings/0"
+    ]
+  },
+  "diagnostics_limited": false,
+  "input": {
+    "bytes_read": 2941,
+    "complete_byte_read": true,
+    "sha256": "1f366bdb5f6269db6d780ff4d5a2d81cd2945354e7b77113cc38e69cb9243cb7"
+  },
+  "issues": [],
+  "limits": {
+    "basis": "PROVISIONAL_ENGINEERING_LIMITS_NOT_LLM_CONTEXT",
+    "max_bytes": 262144,
+    "max_depth": 32,
+    "max_nodes": 20000,
+    "max_records": 1000
+  },
+  "passed": true,
+  "profile": "forenzx-analysis-result-0e4c7fae",
+  "report_generation_allowed": false,
+  "status": "STRUCTURE_VALID",
+  "upstream_commit": "0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f",
+  "validator_version": "0.1.0",
+  "verification": {
+    "original_artifacts": "NOT_VERIFIED",
+    "signatures": "NOT_VERIFIED",
+    "source_authenticity": "NOT_VERIFIED"
+  }
+}

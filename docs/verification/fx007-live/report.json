@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "task": "FX-007",
+  "started_at": "2026-11-21T00:10:37.708189+00:00",
+  "upstream": {
+    "repository": "erikbabcan-commits/forenzx-mcp-hub",
+    "commit": "0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f",
+    "clean": true,
+    "files_sha256": {
+      "core/main.py": "5a800d7937abf6091a8e128da1e1737e75fc45dfd3006dd9e86f81489c9b3def",
+      "core/server.py": "c9292efe5a08144298392b989d66b7c52eb0371a9007be444976640da958ec81",
+      "core/config.py": "d6876200335fd6596026ed018b1088ed18ba1647ee9d44b770ffdeb312fb95dc",
+      "core/jobs.py": "8ed856d0e0f5450e44c36d13e9362df7186a5907c55e37bb52fc02043a684ac9",
+      "core/acl.py": "72a2552157cc0a5a7a2a2793982dcaab29b62ffd03246db4b764080d07d6b772",
+      "core/db.py": "7786d12bfa2fec68946c6a7844d17a8a5fe7693814310f4830780e0895f97902",
+      "core/models/forensic.py": "1dccf87d72fb54d3058d89bb4bcbc30cac62e57bf59b744219474ae503d80120",
+      "pyproject.toml": "911404df524fba79bdc57a486b524e76fd0f8cb2678d8df0ad5dd0825724baa4",
+      "poetry.lock": "e5b003182415abb4b7f0af6a4d697dc82d0649aa47b498464b2ea1b0142cb3c4"
+    }
+  },
+  "python": "3.12.14",
+  "fixture_sha256": "461a511f6ca015ef1552b86fd1442e37e65288b0323987d4421adf6086a6c192",
+  "harness_sha256": "fb248fd13d6d03ebf61657d6e367417769246d75e07f78b000fc7d129097875e",
+  "checks": [
+    {
+      "name": "missing_auth_rejected",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "name": "invalid_jwt_rejected",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "name": "expired_jwt_rejected",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "name": "dev_bypass_rejected_in_production",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "name": "api_key_discovery",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "name": "jwt_tool_discovery",
+      "passed": true,
+      "tools": [
+        "forenzx_health",
+        "forenzx_capabilities",
+        "forenzx_packs_list",
+        "forenzx_analysis_start",
+        "forenzx_analysis_status",
+        "forenzx_analysis_cancel",
+        "forenzx_analysis_results"
+      ]
+    },
+    {
+      "name": "unsupported_protocol_rejected",
+      "passed": true,
+      "http_status": 400
+    },
+    {
+      "name": "completed_status",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "name": "exact_result_roundtrip",
+      "passed": true,
+      "response_sha256": "3531592c6461761007f7d2c1d27c732692d50abf17ebd7cc8f291fc17f311b31",
+      "canonical_result_sha256": "a6b53edb5a9f9f678f1e23777784f8b7895b927e85e50311dffaa7021bc6c2b7"
+    },
+    {
+      "name": "warnings_and_limitations_preserved",
+      "passed": true
+    },
+    {
+      "name": "cross_organization_denied",
+      "passed": true,
+      "http_status": 200,
+      "rpc_error_code": -32603
+    },
+    {
+      "name": "missing_job_rejected",
+      "passed": true,
+      "http_status": 200,
+      "rpc_error_code": -32602
+    },
+    {
+      "name": "retrieved_input_passes_structural_validator",
+      "passed": true,
+      "note": "Explicit post-retrieval check; not a client-side pre-LLM enforcement mechanism."
+    }
+  ],
+  "protocol": {
+    "requested": "2026-07-28",
+    "mode": "per-request HTTP; no legacy initialization required",
+    "unsupported_response": {
+      "http_status": 400,
+      "response": {
+        "detail": "Unsupported MCP protocol version: 2025-11-25"
+      },
+      "note": "Rejection alone does not establish the modern -32022 error and supported-version-list semantics."
+    }
+  },
+  "not_tested": [
+    "forensic analysis execution/Docker",
+    "original artifact authenticity",
+    "hash or signature verification",
+    "generated forensic report quality",
+    "report-only server authorization",
+    "production deployment",
+    "real case data"
+  ],
+  "codex": {
+    "status": "FAILED",
+    "client": "codex-cli 0.172.0-alpha.2",
+    "exit_code": 1,
+    "timed_out": false,
+    "final": null,
+    "configuration": {
+      "transport": "HTTP",
+      "endpoint": "http://127.0.0.1:39769/mcp",
+      "bearer_token_env_var": "FX007_SYNTHETIC_BEARER",
+      "enabled_tools": [
+        "forenzx_analysis_status",
+        "forenzx_analysis_results"
+      ],
+      "required": true,
+      "startup_timeout_sec": 20,
+      "tool_timeout_sec": 20,
+      "ignore_user_config": true,
+      "ephemeral": true,
+      "sandbox": "read-only",
+      "per_tool_approval_mode": {
+        "forenzx_analysis_status": "approve",
+        "forenzx_analysis_results": "approve"
+      }
+    },
+    "server_observed_successful_tools": [],
+    "unexpected_tool_calls": [],
+    "final_exact_match": false,
+    "accepted": false
+  },
+  "legacy_sdk": {
+    "status": "INCOMPATIBLE_OR_FAILED",
+    "client": "mcp-python 1.29.0",
+    "error_type": "ExceptionGroup",
+    "errors": [
+      "RuntimeError: Unsupported protocol version from the server: 2026-07-28"
+    ]
+  },
+  "dependencies": {
+    "fastapi": "0.162.7",
+    "uvicorn": "0.54.0",
+    "pydantic": "2.14.4",
+    "pydantic-settings": "2.16.3",
+    "httpx": "0.28.1",
+    "pyjwt": "2.15.1",
+    "cryptography": "46.0.7",
+    "mcp": "1.29.0"
+  },
+  "synthetic_job_id": "eb1a7426-7d3c-4964-80ab-12817d94c8bb",
+  "engine_readiness": {
+    "http_status": 200,
+    "status": "READY",
+    "packs_enabled": 1,
+    "pack_errors": {}
+  },
+  "server_discover_diagnostic": {
+    "http_status": 200,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 8,
+      "error": {
+        "code": -32601,
+        "message": "Method 'server/discover' is not supported"
+      }
+    },
+    "note": "Separate current-spec discovery diagnostic; direct requests pin the supported protocol explicitly."
+  },
+  "upstream_clean_after": true,
+  "http_acceptance": true,
+  "requested_acceptance": false,
+  "finished_at": "2026-11-21T00:10:43.842732+00:00",
+  "artifacts_sha256": {
+    "codex-command.json": "8ef8dd939350a7f8f081bb370ab68d258555145a282bf1f3366ef7bd1507b97f",
+    "codex-events.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "codex-final.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "codex-prompt.txt": "c209be9da90d50ca23432d471ffc5c7630fd3cdb80d7003ddd886ef88e9622c3",
+    "codex-stderr.txt": "8b1cfa9d9bc69140f7cdb1f12333e44c1fcd137533bab35bef86c476ab55cc9c",
+    "http-traffic.jsonl": "3881484db35bd546e011776a6b0be4638719b2197b3e6ec01393a5cc818de7f0",
+    "input-validation.json": "63fcef3dfc7352750009babb309c774909be75484367fd6b8a5a4bb5dbf8d9f9",
+    "retrieved-result.json": "1f366bdb5f6269db6d780ff4d5a2d81cd2945354e7b77113cc38e69cb9243cb7",
+    "seeded-result.json": "1f366bdb5f6269db6d780ff4d5a2d81cd2945354e7b77113cc38e69cb9243cb7",
+    "server-log.txt": "f9869df77269ecd9b83af56f0e793d4b4bf2f0cbc0b04bb652f1cf324a0ee022"
+  }
+}

@@ -1,0 +1,19 @@
+# Template only. Replace the endpoint with your own authorized instance.
+# The ephemeral probe supplies its own loopback endpoint and random bearer value.
+# Never commit a bearer value, signing secret or real case data.
+
+[mcp_servers.forenzx_brief]
+url = "https://YOUR-OWN-FORENZX-HOST/mcp"
+bearer_token_env_var = "FORENZX_BEARER_TOKEN"
+enabled_tools = ["forenzx_analysis_status", "forenzx_analysis_results"]
+required = true
+startup_timeout_sec = 20
+tool_timeout_sec = 20
+
+# Explicitly authorize these read operations only. This does not narrow
+# the privileges of the credential on the server; FX-008 handles that.
+[mcp_servers.forenzx_brief.tools.forenzx_analysis_status]
+approval_mode = "approve"
+
+[mcp_servers.forenzx_brief.tools.forenzx_analysis_results]
+approval_mode = "approve"
