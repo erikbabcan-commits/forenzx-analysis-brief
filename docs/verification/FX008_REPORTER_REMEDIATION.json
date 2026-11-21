@@ -1,0 +1,39 @@
+{
+  "task": "FX-008 reporter upstream remediation",
+  "recorded_at": "2026-11-21T16:20:55.504167+00:00",
+  "upstream_commit": "3b4effdb08cda68f733c56d995ccb54380729e8b",
+  "upstream_tree": "74a5c65a6e0df2133e39a33447d7894666459c1b",
+  "identical_local_commit": "41303370828189754c1347d91b32a63a7d387392",
+  "pull_request": "https://github.com/erikbabcan-commits/forenzx-mcp-hub/pull/29",
+  "full_suite": {
+    "tests": 297,
+    "failures": 0,
+    "errors": 0,
+    "new_reporter_tests": 77,
+    "junit": "FX008_REPORTER_REGRESSION.xml"
+  },
+  "reporter_policy_acceptance": "PASS in synthetic HTTP tests; pending review and production provisioning",
+  "fx007_http": {
+    "checks_passed": 13,
+    "checks_total": 13,
+    "report": "fx007-reporter-published/report.json",
+    "credential": "legacy analyst JWT, not reporter"
+  },
+  "new_codex_attempt": {
+    "status": "FAILED_BEFORE_MCP",
+    "error": "failed to initialize in-process app-server client: Read-only file system (os error 30)",
+    "version": "0.172.0-alpha.2",
+    "report": "fx007-reporter-fix-codex/report.json"
+  },
+  "historical_fx008_baseline": "preserved unchanged; its 53/53 characterization and policy FAIL remain historical evidence",
+  "production_deployment": "NOT_PERFORMED",
+  "report_generation_allowed": false,
+  "remaining": [
+    "FX009 pre-model validation/data-flow and provider contract",
+    "live reporter credential provisioning and revocation",
+    "case ACL restoration after restart",
+    "evidence-level authorization and independent payload identity validation",
+    "review and merge upstream draft"
+  ],
+  "junit_sha256": "fb1018cc5fe9c564566290682a2fd8e92fbb7753b8d4eb8dab2f548845dde041"
+}

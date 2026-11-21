@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "task": "FX-007",
+  "started_at": "2026-11-21T16:20:02.875227+00:00",
+  "upstream": {
+    "repository": "erikbabcan-commits/forenzx-mcp-hub",
+    "commit": "3b4effdb08cda68f733c56d995ccb54380729e8b",
+    "clean": true,
+    "files_sha256": {
+      "core/main.py": "cabac0869e29cc13e3c967550e70b1d596d0d9355ee49e3aec047f81aa3e9319",
+      "core/server.py": "5a9b5d611f7c1607f9279a93b8b6e58710d977e89da47877dc3a4fa2c3ca05e4",
+      "core/config.py": "d6876200335fd6596026ed018b1088ed18ba1647ee9d44b770ffdeb312fb95dc",
+      "core/jobs.py": "8ed856d0e0f5450e44c36d13e9362df7186a5907c55e37bb52fc02043a684ac9",
+      "core/acl.py": "e1dc47a89937f3259ee4b04373440cc1be0e9b7a16e9502bec2ae4e21ade2338",
+      "core/db.py": "7786d12bfa2fec68946c6a7844d17a8a5fe7693814310f4830780e0895f97902",
+      "core/models/forensic.py": "1dccf87d72fb54d3058d89bb4bcbc30cac62e57bf59b744219474ae503d80120",
+      "pyproject.toml": "911404df524fba79bdc57a486b524e76fd0f8cb2678d8df0ad5dd0825724baa4",
+      "poetry.lock": "e5b003182415abb4b7f0af6a4d697dc82d0649aa47b498464b2ea1b0142cb3c4"
+    }
+  },
+  "python": "3.12.14",
+  "fixture_sha256": "461a511f6ca015ef1552b86fd1442e37e65288b0323987d4421adf6086a6c192",
+  "harness_sha256": "368a75a2515bd21e5838fa070beb154b7516fea05b90c7d44753e4b5413ec2dc",
+  "checks": [
+    {
+      "name": "missing_auth_rejected",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "name": "invalid_jwt_rejected",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "name": "expired_jwt_rejected",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "name": "dev_bypass_rejected_in_production",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "name": "api_key_discovery",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "name": "jwt_tool_discovery",
+      "passed": true,
+      "tools": [
+        "forenzx_health",
+        "forenzx_capabilities",
+        "forenzx_packs_list",
+        "forenzx_analysis_start",
+        "forenzx_analysis_status",
+        "forenzx_analysis_cancel",
+        "forenzx_analysis_results"
+      ]
+    },
+    {
+      "name": "unsupported_protocol_rejected",
+      "passed": true,
+      "http_status": 400
+    },
+    {
+      "name": "completed_status",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "name": "exact_result_roundtrip",
+      "passed": true,
+      "response_sha256": "e8871ed1429e53178f05189318a24fbd23ff5799bec5a8169d93796fcfddf215",
+      "canonical_result_sha256": "41310521bf8df9f0fee200ce66f2781f49290da97aeef83c31305688fd9bfd76"
+    },
+    {
+      "name": "warnings_and_limitations_preserved",
+      "passed": true
+    },
+    {
+      "name": "cross_organization_denied",
+      "passed": true,
+      "http_status": 200,
+      "rpc_error_code": -32603
+    },
+    {
+      "name": "missing_job_rejected",
+      "passed": true,
+      "http_status": 200,
+      "rpc_error_code": -32602
+    },
+    {
+      "name": "retrieved_input_passes_structural_validator",
+      "passed": true,
+      "note": "Explicit post-retrieval check; not a client-side pre-LLM enforcement mechanism."
+    }
+  ],
+  "protocol": {
+    "requested": "2026-07-28",
+    "mode": "per-request HTTP; no legacy initialization required",
+    "unsupported_response": {
+      "http_status": 400,
+      "response": {
+        "detail": "Unsupported MCP protocol version: 2025-11-25"
+      },
+      "note": "Rejection alone does not establish the modern -32022 error and supported-version-list semantics."
+    }
+  },
+  "not_tested": [
+    "forensic analysis execution/Docker",
+    "original artifact authenticity",
+    "hash or signature verification",
+    "generated forensic report quality",
+    "report-only server authorization",
+    "production deployment",
+    "real case data"
+  ],
+  "codex": {
+    "status": "NOT_REQUESTED"
+  },
+  "legacy_sdk": {
+    "status": "NOT_REQUESTED"
+  },
+  "dependencies": {
+    "fastapi": "0.141.1",
+    "uvicorn": "0.52.1",
+    "pydantic": "2.13.4",
+    "pydantic-settings": "2.15.0",
+    "httpx": "0.28.1",
+    "pyjwt": "2.13.0",
+    "cryptography": "50.0.0",
+    "mcp": "1.29.0"
+  },
+  "synthetic_job_id": "f704c682-4f77-4604-b322-30e6f5460074",
+  "engine_readiness": {
+    "http_status": 200,
+    "status": "READY",
+    "packs_enabled": 1,
+    "pack_errors": {}
+  },
+  "server_discover_diagnostic": {
+    "http_status": 200,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 8,
+      "error": {
+        "code": -32601,
+        "message": "Method 'server/discover' is not supported"
+      }
+    },
+    "note": "Separate current-spec discovery diagnostic; direct requests pin the supported protocol explicitly."
+  },
+  "upstream_clean_after": true,
+  "http_acceptance": true,
+  "requested_acceptance": true,
+  "finished_at": "2026-11-21T16:20:04.024720+00:00",
+  "artifacts_sha256": {
+    "http-traffic.jsonl": "1c3abed8b586bda5b7bc9a4bad2115290ee2772212ab358faf76bdc2610296ea",
+    "input-validation.json": "ec6b33b1fea19e7999d629422cbf6c556b6a796ab5583eca98d8c2ea2b617ddd",
+    "retrieved-result.json": "8d313c9f479d38545249e3fb30193311deab9148e336fc913e9459791481c0a8",
+    "seeded-result.json": "8d313c9f479d38545249e3fb30193311deab9148e336fc913e9459791481c0a8",
+    "server-log.txt": "361741941703b33de09b3b6e96ba99f7e37a43a03c8ba7ede05c1fd5d93dba77"
+  }
+}
