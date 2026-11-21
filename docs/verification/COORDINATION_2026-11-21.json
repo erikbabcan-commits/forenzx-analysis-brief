@@ -1,0 +1,92 @@
+{
+  "schema": "forenzx.coordination.review/1",
+  "recorded_at": "2026-11-21T10:08:46.759976+00:00",
+  "user_timezone": "Europe/Bratislava",
+  "work_branch": "chore/fx008-fx009-coordination",
+  "product_base_commit": "fb6b03f57297358381bf7b91ee7c811fc08146c6",
+  "product_base_tree": "b7f8d40cf003f4a0b2610348e45574cde77232c9",
+  "upstream_commit": "0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f",
+  "cycle": "A: precheck while external FX010 handoff is unavailable",
+  "handoff_observation": {
+    "branches_at_initial_read": [
+      "main"
+    ],
+    "files_present_on_main": false,
+    "external_local_work": "UNKNOWN"
+  },
+  "fx008": {
+    "characterization": "PASS",
+    "checks_each_run": 53,
+    "independent_reproduction": "PASS",
+    "semantic_comparison": "PASS: 53 observation objects match excluding random response hashes",
+    "reporting_policy_gate": "FAIL",
+    "policy_counterexamples": 13,
+    "actual_synthetic_cancellations": 9,
+    "post_acl_start_sentinels": 4,
+    "actual_analyses_started": 0,
+    "report_generation_allowed": false
+  },
+  "fx009": {
+    "source_flow_review": "PASS",
+    "production_data_flow": "BLOCKED",
+    "pre_client_gate": "FAIL: absent in current path",
+    "model_endpoint_retention_training": "NOT_TESTED"
+  },
+  "fx010": {
+    "independent_review_checklist": "PASS: 18 renderer and 8 integration criteria prepared",
+    "implementation_review": "NOT_TESTED",
+    "production_permission": "NOT_GRANTED"
+  },
+  "root_review": {
+    "signature_independence_correction": "Expected identities must remain independent even when incoming result is signed.",
+    "product_and_fx007_files_unchanged": true,
+    "upstream_unchanged": true
+  },
+  "commands": [
+    {
+      "cwd": "repository root",
+      "command": "/workspace/scratch/203c591095ce/fx007-venv/bin/python -B integration/fx008/run_authorization_probe.py --upstream /workspace/scratch/203c591095ce/fx007-upstream --output docs/verification/FX008_AUTHORIZATION_RESULTS.json",
+      "exit_code": 0,
+      "evidence": "docs/verification/FX008_AUTHORIZATION_RESULTS.json"
+    },
+    {
+      "cwd": "repository root",
+      "command": "/workspace/scratch/203c591095ce/fx007-venv/bin/python -B integration/fx008/run_authorization_probe.py --upstream /workspace/scratch/203c591095ce/fx007-upstream --output /workspace/scratch/203c591095ce/fx008-root-reproduction.json",
+      "exit_code": 0,
+      "evidence": "docs/verification/FX008_REPRODUCTION_RESULTS.json"
+    }
+  ],
+  "evidence_sha256": {
+    "docs/verification/FX008_AUTHORIZATION_RESULTS.json": "42b507508c9b238d09a00558b92789a8112a996645714247c57a532b049ff283",
+    "docs/verification/FX008_REPRODUCTION_RESULTS.json": "052d12ffaa6517c5e112c5ef71a299e629bb116308dd098f6fd94431ab30f8a1",
+    "integration/fx008/run_authorization_probe.py": "bbb419bc4d72730fc9d843fd3aed3e715a1c1507b90816bb90fedd3be8f294bc"
+  },
+  "historical_only": {
+    "fx006_reference_cases": 50,
+    "fx006_product_tests": 46,
+    "fx007_direct_http_checks": 13,
+    "fx007_client_blocker": "client storage read-only before any MCP request; not rerun"
+  },
+  "live_dashboard_before": {
+    "tasks": 18,
+    "history_events": 16,
+    "done": 4,
+    "fx005": "in_progress 5/8",
+    "fx007": "blocked 2/4",
+    "fx008": "todo 0/4",
+    "fx009": "todo 0/8",
+    "fx010": "todo"
+  },
+  "live_dashboard_write": "PENDING; final persistence outcome belongs to COORDINATION_DELIVERY.json",
+  "not_tested": [
+    "renderer implementation",
+    "real AI client/model",
+    "real case data",
+    "production reporting authorization",
+    "MCP TLS/network in FX008",
+    "ASGI lifespan",
+    "forensic analysis engine",
+    "signature verification",
+    "Agensi packaging/release"
+  ]
+}

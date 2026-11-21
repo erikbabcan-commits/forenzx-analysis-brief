@@ -11,6 +11,8 @@ Súkromný pracovný dashboard pre prípravu **ForenZX Analysis Brief**. Obsahuj
 - FX-005 je rozpracovaná: samostatný lokálny validátor a dva syntetické príklady, 34/34 testov. Úspech kontroly vstupu nepovoľuje generovanie prehľadu.
 - FX-007 má vykonaný živý HTTP test: 13/13 kontrol PASS. Codex CLI 0.172.0-alpha.2 zablokoval štart vlastného úložiska pred MCP komunikáciou; úloha zostáva blokovaná s 2/4 doloženými kritériami. [Podrobný záznam](docs/FX007_LIVE_VERIFICATION.md).
 - FX-006 je hotová ako syntetická referenčná sada: 50/50 scenárov a 46/46 produktových testov; [záznam overenia](docs/FX006_REFERENCE_VERIFICATION.md).
+- Koordinačný cyklus FX-008/009: **53/53 pozorovaní autorizácie zodpovedá pripnutému Hubu; požiadavka iba na reportovanie má FAIL**. Rovnaké poverenie umožňuje čítanie aj zrušenie úlohy. [Review oprávnení](docs/reviews/FX008_AUTHORIZATION_REVIEW.md) a [reprodukcia](integration/fx008/README.md) odlišujú úspech testu od nesplnenej produktovej brány.
+- [Mapa dát FX-009](docs/reviews/FX009_DATA_FLOW_REVIEW.md) dokladá chýbajúcu kontrolu pred vydaním výsledkov klientovi a neoverený modelový profil. [Nezávislý checklist FX-010](docs/reviews/FX010_INTEGRATION_PRECHECK.md) pripravuje review Codexovho rendereru; jeho odovzdanie pri kontrole nebolo na GitHube dostupné. Reálne vstupy zostávajú nepovolené.
 - Ďalší krok: zopakovať pripravený test v funkčnej lokálnej inštalácii AI klienta a samostatne opraviť zistené moderné discovery/verziovanie upstreamu. Potom uzavrieť zostávajúce tri podmienky FX-005.
 - Navrhovaná cena skillu: 19 USD jednorazovo.
 - Z poskytnutej komunikácie nevyplýva externý termín odovzdania. Agensi uvádza odhad kontroly až od podania.
@@ -33,6 +35,9 @@ Do poznámok nevkladajte poverenia ani reálny dôkazový materiál. Tento board
 - [Vykonaný prompt pre FX-006](docs/prompts/FX006_REFERENCE_SUITE_PROMPT.md)
 - [Vykonaný prompt pre bod 4.2 / FX-007](docs/prompts/FX007_LIVE_CLIENT_PROMPT.md)
 - [Výsledky živého testu FX-007](docs/FX007_LIVE_VERIFICATION.md)
+- [Oprávnenia FX-008: zdrojový a syntetický runtime review](docs/reviews/FX008_AUTHORIZATION_REVIEW.md)
+- [Tok údajov a ukladanie FX-009](docs/reviews/FX009_DATA_FLOW_REVIEW.md)
+- [FX-010: integračný checklist a návrh brány pre reálne vstupy](docs/reviews/FX010_INTEGRATION_PRECHECK.md)
 - [Lokálne klonovanie, spustenie a testy](docs/LOCAL_SETUP.md)
 - [Produktový kontrakt](docs/PRODUCT_CONTRACT.md)
 - [Metodika a pracovný slovník](docs/METHODOLOGY.md)
