@@ -84,13 +84,13 @@ def finish_process(process: subprocess.Popen, timeout: float = 8) -> None:
         process.wait(timeout=3)
 
 
-def verify_upstream(upstream: Path) -> dict:
+def verify_upstream(upstream: Path, expected_commit: str = BASELINE) -> dict:
     def git(*args: str) -> str:
         return subprocess.check_output(["git", "-C", str(upstream), *args], text=True).strip()
 
     commit = git("rev-parse", "HEAD")
-    if commit != BASELINE:
-        raise ValueError(f"Expected upstream commit {BASELINE}; found {commit}.")
+    if commit != expected_commit:
+        raise ValueError(f"Expected upstream commit {expected_commit}; found {commit}.")
     if git("status", "--porcelain", "--untracked-files=all"):
         raise ValueError("Upstream checkout must be clean, including untracked files.")
     paths = ["core/main.py", "core/server.py", "core/config.py", "core/jobs.py",
@@ -320,7 +320,7 @@ def run(args) -> int:
     import jwt
 
     upstream = args.upstream.resolve(strict=True)
-    provenance = verify_upstream(upstream)
+    provenance = verify_upstream(upstream, args.upstream_commit)
     output = args.output.resolve()
     if output.exists() and (not output.is_dir() or any(output.iterdir())):
         raise ValueError("--output must be a new or empty directory; existing evidence is never overwritten.")
@@ -491,7 +491,7 @@ def run(args) -> int:
                 source = temporary / temporary_name
                 if source.exists():
                     (output / output_name).write_text(redact(source.read_text(encoding="utf-8"), sensitive), encoding="utf-8")
-    report["upstream_clean_after"] = verify_upstream(upstream)["clean"]
+    report["upstream_clean_after"] = verify_upstream(upstream, args.upstream_commit)["clean"]
     report["http_acceptance"] = bool(report["checks"]) and all(c["passed"] for c in report["checks"]) and "run_error" not in report
     report["requested_acceptance"] = report["http_acceptance"] and (not args.with_codex or report["codex"].get("accepted", False))
     report["finished_at"] = datetime.now(timezone.utc).isoformat()
@@ -507,6 +507,7 @@ def run(args) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--upstream", type=Path, required=True)
+    parser.add_argument("--upstream-commit", default=BASELINE, help="Explicit reviewed upstream commit; historical baseline remains the default")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--with-codex", action="store_true")
     parser.add_argument("--with-legacy-sdk", action="store_true")
