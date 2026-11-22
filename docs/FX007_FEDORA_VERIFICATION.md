@@ -22,14 +22,14 @@ Stručný záznam o úspešnom vykonaní reálneho integračného behu FX-007 na
 | **Návratový kód (exit code)** | `0` | Celý integračný wrapper prebehol bez chýb |
 | **HTTP kontroly servera** | **13/13 PASS** | Všetky negatívne aj pozitívne bezpečnostné a funkčné kontroly prešli |
 | **`http_acceptance`** | `true` | ForenZX HTTP endpoint splnil akceptačné testy |
-| **`requested_acceptance`** | `true` | Vyžiadaný rozsah `--with-codex --with-legacy-sdk` splnený |
+| **`requested_acceptance`** | `true` | HTTP kontroly a test cez Codex prešli. Diagnostika mcp-python 1.29.0 zaznamenala odmietnutie verzie protokolu 2026-07-28. Výsledok legacy SDK nevstupuje do requested_acceptance. |
 
 ## Spojenie cez AI klienta (Codex CLI) — Osobitné vyhodnotenie
 
 * **Status:** `COMPLETED` (`exit_code: 0`, `timed_out: false`, `accepted: true`)
 * **Spôsob overenia:** Codex CLI bol spustený v neinteraktívnom režime s dočasnou konfiguráciou (`--ephemeral`, `--ignore-user-config`, `sandbox: read-only`), povolenými nástrojmi `forenzx_analysis_status` a `forenzx_analysis_results` a autorizáciou cez premennú prostredia `FX007_SYNTHETIC_BEARER`.
-* **Pozorovanie servera:** Server zaznamenal úspešné volania oboch povolených MCP nástrojov zo strany Codexu bez neznámych požiadaviek.
-* **Zhoda výsledku:** `final_exact_match: true` — Codex načítal syntetickú úlohu `d3c5ef12-81eb-467f-b304-e278a6d57346` s presnou zhodou stavu (`COMPLETED`), klasifikácie (`HIT`), varovaní a obmedzení.
+* **Pozorovanie servera:** Codex úspešne zavolal oba povolené nástroje. Sonda nezaznamenala volanie iného nástroja.
+* **Zhoda výsledku:** `final_exact_match: true` — Finálna odpoveď Codexu sa presne zhodovala v šiestich kontrolovaných poliach (ID úlohy, stav, klasifikácia, počet nálezov, varovania a obmedzenia). Úplnú zhodu načítaného výsledku overuje samostatná HTTP kontrola exact_result_roundtrip.
 
 ## Kompatibilita `mcp-python 1.29.0` (Legacy SDK) — Osobitné vyhodnotenie
 
