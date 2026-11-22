@@ -161,6 +161,60 @@
   "hosted": {
     "tasks": 18,
     "checked_before": 25,
+    "checked_after": 28,
+    "criteria": 94,
+    "events_before": 18,
+    "events_after": 25,
+    "old_events_preserved": 18,
+    "pending_second_pass_changes": 0,
+    "snapshot_before_sha256": "2c1c4e4d4aa0e8d0a157b5798a764f521d615cae331fc62036fcb0a0dec2963d",
+    "snapshot_after_sha256": "a6dbb2b658320b8c9e54a8902b685d01e0f5295b7b3eb14aa71907a2b6e06f01",
+    "revisions_after": {
+      "FX-005": 4,
+      "FX-007": 3,
+      "FX-008": 4,
+      "FX-009": 3
+    },
+    "snapshot_initial_sync_sha256": "ae13c4974b39c0966b83be9258e031020e622085129fc8a43e10944866135444",
+    "snapshot_before_extra_note_sha256": "32332cfcbbf5d99230e06848a2122690b71b39fcab2dbd9b01b78d405dc50085",
+    "first_snapshot_utc": "2026-11-22T03:39:39.870Z",
+    "final_snapshot_utc": "2026-11-22T08:19:19.567Z",
+    "semantic_matches_with_audit_seed": 18,
+    "old_seed_revisions_preserved": [
+      "FX-003",
+      "FX-004",
+      "FX-006",
+      "FX-010",
+      "FX-014",
+      "FX-015",
+      "FX-016",
+      "FX-017"
+    ],
+    "statuses_after": {
+      "done": 5,
+      "blocked": 3,
+      "in_progress": 2,
+      "todo": 8
+    }
+  },
+  "fedora_this_session": "Prístup z Work bol offline. Operátor dodal výpis po kontrole SHA-256 pôvodného reportu a stopy FX-007. Work nezávisle zopakoval tri odpovede pripnutého Hubu.",
+  "report_generation_allowed": false,
+  "final_pr3_head": "23bc7573b523ba4ddfefda29cb5e6ea0f0c826b8",
+  "final_pr3": {
+    "source_changes_since_19080b1": [
+      ".gitignore",
+      "integration/fx007/test_probe.py"
+    ],
+    "mutation_failed_tests": 1,
+    "pr_triggered_workflows": 0,
+    "commit_statuses": 0,
+    "draft": true,
+    "previous_approval_utc": "2026-11-22T03:38:45Z",
+    "commit_utc": "2026-11-22T03:52:28Z"
+  },
+  "hosted_before_fedora_trace": {
+    "tasks": 18,
+    "checked_before": 25,
     "checked_after": 26,
     "criteria": 94,
     "events_before": 18,
@@ -191,19 +245,38 @@
       "FX-017"
     ]
   },
-  "fedora_this_session": "OFFLINE_NOT_VERIFIED",
-  "report_generation_allowed": false,
-  "final_pr3_head": "23bc7573b523ba4ddfefda29cb5e6ea0f0c826b8",
-  "final_pr3": {
-    "source_changes_since_19080b1": [
-      ".gitignore",
-      "integration/fx007/test_probe.py"
-    ],
-    "mutation_failed_tests": 1,
-    "pr_triggered_workflows": 0,
-    "commit_statuses": 0,
-    "draft": true,
-    "previous_approval_utc": "2026-11-22T03:38:45Z",
-    "commit_utc": "2026-11-22T03:52:28Z"
+  "fedora_trace_followup": {
+    "record": "docs/verification/FX007_FEDORA_TRACE_2026-11-22.json",
+    "snapshot_before_utc": "2026-11-22T08:13:32.959Z",
+    "snapshot_before_sha256": "ceb061c038d1b90c01498d977fc34460a89326588115a5e3af50b946136be1b7",
+    "hosted_events_before": 23,
+    "old_events_preserved": 23,
+    "events_added": 2,
+    "semantic_matches_with_audit_seed": 18,
+    "full_fx008_note_checked_in_ui": true,
+    "new_live_cli_run_on_fedora_by_work": false,
+    "local_d1_sync_confirmed": false,
+    "work_rerun": {
+      "cli_regressions_on_pr3": 17,
+      "reference_boundary_unit": 4,
+      "reference_boundary_scenarios": 8,
+      "backlog_state": 22,
+      "launcher": 9,
+      "product": 46,
+      "reference": 50,
+      "typecheck": "PASS",
+      "build": "PASS",
+      "local_D1_smoke_and_restart": "PASS",
+      "installed_dependencies": "existing validated locked versions"
+    },
+    "local_sync_rehearsal": {
+      "environment": "isolated Work D1 with a previous seed",
+      "missing_local_proof_events": 0,
+      "matching_synthetic_proof_events": 1,
+      "repeat_events": 0,
+      "state_after_repeat": "done",
+      "second_read_hosted_state_matches": 18,
+      "second_read_hosted_events_match": 25
+    }
   }
 }

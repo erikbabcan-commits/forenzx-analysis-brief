@@ -1,8 +1,8 @@
 # Backlog v0.3
 
-Snapshot z 22. novembra 2026. Hostovaný Release Board má 18 úloh, štyri hotové a 26 označených kritérií z 94. FX-005 má 5/8, FX-007 má 2/4, FX-008 má 4/4 pre pripnutého kandidáta a FX-009 má 0/8 pre produktovú cestu. Päť nových udalostí uchovalo pôvodnú históriu. Aktualizovaný seed slúži aj pre nové inštancie.
+Stav z 22. novembra 2026 po overení fedorskej stopy. Hostovaný Release Board má päť hotových úloh z 18, 28 splnených kritérií z 94 a 25 udalostí. FX-005 má 5/8, FX-007 má 4/4, FX-008 má 4/4 na pripnutom kandidátovi a ostáva blokovaná. FX-009 má 0/8 na produktovej trase.
 
-Predchádzajúci koordinačný snapshot z 21. novembra zaznamenal FX-008 na 3/4 a FX-009 na 0/8. K ďalšiemu rozhodnutiu pre FX-007 chýba klientská stopa discovery a verzie protokolu z úspešného behu. [Výsledky auditu a dôkazy podľa úloh](reviews/FX_AUDIT_2026-11-22.md) · [Predchádzajúce koordinačné uloženie](verification/COORDINATION_DELIVERY.json).
+Predchádzajúci koordinačný záznam z 21. novembra zachytil skoršiu revíziu. Dve pôvodne otvorené kritériá FX-007 uzatvára stopa klienta na Fedore. [Stopa FX-007](verification/FX007_FEDORA_TRACE_2026-11-22.json) · [Audit po úlohách](reviews/FX_AUDIT_2026-11-22.md) · [Predchádzajúca koordinácia](verification/COORDINATION_DELIVERY.json).
 
 ## FX-001 — Zafixovať zdrojový kód a inventár nástrojov
 
@@ -102,20 +102,22 @@ Dôkaz: 21. 11. 2026: FX-006 — pripravená syntetická referenčná sada v1. 5
 
 ## FX-007 — Preukázať pripojenie jedného reálneho klienta
 
-**Integrácia · P0 · blocked**
+**Integrácia · P0 · done**
 
 Overiť celý tok v konkrétnom AI klientovi a verzii. Samostatný dispatcher test nestačí na tvrdenie o kompatibilite.
 
 Závislosti: FX-001, FX-006. Odhad: 0,5–2 pracovné dni podľa prekážok.
 
 - [x] Zaznamenaný klient, jeho verzia, server commit a presná konfigurácia bez tajomstiev.
-- [ ] Prešli autentifikácia, objavenie nástrojov a volania status/results.
-- [ ] Overená skutočná cesta vyjednania MCP verzie alebo podporované priame pripnutie verzie.
+- [x] Prešli autentifikácia, objavenie nástrojov a volania status/results.
+- [x] Overená skutočná cesta vyjednania MCP verzie alebo podporované priame pripnutie verzie.
 - [x] Uložený redigovaný záznam behu; opravy upstreamu evidované samostatne.
 
 Dôkaz: 21. 11. 2026: vykonaný bod 4.2. Nezmenený upstream 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f; skutočný HTTP proces, 13/13 kontrol autentifikácie, discovery, status/results, identity a úplnej zhody syntetického výsledku PASS. Codex CLI 0.172.0-alpha.2 bol spustený, ale skončil pred MCP: Read-only file system (os error 30); server zaznamenal 0 požiadaviek Codexu. FX-007 nie je hotová: kritériá klientského spojenia a jeho protokolovej cesty zostávajú otvorené. Python MCP SDK 1.29.0 odmietol protokol 2026-07-28. Samostatné upstream zistenia: chýbajúci server/discover a neštandardná odpoveď na nepodporovanú verziu. Podklady: docs/FX007_LIVE_VERIFICATION.md, docs/verification/fx007-live/report.json; report SHA-256 0eaa9476efa44852cb79ed1da630877ee20d6dbbd225caa8e46bd616f6bf630f. Opakovanie v lokálnej inštalácii: bash scripts/fx007-mcp-check.sh --with-codex --with-legacy-sdk. Bez vykonania forenznej analýzy, overenia podpisov alebo kvality LLM briefu.
 
 Overenie 22. 11. 2026 · Fedora podľa PR #2: Codex 0.170.0 prečítal stav aj výsledok, zhoda šiestich polí. Work: HTTP 13/13, Codex 0.172.0-alpha.2 skončil pred MCP (súborový systém iba na čítanie). SDK 1.29.0 odmietlo 2026-07-28. Na posúdenie discovery a verzie v klientovi treba stopu z úspešného behu. https://github.com/erikbabcan-commits/forenzx-analysis-brief/pull/2
+
+Fedora, beh 20261122T010902Z-dee2c7c4, Codex CLI 0.170.0. Riadok 16 zachytáva inicializáciu Codexu. Na riadku 18 objavil oba nástroje a na riadkoch 19–20 ich úspešne zavolal s verziou 2026-07-28 v hlavičke aj metadátach. Riadok 17 zaznamenal chybu JSON-RPC -32601 pri HTTP 200. Riadok 15 patrí legacy SDK. V prostredí Work sa zhodli hashe odpovedí inicializácie, notifikácie a zoznamu nástrojov. FX-007 splnená 4/4. https://github.com/erikbabcan-commits/forenzx-analysis-brief/blob/2d853d44caf444613617cb9a93dd75cbf05cadc5/docs/verification/FX007_FEDORA_TRACE_2026-11-22.json
 
 ## FX-008 — Obmedziť prístup na reportovanie
 
@@ -135,6 +137,8 @@ Dôkaz: 21. 11. 2026: zdrojový audit a dva nezávislé syntetické ASGI behy na
 Overenie 22. 11. 2026 · Hub PR #29 na 3b4effd: 77/77 reporter a 12/12 ACL. Povolené čítania a zamietnutia start/cancel sú doložené na tejto revízii. Sonda na 19080b1: 12/12, zmena predvolenej roly vyvolala očakávané zlyhanie. Produkčné vydávanie a revokácia poverení, obnova oprávnení prípadu a nadväznosť na FX-007 sú otvorené. https://github.com/erikbabcan-commits/forenzx-analysis-brief/pull/3
 
 Dodatok 22. 11. 2026 · Na novšom HEAD PR #3 (23bc757) prešlo v prostredí Work 17/17 testov sondy. Zámerná zmena predvolenej roly spôsobila jedno zlyhanie. GitHub pre toto SHA neuvádza PR workflow ani commitový status. https://github.com/erikbabcan-commits/forenzx-analysis-brief/commit/23bc7573b523ba4ddfefda29cb5e6ea0f0c826b8
+
+Dodatok z 22. 11. 2026. Na hostovanom boarde je závislosť FX-007 splnená pre Codex CLI 0.170.0. Pre FX-008 ostáva doložiť produkčné vydanie a okamžitú revokáciu poverení reportera a obnovu prístupu k prípadu po reštarte Hubu. https://github.com/erikbabcan-commits/forenzx-analysis-brief/blob/2d853d44caf444613617cb9a93dd75cbf05cadc5/docs/verification/FX007_FEDORA_TRACE_2026-11-22.json
 
 ## FX-009 — Opísať tok dát a zachádzanie s kľúčmi
 

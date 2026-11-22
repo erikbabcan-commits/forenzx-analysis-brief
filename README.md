@@ -4,16 +4,16 @@
 
 Súkromný pracovný dashboard pre prípravu **ForenZX Analysis Brief**. Obsahuje 18 úloh, 17 brán pred podaním, závislosti, akceptačné kritériá, dôkazy dokončenia a odborné podklady. Dashboard nie je samotný forenzný skill.
 
-## Priebežný stav k 21. 11. 2026
+## Priebežný stav k 22. 11. 2026
 
 - Overený upstream commit: `0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f`.
-- Hotové sú FX-001, FX-002, FX-004 a FX-006: zdrojový základ, rozsah, metodika a syntetická referenčná sada.
+- Hostovaný Release Board má 5 hotových úloh z 18 a 28 označených kritérií z 94. Hotové sú FX-001, FX-002, FX-004, FX-006 a FX-007.
 - FX-005 je rozpracovaná: samostatný lokálny validátor a dva syntetické príklady, 34/34 testov. Úspech kontroly vstupu nepovoľuje generovanie prehľadu.
-- FX-007 má vykonaný živý HTTP test: 13/13 kontrol PASS. Codex CLI 0.172.0-alpha.2 zablokoval štart vlastného úložiska pred MCP komunikáciou; úloha zostáva blokovaná s 2/4 doloženými kritériami. [Podrobný záznam](docs/FX007_LIVE_VERIFICATION.md).
+- FX-007 je hotová, 4/4. Codex CLI 0.170.0 na Fedore objavil a zavolal oba čítacie nástroje s verziou MCP `2026-07-28`. Hub vrátil pri `notifications/initialized` chybu JSON-RPC `-32601`. [Fedorská stopa a jej overenie](docs/verification/FX007_FEDORA_TRACE_2026-11-22.json).
 - FX-006 je hotová ako syntetická referenčná sada: 50/50 scenárov a 46/46 produktových testov; [záznam overenia](docs/FX006_REFERENCE_VERIFICATION.md).
-- Koordinačný cyklus FX-008/009: **53/53 pozorovaní autorizácie zodpovedá pripnutému Hubu; požiadavka iba na reportovanie má FAIL**. FX-008 je v živom dashboarde blokovaná 3/4, FX-009 rozpracovaná 0/8; [záznam uloženia](docs/verification/COORDINATION_DELIVERY.json). Rovnaké poverenie umožňuje čítanie aj zrušenie úlohy. [Review oprávnení](docs/reviews/FX008_AUTHORIZATION_REVIEW.md) a [reprodukcia](integration/fx008/README.md) odlišujú úspech testu od nesplnenej produktovej brány.
-- [Mapa dát FX-009](docs/reviews/FX009_DATA_FLOW_REVIEW.md) dokladá chýbajúcu kontrolu pred vydaním výsledkov klientovi a neoverený modelový profil. [Nezávislý checklist FX-010](docs/reviews/FX010_INTEGRATION_PRECHECK.md) pripravuje review Codexovho rendereru; jeho odovzdanie pri kontrole nebolo na GitHube dostupné. Reálne vstupy zostávajú nepovolené.
-- Ďalší krok: zopakovať pripravený test v funkčnej lokálnej inštalácii AI klienta a samostatne opraviť zistené moderné discovery/verziovanie upstreamu. Potom uzavrieť zostávajúce tri podmienky FX-005.
+- FX-008 je blokovaná. Kandidát Hub PR #29 spĺňa štyri testované kritériá reportera. Otvorené sú produkčné vydávanie a okamžitá revokácia jeho poverení a obnova oprávnení prípadu po reštarte Hubu. [Skúška reportera](docs/reviews/FX008_CODEX_REPORTER_VERIFICATION.md).
+- FX-009 je rozpracovaná, 0/8 na produktovej trase. Referenčný adaptér prešiel ôsmimi syntetickými scenármi. Pre nasadený produkt treba doložiť poskytovateľa, model, retenciu a validáciu pred prvým odoslaním dát. [Mapa dát](docs/reviews/FX009_DATA_FLOW_REVIEW.md).
+- Pri opakovaní kontrol rozlišujte verziu klienta, commit Hubu a spôsob pripojenia. Výsledky testov a namerané pokrytie sú v [audite vydania](docs/reviews/FX_AUDIT_2026-11-22.md).
 - Navrhovaná cena skillu: 19 USD jednorazovo.
 - Z poskytnutej komunikácie nevyplýva externý termín odovzdania. Agensi uvádza odhad kontroly až od podania.
 
