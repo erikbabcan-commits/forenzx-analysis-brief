@@ -19,6 +19,8 @@ from contextlib import redirect_stderr
 from io import StringIO
 from unittest.mock import patch
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 
 @unittest.skipUnless(os.name == "posix", "Process-group signal checks require POSIX")
 class InterruptedClientCleanupTests(unittest.TestCase):
@@ -104,6 +106,22 @@ class RoleConfigurationTests(unittest.TestCase):
             run_probe.main()
         self.assertEqual(error.exception.code, 2)
         run.assert_not_called()
+
+    def test_main_cli_validation(self):
+        import run_probe
+
+        for argv, expected_code in [
+            (["run_probe.py", "--upstream", "/dummy"], 2),
+            (["run_probe.py", "--upstream", "/dummy", "--output", "/dummy", "--codex-timeout", "10"], 2),
+            (["run_probe.py", "--upstream", "/dummy", "--output", "/dummy", "--codex-timeout", "301"], 2),
+        ]:
+            with self.subTest(argv=argv), patch.object(sys, "argv", argv), \
+                    patch.object(run_probe, "install_signal_handlers"), \
+                    patch.object(run_probe, "run") as run, \
+                    redirect_stderr(StringIO()), self.assertRaises(SystemExit) as error:
+                run_probe.main()
+            self.assertEqual(error.exception.code, expected_code)
+            run.assert_not_called()
 
     def test_reporter_claims_structure(self):
         import run_probe
@@ -290,6 +308,49 @@ class CodexEvaluationLogicTests(unittest.TestCase):
             content = (temp / "traffic.jsonl").read_text(encoding="utf-8")
             self.assertNotIn("synthetic-token-abc", content)
             self.assertNotIn("forged-token-xyz", content)
+
+    def test_codex_non_zero_exit_or_timeout_rejects(self):
+        calls = [
+            self._event("forenzx_analysis_status", bound=True, role="reporter"),
+            self._event("forenzx_analysis_results", bound=True, role="reporter"),
+        ]
+        res_exit_err = self.run_probe.evaluate_codex_events(
+            calls, self.job_id, self.expected_hashes, self.expected_final,
+            self.expected_final, {"exit_code": 1, "timed_out": False}, expected_role="reporter"
+        )
+        self.assertFalse(res_exit_err["accepted"])
+
+        res_timeout = self.run_probe.evaluate_codex_events(
+            calls, self.job_id, self.expected_hashes, self.expected_final,
+            self.expected_final, {"exit_code": 0, "timed_out": True}, expected_role="reporter"
+        )
+        self.assertFalse(res_timeout["accepted"])
+
+
+class UtilityFunctionsTests(unittest.TestCase):
+    def setUp(self):
+        import run_probe
+        self.run_probe = run_probe
+
+    def test_digest_and_canonical(self):
+        d = self.run_probe.digest(b"test-bytes")
+        self.assertEqual(d, "837fa4675d0ea98b79c41533ed9f35feefd73b7b88ca9134fd8a750cb7863ffc")
+        c = self.run_probe.canonical({"z": 1, "a": [2, 3]})
+        self.assertEqual(c, b'{"a":[2,3],"z":1}')
+
+    def test_redact(self):
+        text = "Authorization: Bearer my-secret-token with secret_password here"
+        redacted = self.run_probe.redact(text, ["secret_password"])
+        self.assertNotIn("my-secret-token", redacted)
+        self.assertNotIn("secret_password", redacted)
+        self.assertIn("Bearer [REDACTED]", redacted)
+        self.assertIn("[REDACTED] here", redacted)
+
+    def test_probe_terminated_exit_codes(self):
+        p_int = self.run_probe.ProbeTerminated(signal.SIGINT)
+        self.assertEqual(p_int.exit_code, 128 + signal.SIGINT)
+        p_term = self.run_probe.ProbeTerminated(signal.SIGTERM)
+        self.assertEqual(p_term.exit_code, 128 + signal.SIGTERM)
 
 
 if __name__ == "__main__":
