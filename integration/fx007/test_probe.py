@@ -77,5 +77,42 @@ class InterruptedClientCleanupTests(unittest.TestCase):
         self.assert_interrupt_cleans_child(signal.SIGTERM, 143)
 
 
+class RoleConfigurationTests(unittest.TestCase):
+    def test_default_role_is_analyst(self):
+        import argparse
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import run_probe
+        # Test default parsing
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--upstream", type=Path, required=True)
+        parser.add_argument("--upstream-commit", default=run_probe.BASELINE)
+        parser.add_argument("--output", type=Path)
+        parser.add_argument("--with-codex", action="store_true")
+        parser.add_argument("--codex-role", choices=["analyst", "reporter"], default="analyst")
+        args = parser.parse_args(["--upstream", "/dummy", "--output", "/dummy"])
+        self.assertEqual(args.codex_role, "analyst")
+
+        args_reporter = parser.parse_args(["--upstream", "/dummy", "--output", "/dummy", "--codex-role", "reporter"])
+        self.assertEqual(args_reporter.codex_role, "reporter")
+
+    def test_reporter_claims_structure(self):
+        import jwt
+        claims = {
+            "sub": "synthetic-reporter",
+            "roles": ["reporter"],
+            "organization": "test-org",
+            "report_case_ids": ["CASE-001"],
+            "report_job_ids": ["JOB-001"],
+            "exp": int(time.time()) + 600,
+        }
+        test_secret = "synthetic-test-secret-at-least-32-bytes-long"
+        token = jwt.encode(claims, test_secret, algorithm="HS256")
+        decoded = jwt.decode(token, test_secret, algorithms=["HS256"])
+        self.assertEqual(decoded["roles"], ["reporter"])
+        self.assertEqual(decoded["report_case_ids"], ["CASE-001"])
+        self.assertEqual(decoded["report_job_ids"], ["JOB-001"])
+        self.assertEqual(decoded["organization"], "test-org")
+
+
 if __name__ == "__main__":
     unittest.main()

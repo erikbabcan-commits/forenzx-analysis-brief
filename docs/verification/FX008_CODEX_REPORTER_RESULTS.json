@@ -1,0 +1,44 @@
+{
+  "task": "FX-008 live codex reporter verification",
+  "recorded_at": "2026-11-22T02:29:20Z",
+  "board_commit": "7fa5ea573541d2e44b527b2662d1de9daf0bc4f9",
+  "upstream_hub_repo": "erikbabcan-commits/forenzx-mcp-hub",
+  "upstream_hub_commit": "3b4effdb08cda68f733c56d995ccb54380729e8b",
+  "upstream_pr": "https://github.com/erikbabcan-commits/forenzx-mcp-hub/pull/29",
+  "client": "codex-cli 0.170.0",
+  "run_id": "20261122T022905Z-d145bb21",
+  "report_path": "/home/vorkei/Projekty/forenzx-analysis-brief-fedora/.fx008-runtime/runs/20261122T022905Z-d145bb21/report.json",
+  "report_sha256": "6190472ce537830d15b822f258889e44ec063d35cd390609cba67f971815f062",
+  "http_checks": {
+    "total": 13,
+    "passed": 13
+  },
+  "codex": {
+    "status": "COMPLETED",
+    "exit_code": 0,
+    "timed_out": false,
+    "credential_role": "reporter",
+    "server_observed_roles": [
+      "reporter"
+    ],
+    "server_accepted_reporter": true,
+    "server_observed_successful_tools": [
+      "forenzx_analysis_status",
+      "forenzx_analysis_results"
+    ],
+    "unexpected_tool_calls": [],
+    "final_exact_match": true,
+    "accepted": true
+  },
+  "upstream_suite": {
+    "reporter_tests": 77,
+    "reporter_failures": 0,
+    "acl_tests": 12,
+    "acl_failures": 0
+  },
+  "verdict": "PASS",
+  "verdict_explanation": "Skutočný klient codex-cli 0.170.0 s oprávnením reporter úspešne cez MCP prečítal stav aj výsledok syntetickej analýzy zo servera a vrátil presnú 6-poľovú odpoveď bez neočakávaných volaní.",
+  "production_deployment": "NOT_PERFORMED",
+  "report_generation_allowed": false,
+  "historical_fx008_baseline": "preserved unchanged"
+}

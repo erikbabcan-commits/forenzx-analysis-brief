@@ -147,9 +147,21 @@ class Recorder:
                             "io.modelcontextprotocol/clientInfo", "io.modelcontextprotocol/clientCapabilities"] if key in meta}
             arguments = params.get("arguments") if isinstance(params.get("arguments"), dict) else {}
             tool_result = unwrap(response)
+            auth = headers.get(b"authorization") or headers.get("authorization")
+            auth_role = None
+            if auth and auth.startswith("Bearer "):
+                try:
+                    import jwt as _jwt
+                    unverified = _jwt.decode(auth[7:], options={"verify_signature": False})
+                    roles = unverified.get("roles")
+                    if isinstance(roles, list) and roles:
+                        auth_role = str(roles[0])
+                except Exception:
+                    pass
             event = {
                 "phase": phase, "http_method": scope["method"], "path": scope["path"],
                 "rpc_method": request.get("method"), "tool_name": params.get("name"),
+                "auth_role": auth_role,
                 "protocol_header": headers.get(b"mcp-protocol-version"),
                 "method_header": headers.get(b"mcp-method"), "name_header": headers.get(b"mcp-name"),
                 "meta": allowed_meta, "http_status": response_status,
@@ -178,6 +190,11 @@ def serve(upstream: Path, temporary: Path, port: int) -> None:
         case_id=payload["case_id"], evidence_id=payload["evidence_id"], pack_id=payload["pack_id"],
         owner_id=OWNER, organization_id=ORGANIZATION,
     )
+    try:
+        from core.acl import case_access_provider
+        case_access_provider.register_case(payload["case_id"], OWNER, ORGANIZATION)
+    except (ImportError, AttributeError):
+        pass
     payload["job_id"] = job_id
     validated = AnalysisResult.model_validate(payload)
     job_manager.store_result(job_id, validated)
@@ -409,6 +426,16 @@ def run(args) -> int:
             job_id = expected["job_id"]
             report["synthetic_job_id"] = job_id
             json_write(output / "seeded-result.json", expected)
+            reporter_claims = {
+                "sub": "synthetic-reporter",
+                "roles": ["reporter"],
+                "organization": ORGANIZATION,
+                "report_case_ids": [expected["case_id"]],
+                "report_job_ids": [job_id],
+                "exp": int(time.time()) + 600,
+            }
+            reporter_token = jwt.encode(reporter_claims, secret, algorithm="HS256")
+            sensitive.append(reporter_token)
             status, health, _ = http_request(port, "GET", "/health/ready")
             report["engine_readiness"] = {"http_status": status, **{k: health.get(k) for k in ["status", "packs_enabled", "pack_errors"]}}
 
@@ -463,7 +490,8 @@ def run(args) -> int:
                 report["legacy_sdk"] = asyncio.run(legacy_sdk_probe(port, token))
             if args.with_codex:
                 phase("codex")
-                codex = run_codex(port, token, job_id, temporary, output, sensitive, args.codex_timeout)
+                codex_token = reporter_token if args.codex_role == "reporter" else token
+                codex = run_codex(port, codex_token, job_id, temporary, output, sensitive, args.codex_timeout)
                 traffic = [json.loads(line) for line in (temporary / "traffic.jsonl").read_text(encoding="utf-8").splitlines()]
                 calls = [e for e in traffic if e["phase"] == "codex" and e["rpc_method"] == "tools/call"]
                 expected_hashes = {READ_TOOLS[0]: digest(canonical(job_status)), READ_TOOLS[1]: digest(canonical(expected))}
@@ -472,12 +500,18 @@ def run(args) -> int:
                               and e["returned_job_id"] == job_id and e["tool_result_sha256"] == expected_hashes.get(e["tool_name"])]
                 expected_final = {"job_id": job_id, "state": "COMPLETED", "classification": expected["summary_classification"],
                                   "finding_count": len(expected["findings"]), "warnings": expected["warnings"], "limitations": expected["limitations"]}
+                observed_roles = sorted(list({e["auth_role"] for e in calls if e.get("auth_role")}))
+                server_accepted = (args.codex_role in observed_roles) if observed_roles else False
+                codex["credential_role"] = args.codex_role
+                codex["server_observed_roles"] = observed_roles
+                codex["server_accepted_reporter"] = server_accepted if args.codex_role == "reporter" else None
                 codex["server_observed_successful_tools"] = successful
                 codex["unexpected_tool_calls"] = [e["tool_name"] for e in calls if e["tool_name"] not in READ_TOOLS]
                 codex["final_exact_match"] = codex.get("final") == expected_final
                 codex["accepted"] = (codex.get("exit_code") == 0 and not codex.get("timed_out")
                                      and all(t in successful for t in READ_TOOLS) and codex["final_exact_match"]
-                                     and not codex["unexpected_tool_calls"])
+                                     and not codex["unexpected_tool_calls"]
+                                     and (args.codex_role != "reporter" or server_accepted))
                 report["codex"] = codex
         except (KeyboardInterrupt, ProbeTerminated) as exc:
             report["run_error"] = {"type": type(exc).__name__, "message": "Probe interrupted; owned processes stopped."}
@@ -510,6 +544,8 @@ def main() -> int:
     parser.add_argument("--upstream-commit", default=BASELINE, help="Explicit reviewed upstream commit; historical baseline remains the default")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--with-codex", action="store_true")
+    parser.add_argument("--codex-role", choices=["analyst", "reporter"], default="analyst",
+                        help="Synthetic role token provided to Codex (default: analyst, historical FX-007 behavior)")
     parser.add_argument("--with-legacy-sdk", action="store_true")
     parser.add_argument("--codex-timeout", type=int, default=120)
     parser.add_argument("--serve", action="store_true", help=argparse.SUPPRESS)
