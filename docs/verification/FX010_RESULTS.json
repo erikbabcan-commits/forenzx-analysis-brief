@@ -1,0 +1,70 @@
+{
+  "scope": "SYNTHETIC_DEMO",
+  "date_utc": "2026-11-22",
+  "environment": "Codex Work Linux",
+  "base": "5c922ac0a67a66504cb1557e833b7458d3d4df32",
+  "branch": "feat/fx010-deterministic-brief",
+  "python": "3.12.14",
+  "node": "24.22.3",
+  "npm": "11.19.1",
+  "report_generation_allowed": false,
+  "profile": "forenzx-analysis-result-0e4c7fae",
+  "demo": {
+    "completed-hit": {
+      "input_sha256": "461a511f6ca015ef1552b86fd1442e37e65288b0323987d4421adf6086a6c192",
+      "markdown_sha256": "1ee78a92081d07ca3a1e75cafb897abdfebfc8b2055d0085c2fa80876003f665"
+    },
+    "completed-no-ioc": {
+      "input_sha256": "feacf239b2667363425309f334966e6b0db64d992ab923bf067fee0a38a36aa6",
+      "markdown_sha256": "f01a27663ed118d3e2d33c7047cbac09a58caa4f35e74b9bea7d678390cec978"
+    }
+  },
+  "checks": {
+    "bootstrap": {
+      "command": "bash scripts/local-bootstrap.sh --check-only --port 0",
+      "exit_code": 0,
+      "state_tests": 22,
+      "launcher_tests": 9,
+      "product_tests": 63,
+      "previous_product_tests": 46,
+      "new_tests": 17,
+      "fx006_cases_passed": 50,
+      "typecheck": "PASS",
+      "build": "PASS",
+      "temporary_http_d1_restart": "PASS"
+    },
+    "offline_cli": {
+      "scenarios_passed": 2,
+      "comparison": "byte-for-byte against frozen samples; Python audit hook denied socket and child-process events"
+    },
+    "controlled_mutation": {
+      "change": "omit final warning in isolated renderer copy",
+      "command": "python3 -m unittest product.tests.test_render_brief.RendererTests.test_independent_reference_content",
+      "exit_code": 1,
+      "failing_subtests": 2,
+      "verdict": "MUTANT_DETECTED"
+    },
+    "coverage": {
+      "tool": "coverage.py 7.6.12",
+      "scope": [
+        "product/render_brief.py",
+        "product/brief_cli.py"
+      ],
+      "method": "63 product tests in the coverage parent and both separately instrumented positive CLI commands; child processes inside unittest not traced",
+      "covered_statements": 106,
+      "statements": 118,
+      "covered_branches": 40,
+      "branches": 42,
+      "combined_percent": 91.25
+    }
+  },
+  "not_tested_in_this_run": [
+    "Fedora independent checkout",
+    "hosted dashboard",
+    "live MCP client",
+    "LLM, provider and model injection resistance",
+    "original artifacts, signatures and trusted timestamps",
+    "Agensi distribution",
+    "production inputs"
+  ]
+}
