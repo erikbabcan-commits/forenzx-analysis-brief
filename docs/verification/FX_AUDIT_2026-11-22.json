@@ -10,14 +10,15 @@
     "product": 46,
     "reference": 50,
     "probe_tests_before": 11,
-    "probe_tests_after": 12,
+    "probe_tests_after": 17,
     "default_role_mutation_failures": 1,
     "reference_boundary_unit": 4,
     "reference_boundary_scenarios": 8,
     "hub_full": 297,
     "hub_focused_subset": 113,
     "hub_reporter_subset": 77,
-    "hub_acl_subset": 12
+    "hub_acl_subset": 12,
+    "probe_tests_after_initial_fix": 12
   },
   "coverage": {
     "dashboard": {
@@ -61,6 +62,13 @@
         "num_branches": 136
       },
       "after": {
+        "files": 3,
+        "covered_lines": 320,
+        "num_statements": 829,
+        "covered_branches": 49,
+        "num_branches": 162
+      },
+      "after_initial_fix": {
         "files": 3,
         "covered_lines": 312,
         "num_statements": 829,
@@ -156,18 +164,46 @@
     "checked_after": 26,
     "criteria": 94,
     "events_before": 18,
-    "events_after": 22,
+    "events_after": 23,
     "old_events_preserved": 18,
     "pending_second_pass_changes": 0,
     "snapshot_before_sha256": "2c1c4e4d4aa0e8d0a157b5798a764f521d615cae331fc62036fcb0a0dec2963d",
-    "snapshot_after_sha256": "ae13c4974b39c0966b83be9258e031020e622085129fc8a43e10944866135444",
+    "snapshot_after_sha256": "f933e60ec56a65c7dab35d1cb17ca324a04d19a56ff42fc1572af180a07b00dd",
     "revisions_after": {
       "FX-005": 4,
       "FX-007": 2,
-      "FX-008": 2,
+      "FX-008": 3,
       "FX-009": 3
-    }
+    },
+    "snapshot_initial_sync_sha256": "ae13c4974b39c0966b83be9258e031020e622085129fc8a43e10944866135444",
+    "snapshot_before_extra_note_sha256": "32332cfcbbf5d99230e06848a2122690b71b39fcab2dbd9b01b78d405dc50085",
+    "first_snapshot_utc": "2026-11-22T03:39:39.870Z",
+    "final_snapshot_utc": "2026-11-22T04:05:48.118Z",
+    "semantic_matches_with_audit_seed": 18,
+    "old_seed_revisions_preserved": [
+      "FX-003",
+      "FX-004",
+      "FX-006",
+      "FX-010",
+      "FX-014",
+      "FX-015",
+      "FX-016",
+      "FX-017"
+    ]
   },
   "fedora_this_session": "OFFLINE_NOT_VERIFIED",
-  "report_generation_allowed": false
+  "report_generation_allowed": false,
+  "final_pr3_head": "23bc7573b523ba4ddfefda29cb5e6ea0f0c826b8",
+  "final_pr3": {
+    "source_changes_since_19080b1": [
+      ".gitignore",
+      "integration/fx007/test_probe.py"
+    ],
+    "mutation_failed_tests": 1,
+    "pr_triggered_workflows": 0,
+    "commit_statuses": 0,
+    "draft": true,
+    "previous_approval_utc": "2026-11-22T03:38:45Z",
+    "commit_utc": "2026-11-22T03:52:28Z"
+  }
 }

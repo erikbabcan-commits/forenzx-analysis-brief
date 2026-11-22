@@ -1,6 +1,6 @@
 # Backlog v0.3
 
-Snapshot z 22. novembra 2026. Hostovaný Release Board má 18 úloh, štyri hotové a 26 označených kritérií z 94. FX-005 má 5/8, FX-007 má 2/4, FX-008 má 4/4 pre pripnutého kandidáta a FX-009 má 0/8 pre produktovú cestu. Štyri nové udalosti uchovali pôvodnú históriu. Aktualizovaný seed slúži aj pre nové inštancie.
+Snapshot z 22. novembra 2026. Hostovaný Release Board má 18 úloh, štyri hotové a 26 označených kritérií z 94. FX-005 má 5/8, FX-007 má 2/4, FX-008 má 4/4 pre pripnutého kandidáta a FX-009 má 0/8 pre produktovú cestu. Päť nových udalostí uchovalo pôvodnú históriu. Aktualizovaný seed slúži aj pre nové inštancie.
 
 Predchádzajúci koordinačný snapshot z 21. novembra zaznamenal FX-008 na 3/4 a FX-009 na 0/8. K ďalšiemu rozhodnutiu pre FX-007 chýba klientská stopa discovery a verzie protokolu z úspešného behu. [Výsledky auditu a dôkazy podľa úloh](reviews/FX_AUDIT_2026-11-22.md) · [Predchádzajúce koordinačné uloženie](verification/COORDINATION_DELIVERY.json).
 
@@ -133,6 +133,8 @@ Závislosti: FX-002, FX-007. Odhad: 3–6 h + prípadná oprava servera.
 Dôkaz: 21. 11. 2026: zdrojový audit a dva nezávislé syntetické ASGI behy nad Hubom 0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f. Každý beh: 53/53 pozorovaní zodpovedá baseline; report-only brána FAIL. Deväť skutočných zrušení syntetických queued jobov a štyri prechody start ACL po sentinel; žiadna analýza ani model neboli spustené. Bežné poverenie umožňuje čítanie aj cancel; roles=[] ani neimplementovaný reporter label ho neobmedzia. Cudzia organizácia bez dostupného case bola odmietnutá. Doložené X-API-Key/APIKey vs Bearer JWT, pozitívny/negatívny prístup bez admina a hranice server/klient/prompt. Podklady: docs/reviews/FX008_AUTHORIZATION_REVIEW.md, integration/fx008/README.md, docs/verification/FX008_AUTHORIZATION_RESULTS.json a FX008_REPRODUCTION_RESULTS.json. Commit 5d0b2b8faba26f9ca2a5d8a7dda919a88d62255f, vetva chore/fx008-fx009-coordination. Kritérium zákazu start/cancel ostáva nesplnené; treba samostatnú upstream opravu reportovacieho scope a konkrétnu case/org politiku. FX-007 je otvorená závislosť; FX-008 nie je done.
 
 Overenie 22. 11. 2026 · Hub PR #29 na 3b4effd: 77/77 reporter a 12/12 ACL. Povolené čítania a zamietnutia start/cancel sú doložené na tejto revízii. Sonda na 19080b1: 12/12, zmena predvolenej roly vyvolala očakávané zlyhanie. Produkčné vydávanie a revokácia poverení, obnova oprávnení prípadu a nadväznosť na FX-007 sú otvorené. https://github.com/erikbabcan-commits/forenzx-analysis-brief/pull/3
+
+Dodatok 22. 11. 2026 · Na novšom HEAD PR #3 (23bc757) prešlo v prostredí Work 17/17 testov sondy. Zámerná zmena predvolenej roly spôsobila jedno zlyhanie. GitHub pre toto SHA neuvádza PR workflow ani commitový status. https://github.com/erikbabcan-commits/forenzx-analysis-brief/commit/23bc7573b523ba4ddfefda29cb5e6ea0f0c826b8
 
 ## FX-009 — Opísať tok dát a zachádzanie s kľúčmi
 

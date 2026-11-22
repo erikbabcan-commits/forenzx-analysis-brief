@@ -1029,9 +1029,9 @@
     },
     "py-after": {
       "integration/fx007/run_probe.py": [
-        170,
+        177,
         439,
-        23,
+        28,
         94
       ],
       "integration/fx008/run_authorization_probe.py": [
@@ -1041,7 +1041,7 @@
         42
       ],
       "integration/fx009/provider_probe.py": [
-        142,
+        143,
         149,
         21,
         26
@@ -1209,6 +1209,44 @@
         155,
         16,
         24
+      ]
+    },
+    "py-after-initial-fix": {
+      "integration/fx007/run_probe.py": [
+        170,
+        439,
+        23,
+        94
+      ],
+      "integration/fx008/run_authorization_probe.py": [
+        0,
+        241,
+        0,
+        42
+      ],
+      "integration/fx009/provider_probe.py": [
+        142,
+        149,
+        21,
+        26
+      ],
+      "product/reference/build_fixtures.py": [
+        102,
+        126,
+        44,
+        60
+      ],
+      "product/run_reference_suite.py": [
+        235,
+        275,
+        92,
+        124
+      ],
+      "product/validate_input.py": [
+        369,
+        382,
+        192,
+        212
       ]
     }
   }
