@@ -37,7 +37,7 @@ Stručný záznam o úspešnom vykonaní reálneho integračného behu FX-007 na
 * **Klient:** `mcp-python 1.29.0`
 * **Typ chyby:** `ExceptionGroup`
 * **Presná chyba:** `RuntimeError: Unsupported protocol version from the server: 2026-07-28`
-* **Dôvod:** Upstream ForenZX MCP server striktne deklaruje a implementuje modernú verziu protokolu `2026-07-28` (Streamable HTTP bez legacy handshake), ktorú starší balík `mcp` vo verzii 1.29.0 nepodporuje a pri pokuse o inicializáciu zlyháva na kontrole verzie.
+* **Pozorovanie:** Klient mcp-python 1.29.0 odmietol verziu protokolu 2026-07-28 oznámenú serverom.
 
 ## Stav backlogu
 
