@@ -8,7 +8,7 @@ if __package__:
 else:
     import validate_input as validator
 
-VERSION = "0.1.0"
+VERSION = "0.1.1"
 DEMO_PROFILE = "forenzx-analysis-result-0e4c7fae"
 PRODUCT = Path(__file__).resolve().parent
 SCENARIOS = ("completed-hit", "completed-no-ioc")
@@ -55,7 +55,7 @@ def _markdown(data, check):
         f"SHA-256 prijatých bajtov JSON: `{check['input']['sha256']}`",
         f"Profil validátora: `{check['profile']}` · renderer: `{VERSION}`",
         f"Pripnutá revízia profilu Hubu: `{check['upstream_commit']}`", "",
-        "Hodnoty v odsadených blokoch pochádzajú zo zdroja. "
+        "Zdrojové polia používajú zápis JSON. "
         "Hodnota `null` označuje nedostupný údaj a `\"\"` prázdny reťazec.", "",
     ]
     _fields(lines, data, ("job_id", "case_id", "evidence_id", "pack_id", "pack_version",
@@ -90,7 +90,8 @@ def _markdown(data, check):
                                "event_type", "source_tool", "description", "relevance_score"))
         if not event.get("timezone"):
             lines.extend(["", "Zdroj neuvádza časovú zónu."])
-    lines.extend(["", "## Diagnostika validátora", "", f"Štruktúra: `{check['status']}`.", ""])
+    lines.extend(["", "## Diagnostika validátora", "", "Diagnostické položky vytvoril validátor.",
+                  f"Štruktúra: `{check['status']}`.", ""])
     if check["issues"]:
         for issue in check["issues"]:
             lines.append("    " + _literal(issue))

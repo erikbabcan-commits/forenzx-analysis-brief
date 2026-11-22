@@ -9,10 +9,10 @@ Režim `SYNTHETIC_DEMO` · `report_generation_allowed = false`
 ## Identita a rozsah
 
 SHA-256 prijatých bajtov JSON: `461a511f6ca015ef1552b86fd1442e37e65288b0323987d4421adf6086a6c192`
-Profil validátora: `forenzx-analysis-result-0e4c7fae` · renderer: `0.1.0`
+Profil validátora: `forenzx-analysis-result-0e4c7fae` · renderer: `0.1.1`
 Pripnutá revízia profilu Hubu: `0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f`
 
-Hodnoty v odsadených blokoch pochádzajú zo zdroja. Hodnota `null` označuje nedostupný údaj a `""` prázdny reťazec.
+Zdrojové polia používajú zápis JSON. Hodnota `null` označuje nedostupný údaj a `""` prázdny reťazec.
 
     job_id = "demo-job-hit"
     case_id = "demo-case"
@@ -89,6 +89,7 @@ Počet udalostí v prijatom JSON: 1. Zachované je poradie zdroja a pôvodný z�
 
 ## Diagnostika validátora
 
+Diagnostické položky vytvoril validátor.
 Štruktúra: `STRUCTURE_VALID`.
 
 Validátor neuviedol žiadne diagnostické položky.

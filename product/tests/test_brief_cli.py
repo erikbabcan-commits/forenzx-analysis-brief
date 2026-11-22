@@ -79,6 +79,16 @@ class DemoCLITests(unittest.TestCase):
             self.assertEqual((result.returncode, result.stdout), (2, b""))
             self.assertFalse(target.exists())
 
+    def test_closed_stdout_returns_documented_error_once(self):
+        reader, writer = os.pipe()
+        os.close(reader)
+        with os.fdopen(writer, "wb") as closed_pipe:
+            result = subprocess.run([sys.executable, str(self.cli), "completed-hit"],
+                                    cwd=self.work, stdout=closed_pipe, stderr=subprocess.PIPE,
+                                    timeout=10)
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertEqual(result.stderr.decode(), "Prehľad nevytvorený (DEMO_IO_OR_CONFIGURATION_ERROR).\n")
+
     def test_output_publication_and_collision(self):
         path = self.work / "demo.md"
         self.assertEqual(self.run_cli("completed-hit", "--output", path).returncode, 0)

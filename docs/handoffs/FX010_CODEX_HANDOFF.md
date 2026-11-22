@@ -28,4 +28,6 @@ Implementácia vychádza z vetvy `audit/release-board-sync-20261122` na commite 
 
 Na nezávislý kontrolný beh Release Boardu v tom istom novom checkoute použi `bash scripts/local-bootstrap.sh --check-only --port 0`. Tento krok potrebuje aj Node.js, npm a pri prvej inštalácii závislostí internet. Samotné dve ukážky používajú iba Python.
 
+Pre renderer 0.1.1 porovnaj oba SHA-256 so stĺpcom **0.1.1 · Codex Work** v [technickom review](../reviews/FX010_RENDERER_REVIEW.md). Súbory `FX010_RESULTS.json` a `FX010_FEDORA_VERIFICATION.json` v `docs/verification/` zachytávajú pôvodnú verziu 0.1.0 na commite `0d2a394`.
+
 Koordinátorovi odovzdaj SHA, verzie, počty testov, oba hashe a prípadnú odchýlku. Kontrolované vypustenie posledného varovania možno reprodukovať iba v ďalšej pracovnej kópii: vo funkcii `_source_list` pri poli `warnings` vynechaj posledný prvok a spusti `python3 -m unittest product.tests.test_render_brief.RendererTests.test_independent_reference_content`. Očakávaný výsledok je kód 1 a zlyhanie oboch podprípadov. Pôvodné očakávania sa pri tomto pokuse musia zachovať.

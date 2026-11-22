@@ -30,4 +30,4 @@ Demo obsahuje sekcie pre diagnostiku validátora a AI vysvetlenie. Faktické hod
 
 Tabuľka uvádza technické dôkazy pre dve ukážky. Rozhodnutie o stave celej úlohy patrí koordinátorovi po kontrole závislostí a nezávislej reprodukcii. Pre reálne prípady zostáva v platnosti `report_generation_allowed = false`. Tento beh sa týka distribúcie z checkoutu. Samostatné hodnotenie modelu, klienta MCP, podpisov a distribúcie Agensi je otvorené.
 
-[Strojové výsledky](verification/FX010_RESULTS.json) · [Odovzdanie pre Fedoru](handoffs/FX010_CODEX_HANDOFF.md) · [Integračný checklist](reviews/FX010_INTEGRATION_PRECHECK.md)
+[Review a odtlačky verzie 0.1.1](reviews/FX010_RENDERER_REVIEW.md) · [Pôvodné strojové výsledky verzie 0.1.0](verification/FX010_RESULTS.json) · [Odovzdanie pre Fedoru](handoffs/FX010_CODEX_HANDOFF.md) · [Integračný checklist](reviews/FX010_INTEGRATION_PRECHECK.md)

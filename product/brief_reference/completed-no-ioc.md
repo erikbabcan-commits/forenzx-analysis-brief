@@ -9,10 +9,10 @@ Režim `SYNTHETIC_DEMO` · `report_generation_allowed = false`
 ## Identita a rozsah
 
 SHA-256 prijatých bajtov JSON: `feacf239b2667363425309f334966e6b0db64d992ab923bf067fee0a38a36aa6`
-Profil validátora: `forenzx-analysis-result-0e4c7fae` · renderer: `0.1.0`
+Profil validátora: `forenzx-analysis-result-0e4c7fae` · renderer: `0.1.1`
 Pripnutá revízia profilu Hubu: `0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f`
 
-Hodnoty v odsadených blokoch pochádzajú zo zdroja. Hodnota `null` označuje nedostupný údaj a `""` prázdny reťazec.
+Zdrojové polia používajú zápis JSON. Hodnota `null` označuje nedostupný údaj a `""` prázdny reťazec.
 
     job_id = "demo-job-no-ioc"
     case_id = "demo-case"
@@ -98,6 +98,7 @@ Zdroj neuvádza časovú zónu.
 
 ## Diagnostika validátora
 
+Diagnostické položky vytvoril validátor.
 Štruktúra: `STRUCTURE_VALID`.
 
     {"code": "NEGATIVE_IOC_SCOPE", "message": "No known IOC match is limited to the source examination and indicators; it does not establish a safe device.", "path": "/summary_classification", "severity": "limitation"}

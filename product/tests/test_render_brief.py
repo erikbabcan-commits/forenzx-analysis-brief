@@ -52,6 +52,14 @@ class RendererTests(unittest.TestCase):
         for scenario in CASES:
             self.assertEqual(brief.render_demo(scenario, source(scenario)), (REF / (scenario + ".md")).read_bytes())
 
+    def test_validator_items_have_their_own_provenance(self):
+        text = brief.render_demo("completed-no-ioc", source("completed-no-ioc")).decode()
+        source_sections, diagnostics = text.split("## Diagnostika validátora\n", 1)
+        self.assertNotIn("Hodnoty v odsadených blokoch pochádzajú zo zdroja.", source_sections)
+        self.assertNotIn("TIMEZONE_UNSPECIFIED", source_sections)
+        self.assertIn("Diagnostické položky vytvoril validátor.", diagnostics)
+        self.assertIn("TIMEZONE_UNSPECIFIED", diagnostics)
+
     def test_final_warning_mutation_is_detected(self):
         scenario = "completed-no-ioc"
         text = brief.render_demo(scenario, source(scenario)).decode()

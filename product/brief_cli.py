@@ -37,8 +37,9 @@ def main(argv=None):
         args = parser.parse_args(argv)
         document = brief.render_demo(args.scenario, _read_fixture(args.scenario))
         if args.output is None:
-            sys.stdout.buffer.write(document)
-            sys.stdout.buffer.flush()
+            # Finish this write here so interpreter shutdown cannot retry a failed flush.
+            with open(sys.stdout.fileno(), "wb", closefd=False) as output:
+                output.write(document)
         else:
             _publish(args.output, document)
         return 0
