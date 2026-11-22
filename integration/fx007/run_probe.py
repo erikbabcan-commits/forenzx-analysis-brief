@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import hashlib
+import hmac
 import http.client
 import importlib.metadata
 import json
@@ -23,6 +24,7 @@ import socket
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 from datetime import datetime, timezone
 
@@ -102,8 +104,11 @@ def verify_upstream(upstream: Path, expected_commit: str = BASELINE) -> dict:
 class Recorder:
     """Observe the actual ASGI app without changing request or response messages."""
 
-    def __init__(self, app, temporary: Path):
+    def __init__(self, app, temporary: Path, issued_tokens: dict[str, str] | None = None,
+                 tokens_lock: threading.Lock | None = None):
         self.app, self.temporary = app, temporary
+        self.issued_tokens = issued_tokens if issued_tokens is not None else {}
+        self.tokens_lock = tokens_lock if tokens_lock is not None else threading.Lock()
 
     async def __call__(self, scope, receive, send):
         if scope["type"] != "http":
@@ -148,20 +153,30 @@ class Recorder:
             arguments = params.get("arguments") if isinstance(params.get("arguments"), dict) else {}
             tool_result = unwrap(response)
             auth = headers.get(b"authorization") or headers.get("authorization")
+            caller_credential_matched = False
             auth_role = None
             if auth and auth.startswith("Bearer "):
-                try:
-                    import jwt as _jwt
-                    unverified = _jwt.decode(auth[7:], options={"verify_signature": False})
-                    roles = unverified.get("roles")
-                    if isinstance(roles, list) and roles:
-                        auth_role = str(roles[0])
-                except Exception:
-                    pass
+                bearer_token = auth[7:].strip()
+                with self.tokens_lock:
+                    for issued_t, issued_role in self.issued_tokens.items():
+                        if hmac.compare_digest(bearer_token, issued_t):
+                            caller_credential_matched = True
+                            auth_role = issued_role
+                            break
+                if auth_role is None:
+                    try:
+                        import jwt as _jwt
+                        unverified = _jwt.decode(bearer_token, options={"verify_signature": False})
+                        roles = unverified.get("roles")
+                        if isinstance(roles, list) and roles:
+                            auth_role = str(roles[0])
+                    except Exception:
+                        pass
             event = {
                 "phase": phase, "http_method": scope["method"], "path": scope["path"],
                 "rpc_method": request.get("method"), "tool_name": params.get("name"),
                 "auth_role": auth_role,
+                "caller_credential_matched": caller_credential_matched,
                 "protocol_header": headers.get(b"mcp-protocol-version"),
                 "method_header": headers.get(b"mcp-method"), "name_header": headers.get(b"mcp-name"),
                 "meta": allowed_meta, "http_status": response_status,
@@ -199,7 +214,30 @@ def serve(upstream: Path, temporary: Path, port: int) -> None:
     validated = AnalysisResult.model_validate(payload)
     job_manager.store_result(job_id, validated)
     json_write(temporary / "seeded-result.json", validated.model_dump(mode="json"))
-    uvicorn.run(Recorder(app, temporary), host="127.0.0.1", port=port, access_log=False, log_level="warning")
+
+    issued_tokens: dict[str, str] = {}
+    tokens_lock = threading.Lock()
+
+    def token_reader():
+        try:
+            for line in sys.stdin:
+                line = line.strip()
+                if not line:
+                    continue
+                if ":" in line:
+                    role, t = line.split(":", 1)
+                    with tokens_lock:
+                        issued_tokens[t] = role
+                else:
+                    with tokens_lock:
+                        issued_tokens[line] = "unknown"
+        except Exception:
+            pass
+
+    threading.Thread(target=token_reader, daemon=True).start()
+
+    uvicorn.run(Recorder(app, temporary, issued_tokens=issued_tokens, tokens_lock=tokens_lock),
+                host="127.0.0.1", port=port, access_log=False, log_level="warning")
 
 
 def http_request(port: int, method: str, path: str, payload: dict | None = None,
@@ -237,6 +275,69 @@ def unwrap(response: dict) -> dict | None:
         return value if isinstance(value, dict) else None
     except (ValueError, TypeError, KeyError):
         return None
+
+
+def evaluate_codex_events(
+    calls: list[dict],
+    job_id: str,
+    expected_hashes: dict[str, str],
+    expected_final: dict,
+    final_response: dict | None,
+    codex_meta: dict,
+    expected_role: str = "analyst",
+) -> dict:
+    tool_verifications = {}
+    for tool in READ_TOOLS:
+        tool_events = [e for e in calls if e.get("tool_name") == tool]
+        valid_events = [
+            e for e in tool_events
+            if e.get("http_status") == 200
+            and e.get("rpc_error_code") is None
+            and e.get("has_result") is True
+            and e.get("tool_is_error") is False
+            and e.get("requested_job_id") == job_id
+            and e.get("returned_job_id") == job_id
+            and e.get("tool_result_sha256") == expected_hashes.get(tool)
+            and e.get("caller_credential_matched") is True
+            and (expected_role != "reporter" or e.get("auth_role") == "reporter")
+        ]
+        tool_verifications[tool] = {
+            "verified_event_present": bool(valid_events),
+            "total_calls": len(tool_events),
+            "credential_bound": any(e.get("caller_credential_matched") is True for e in tool_events),
+            "role_matched": any(e.get("auth_role") == expected_role for e in tool_events),
+            "result_hash_matched": any(e.get("tool_result_sha256") == expected_hashes.get(tool) for e in tool_events),
+        }
+
+    successful = [tool for tool, v in tool_verifications.items() if v["verified_event_present"]]
+    observed_roles = sorted(list({e["auth_role"] for e in calls if e.get("auth_role")}))
+    unexpected_calls = [e.get("tool_name") for e in calls if e.get("tool_name") not in READ_TOOLS]
+    final_match = (final_response == expected_final)
+
+    server_accepted_reporter = (
+        all(tool_verifications[t]["verified_event_present"] for t in READ_TOOLS)
+        if expected_role == "reporter" else None
+    )
+
+    accepted = (
+        codex_meta.get("exit_code") == 0
+        and not codex_meta.get("timed_out")
+        and all(tool_verifications[t]["verified_event_present"] for t in READ_TOOLS)
+        and final_match
+        and not unexpected_calls
+        and (expected_role != "reporter" or server_accepted_reporter is True)
+    )
+
+    return {
+        "credential_role": expected_role,
+        "tool_verifications": tool_verifications,
+        "server_observed_roles": observed_roles,
+        "server_accepted_reporter": server_accepted_reporter,
+        "server_observed_successful_tools": successful,
+        "unexpected_tool_calls": unexpected_calls,
+        "final_exact_match": final_match,
+        "accepted": accepted,
+    }
 
 
 def run_codex(port: int, token: str, job_id: str, temporary: Path, output: Path,
@@ -408,7 +509,11 @@ def run(args) -> int:
             with (temporary / "server.log").open("w", encoding="utf-8") as log:
                 server = subprocess.Popen([sys.executable, str(Path(__file__).resolve()), "--serve",
                                            "--upstream", str(upstream), "--temporary", str(temporary), "--port", str(port)],
-                                          cwd=upstream, env=environment, stdout=log, stderr=log, start_new_session=True)
+                                          cwd=upstream, env=environment, stdout=log, stderr=log, stdin=subprocess.PIPE,
+                                          text=True, start_new_session=True)
+            if server.stdin:
+                server.stdin.write(f"analyst:{token}\n")
+                server.stdin.flush()
             deadline = time.monotonic() + 30
             while True:
                 if server.poll() is not None:
@@ -436,6 +541,9 @@ def run(args) -> int:
             }
             reporter_token = jwt.encode(reporter_claims, secret, algorithm="HS256")
             sensitive.append(reporter_token)
+            if server and server.stdin:
+                server.stdin.write(f"reporter:{reporter_token}\n")
+                server.stdin.flush()
             status, health, _ = http_request(port, "GET", "/health/ready")
             report["engine_readiness"] = {"http_status": status, **{k: health.get(k) for k in ["status", "packs_enabled", "pack_errors"]}}
 
@@ -491,27 +599,22 @@ def run(args) -> int:
             if args.with_codex:
                 phase("codex")
                 codex_token = reporter_token if args.codex_role == "reporter" else token
-                codex = run_codex(port, codex_token, job_id, temporary, output, sensitive, args.codex_timeout)
+                codex_meta = run_codex(port, codex_token, job_id, temporary, output, sensitive, args.codex_timeout)
                 traffic = [json.loads(line) for line in (temporary / "traffic.jsonl").read_text(encoding="utf-8").splitlines()]
-                calls = [e for e in traffic if e["phase"] == "codex" and e["rpc_method"] == "tools/call"]
+                calls = [e for e in traffic if e.get("phase") == "codex" and e.get("rpc_method") == "tools/call"]
                 expected_hashes = {READ_TOOLS[0]: digest(canonical(job_status)), READ_TOOLS[1]: digest(canonical(expected))}
-                successful = [e["tool_name"] for e in calls if e["http_status"] == 200 and e["rpc_error_code"] is None
-                              and e["has_result"] and e["tool_is_error"] is False and e["requested_job_id"] == job_id
-                              and e["returned_job_id"] == job_id and e["tool_result_sha256"] == expected_hashes.get(e["tool_name"])]
                 expected_final = {"job_id": job_id, "state": "COMPLETED", "classification": expected["summary_classification"],
                                   "finding_count": len(expected["findings"]), "warnings": expected["warnings"], "limitations": expected["limitations"]}
-                observed_roles = sorted(list({e["auth_role"] for e in calls if e.get("auth_role")}))
-                server_accepted = (args.codex_role in observed_roles) if observed_roles else False
-                codex["credential_role"] = args.codex_role
-                codex["server_observed_roles"] = observed_roles
-                codex["server_accepted_reporter"] = server_accepted if args.codex_role == "reporter" else None
-                codex["server_observed_successful_tools"] = successful
-                codex["unexpected_tool_calls"] = [e["tool_name"] for e in calls if e["tool_name"] not in READ_TOOLS]
-                codex["final_exact_match"] = codex.get("final") == expected_final
-                codex["accepted"] = (codex.get("exit_code") == 0 and not codex.get("timed_out")
-                                     and all(t in successful for t in READ_TOOLS) and codex["final_exact_match"]
-                                     and not codex["unexpected_tool_calls"]
-                                     and (args.codex_role != "reporter" or server_accepted))
+                evaluation = evaluate_codex_events(
+                    calls=calls,
+                    job_id=job_id,
+                    expected_hashes=expected_hashes,
+                    expected_final=expected_final,
+                    final_response=codex_meta.get("final"),
+                    codex_meta=codex_meta,
+                    expected_role=args.codex_role,
+                )
+                codex = {**codex_meta, **evaluation}
                 report["codex"] = codex
         except (KeyboardInterrupt, ProbeTerminated) as exc:
             report["run_error"] = {"type": type(exc).__name__, "message": "Probe interrupted; owned processes stopped."}
@@ -520,6 +623,11 @@ def run(args) -> int:
             report["run_error"] = {"type": type(exc).__name__, "message": redact(str(exc), sensitive)}
         finally:
             if server is not None:
+                if server.stdin:
+                    try:
+                        server.stdin.close()
+                    except Exception:
+                        pass
                 finish_process(server)
             for temporary_name, output_name in [("traffic.jsonl", "http-traffic.jsonl"), ("server.log", "server-log.txt")]:
                 source = temporary / temporary_name

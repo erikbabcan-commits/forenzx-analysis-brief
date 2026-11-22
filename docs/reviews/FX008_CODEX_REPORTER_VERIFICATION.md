@@ -1,64 +1,80 @@
-# FX-008: Overenie reálneho klienta Codex CLI s rolou reporter
+# FX-008: Overenie reálneho klienta Codex CLI s rolou reporter a dôkazom identity
 
-**Dátum overenia:** 2026-11-22T02:29:20Z  
+**Dátum overenia:** 2026-11-22T02:54:01Z  
 **Prostredie:** Fedora Linux (lokálne testovacie prostredie)  
 **Klient:** `codex-cli 0.170.0` (prihlásený účet ChatGPT)  
 **Release Board commit:** `7fa5ea573541d2e44b527b2662d1de9daf0bc4f9` (vetva `fix/fx008-reporter-evidence`)  
 **ForenZX MCP Hub commit:** `3b4effdb08cda68f733c56d995ccb54380729e8b` ([Hub PR #29](https://github.com/erikbabcan-commits/forenzx-mcp-hub/pull/29))  
-**ID behu:** `20261122T022905Z-d145bb21`  
-**Report behu:** `/home/vorkei/Projekty/forenzx-analysis-brief-fedora/.fx008-runtime/runs/20261122T022905Z-d145bb21/report.json`  
-**SHA-256 reportu:** `6190472ce537830d15b822f258889e44ec063d35cd390609cba67f971815f062`  
+**ID behu:** `20261122T025347Z-72cc4984`  
+**Report behu:** `/home/vorkei/Projekty/forenzx-analysis-brief-fedora/.fx008-runtime/runs/20261122T025347Z-72cc4984/report.json`  
+**SHA-256 reportu:** `528d0edbb1ed8da523c263e7162ddbced4db2f4e560f7a90766fd2e543a43f98`  
 
 ---
 
 ## 1. Zhrnutie a verdikt
 
 **Verdikt:** **PASS**  
-*Skutočný klient codex-cli 0.170.0 s oprávnením reporter úspešne cez MCP prečítal stav aj výsledok syntetickej analýzy zo servera a vrátil presnú 6-poľovú odpoveď bez neočakávaných volaní.*
-
-Všetky HTTP kontroly integrity, fail-closed ACL aj oba čítacie nástroje cez prihlásený Codex CLI prebehli bez zlyhania na syntetickej úlohe.
+*Skutočný klient codex-cli 0.170.0 s oprávnením reporter úspešne cez MCP prečítal stav aj výsledok syntetickej analýzy zo servera a vrátil presnú 6-poľovú odpoveď, pričom obe čítania preukázali v tej istej udalosti úspešnú odpoveď Hubu, správne job_id, očakávaný hash výsledku a väzbu na presne to syntetické reporter poverenie, ktoré beh vydal pre Codex.*
 
 ---
 
-## 2. Namerané výsledky
+## 2. Rozlíšenie overenia: Čo overil Hub a čo porovnala sonda
 
-### 2.1 HTTP kontroly sondy (13 / 13 PASS)
-- `missing_auth_rejected`: PASS (HTTP 401)
-- `invalid_jwt_rejected`: PASS (HTTP 401)
-- `expired_jwt_rejected`: PASS (HTTP 401)
-- `dev_bypass_rejected_in_production`: PASS (HTTP 401)
-- `api_key_discovery`: PASS (HTTP 200)
-- `jwt_tool_discovery`: PASS (HTTP 200)
-- `unsupported_protocol_rejected`: PASS (HTTP 400)
-- `completed_status`: PASS (HTTP 200, stav COMPLETED)
-- `exact_result_roundtrip`: PASS (HTTP 200, presná zhoda výsledku)
-- `warnings_and_limitations_preserved`: PASS
-- `cross_organization_denied`: PASS (RPC kód -32603)
-- `missing_job_rejected`: PASS (RPC kód -32602)
-- `retrieved_input_passes_structural_validator`: PASS (validačný skript uspel)
+Pre zaistenie rigoróznosti dôkazu identity dokumentácia striktne rozlišuje zodpovednosti medzi serverom a sondou:
 
-### 2.2 Hub bezpečnostná a regresná suita
-- `tests/security/test_reporter.py` (vrátane `scripts/check_reporter_authorization.py`): **77 / 77 PASS**
-- `tests/security/test_acl.py`: **12 / 12 PASS**
+### 2.1 Čo overil ForenZX MCP Hub (server)
+- **Kryptografická autenticita a expirácia JWT:** Overenie podpisu voči kľúču inštancie (`JWT_SECRET_KEY`) a platnosti expiračného timestampu (`exp`).
+- **Fail-closed autorizácia nástrojov:** Vynútenie obmedzení roly `reporter` v `core/acl.py` – povolené výhradne čítacie nástroje `forenzx_analysis_status` a `forenzx_analysis_results`. Akékoľvek zápisové či modifikačné nástroje (`forenzx_analysis_start`, `forenzx_analysis_cancel`) sú serverom odmietnuté s kódom `-32603` (pokryté 77/77 regresnými testami).
+- **Viacúrovňové ACL pre prípad a úlohu:** Overenie väzby na deklarovanú organizáciu, oprávnenie prístupu k prípadu (`report_case_ids`) a úlohe (`report_job_ids`) prostredníctvom `case_access_provider`.
 
-### 2.3 Správanie Codex CLI
-- **Stav procesu:** `COMPLETED` (návratový kód 0, timeout: false).
-- **Použité poverenie:** Syntetický JWT s deklarovanou rolou `roles: ["reporter"]`, príslušným `organization`, `report_case_ids` a `report_job_ids`.
-- **Rola pozorovaná serverom:** `reporter` (potvrdené v prevádzkovom logu ASGI).
-- **Vykonané MCP volania:**
-  - `forenzx_analysis_status` pre syntetické `job_id` (úspech, HTTP 200).
-  - `forenzx_analysis_results` pre rovnaké `job_id` (úspech, HTTP 200).
+### 2.2 Čo porovnala testovacia sonda
+- **In-memory väzba na vydané poverenie klienta:** Hub v odpovedi nevystavuje identifikátor tokenu; sonda preto v ASGI middleware (`Recorder`) priamo v pamäti (bez zápisu na disk, do logov či reportu) pomocou `hmac.compare_digest` porovnala prijatý Bearer token voči presne tomu syntetickému tokenu, ktorý tento konkrétny beh vydal pre klienta Codex. Do udalosti uložila výhradne boolean výsledok `caller_credential_matched: true`.
+- **Korelačné pravidlo jednej udalosti:** Sonda v hodnotení `evaluate_codex_events` vyžadovala, aby pre každé z dvoch volaní nastali v **tej istej udalosti** súčasne všetky kritériá:
+  1. HTTP status 200, bez chyby JSON-RPC (`rpc_error_code is None`, `has_result: true`, `tool_is_error: false`).
+  2. Zhodné `job_id` pri požiadavke aj odpovedi (`requested_job_id == job_id` a `returned_job_id == job_id`).
+  3. Zhoda kontrolného súčtu výsledku s očakávaným fixatúrnym hašom (`tool_result_sha256 == expected_hash`).
+  4. Skutočná väzba na vydané poverenie (`caller_credential_matched: true`) a rolu `reporter` (`auth_role == "reporter"`).
+- **Odvodenie akceptácie:** Hodnota `server_accepted_reporter: true` aj finálny `PASS` sú odvodené priamo z prítomnosti oboch týchto verifikovaných udalostí v prevádzkovom zázname.
+
+---
+
+## 3. Namerané výsledky
+
+### 3.1 Výsledok väzby na poverenie pre jednotlivé nástroje
+- **`forenzx_analysis_status`:**
+  - `verified_event_present`: **ÁNO (Event 17)**
+  - `caller_credential_matched`: **ÁNO** (prijatý token sa presne zhodoval s vydaným tokenom)
+  - `auth_role`: **`reporter`**
+  - `job_id`: zhodné s očakávaným syntetickým ID
+  - `tool_result_sha256`: zhodné s očakávaným stavom
+- **`forenzx_analysis_results`:**
+  - `verified_event_present`: **ÁNO (Event 18)**
+  - `caller_credential_matched`: **ÁNO** (prijatý token sa presne zhodoval s vydaným tokenom)
+  - `auth_role`: **`reporter`**
+  - `job_id`: zhodné s očakávaným syntetickým ID
+  - `tool_result_sha256`: zhodné s očakávaným fixatúrnym výsledkom
+
+### 3.2 Celkové správanie Codex CLI
+- **Stav procesu:** `COMPLETED` (exit code: 0, timed_out: false).
+- **Zistené roly na serveri:** `['reporter']`.
 - **Neočakávané volania nástrojov:** Žiadne (`[]`).
-- **Zhoda odpovede:** Úplná zhoda (100 %) v 6 požadovaných poliach: `job_id`, `state`, `classification`, `finding_count`, `warnings` a `limitations`.
+- **Zhoda odpovede:** Úplná zhoda (100 %) v 6 požadovaných poliach (`job_id`, `state`, `classification`, `finding_count`, `warnings`, `limitations`).
+
+### 3.3 HTTP a regresné testy
+- **HTTP kontroly sondy:** 13 / 13 PASS
+- **Hub bezpečnostná suita (PR #29):** 77 / 77 reporter testov PASS, 12 / 12 ACL testov PASS
+- **Cielené testy vyhodnocovacej logiky (`test_probe.py`):** **10 / 10 PASS**
+  - Úspech oboch čítaní s viazaným poverením: PASS
+  - Odmietnutie pri chýbajúcej väzbe na jednom čítaní: PASS
+  - Odmietnutie pri prítomnosti role reporter iba na chybovej udalosti: PASS
+  - Zachovanie predvoleného správania pre rolu `analyst`: PASS
+  - Odmietnutie pri neočakávaných volaniach: PASS
+  - In-memory porovnanie v `Recorder` a nulový únik tajomstiev do logov/udalostí: PASS
 
 ---
 
-## 3. Bezpečnostné mantinely a stav backlogu
-
-1. **Syntetické testovacie dáta:** Skúška prebehla výhradne na syntetických dátach v izolovanom procese loopback servera (127.0.0.1) s dočasnou SQLite databázou. Žiadne skutočné dáta ani produkčný systém neboli dotknuté.
-2. **Zachovanie predvoleného správania:** Historické správanie sondy FX-007 s predvolenou rolou `analyst` zostalo zachované; voľba `--codex-role reporter` rozširuje sondu len na vyžiadanie.
-3. **Poverenia a tajomstvá:** Tokeny a kľúče boli generované dynamicky, neboli vypísané do protokolu a sú v záznamoch redigované.
-4. **Stav backlogu:** `report_generation_allowed` zostáva `false`. Úspešný integračný test je technickým dôkazom fungovania opravy Hubu v PR #29 a schopnosti klienta Codex fungovať pod rolou `reporter`, no pre uzavretie celej položky FX-008 a prechod do FX-009 zostávajú otvorené systémové podmienky:
-   - Riešenie perzistencie a dynamického prideľovania/revokácie živých reporter oprávnení (live credential provisioning and revocation).
-   - Perzistentná obnova case ACL po reštarte servera.
-   - Posúdenie zmluvy poskytovateľa dátového toku a pre-model validácie (FX-009).
+## 4. Bezpečnostné mantinely a stav backlogu
+- **Nulový únik tajomstiev:** Tokeny, podpisové kľúče ani ich odtlačky neboli zapísané do diskových logov, `traffic.jsonl` ani `report.json`.
+- **Produkčné nasadenie:** Nevykonané (`production_deployment: NOT_PERFORMED`).
+- **Generovanie reportov:** Ponechané zakázané (`report_generation_allowed: false`).
+- **Zostávajúce podmienky:** Pre reálne uzatvorenie celej položky FX-008 a prechod do FX-009 naďalej zostáva vyriešiť živú správu a revokáciu poverení, perzistentnú obnovu ACL po reštarte a poskytovateľskú zmluvu dátového toku FX-009.

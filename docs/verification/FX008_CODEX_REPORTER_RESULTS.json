@@ -1,17 +1,33 @@
 {
   "task": "FX-008 live codex reporter verification",
-  "recorded_at": "2026-11-22T02:29:20Z",
+  "recorded_at": "2026-11-22T02:54:01Z",
   "board_commit": "7fa5ea573541d2e44b527b2662d1de9daf0bc4f9",
   "upstream_hub_repo": "erikbabcan-commits/forenzx-mcp-hub",
   "upstream_hub_commit": "3b4effdb08cda68f733c56d995ccb54380729e8b",
   "upstream_pr": "https://github.com/erikbabcan-commits/forenzx-mcp-hub/pull/29",
   "client": "codex-cli 0.170.0",
-  "run_id": "20261122T022905Z-d145bb21",
-  "report_path": "/home/vorkei/Projekty/forenzx-analysis-brief-fedora/.fx008-runtime/runs/20261122T022905Z-d145bb21/report.json",
-  "report_sha256": "6190472ce537830d15b822f258889e44ec063d35cd390609cba67f971815f062",
+  "run_id": "20261122T025347Z-72cc4984",
+  "report_path": "/home/vorkei/Projekty/forenzx-analysis-brief-fedora/.fx008-runtime/runs/20261122T025347Z-72cc4984/report.json",
+  "report_sha256": "528d0edbb1ed8da523c263e7162ddbced4db2f4e560f7a90766fd2e543a43f98",
   "http_checks": {
     "total": 13,
     "passed": 13
+  },
+  "tool_verifications": {
+    "forenzx_analysis_status": {
+      "verified_event_present": true,
+      "total_calls": 1,
+      "credential_bound": true,
+      "role_matched": true,
+      "result_hash_matched": true
+    },
+    "forenzx_analysis_results": {
+      "verified_event_present": true,
+      "total_calls": 1,
+      "credential_bound": true,
+      "role_matched": true,
+      "result_hash_matched": true
+    }
   },
   "codex": {
     "status": "COMPLETED",
@@ -30,6 +46,18 @@
     "final_exact_match": true,
     "accepted": true
   },
+  "targeted_tests": {
+    "total": 10,
+    "passed": 10,
+    "evaluation_logic_covered": [
+      "both_reads_succeed_with_bound_reporter_credential",
+      "missing_credential_binding_on_one_read_rejects",
+      "reporter_only_on_unsuccessful_event_rejects",
+      "analyst_role_default_behavior_preserved",
+      "unexpected_tool_call_rejects",
+      "in_memory_recorder_credential_binding_no_leakage"
+    ]
+  },
   "upstream_suite": {
     "reporter_tests": 77,
     "reporter_failures": 0,
@@ -37,7 +65,7 @@
     "acl_failures": 0
   },
   "verdict": "PASS",
-  "verdict_explanation": "Skutočný klient codex-cli 0.170.0 s oprávnením reporter úspešne cez MCP prečítal stav aj výsledok syntetickej analýzy zo servera a vrátil presnú 6-poľovú odpoveď bez neočakávaných volaní.",
+  "verdict_explanation": "Skutočný klient codex-cli 0.170.0 s oprávnením reporter úspešne cez MCP prečítal stav aj výsledok syntetickej analýzy zo servera a vrátil presnú 6-poľovú odpoveď, pričom obe čítania preukázali väzbu na presne to reporter poverenie, ktoré beh vydal pre klienta.",
   "production_deployment": "NOT_PERFORMED",
   "report_generation_allowed": false,
   "historical_fx008_baseline": "preserved unchanged"
