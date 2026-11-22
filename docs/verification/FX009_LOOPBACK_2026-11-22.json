@@ -1,0 +1,256 @@
+{
+  "scope": "synthetic reference adapter and loopback client",
+  "product_path": "NOT_VERIFIED",
+  "report_generation_allowed": false,
+  "provider_retention": "NOT_VERIFIED",
+  "profile": {
+    "provider": "synthetic",
+    "model": "fixture",
+    "targets": "two separate loopback ports",
+    "retention": "memory-only test receiver",
+    "training": "disabled in test fixture"
+  },
+  "fixture_sha256": "461a511f6ca015ef1552b86fd1442e37e65288b0323987d4421adf6086a6c192",
+  "probe_sha256": "208540a4e3de114bf17d7c65f5b2112b4a1023826a332ec4f9b8ebcfba2cc93f",
+  "validator_sha256": "6835c7573e81a13158cf91ffc66a04ba57a7c565c03abdc8c677adf241c4d93b",
+  "scenarios": [
+    {
+      "scenario": "approved",
+      "reason": "OK",
+      "source_reads": 1,
+      "events": [
+        "read",
+        "reply",
+        "primary"
+      ],
+      "client_contains_marker": true,
+      "primary": {
+        "post_requests": 1,
+        "nonempty_bodies": 1,
+        "with_marker": 1,
+        "exact_result": 1
+      },
+      "fallback": {
+        "post_requests": 0,
+        "nonempty_bodies": 0,
+        "with_marker": 0,
+        "exact_result": 0
+      },
+      "checks": {
+        "client_received_exact_allowed_reply": true,
+        "event_order": true,
+        "halt_reason": true,
+        "primary_counts": true,
+        "fallback_counts": true
+      },
+      "verdict": "PASS"
+    },
+    {
+      "scenario": "unapproved_provider",
+      "reason": "UNAPPROVED_PROFILE",
+      "source_reads": 0,
+      "events": [
+        "reply"
+      ],
+      "client_contains_marker": false,
+      "primary": {
+        "post_requests": 0,
+        "nonempty_bodies": 0,
+        "with_marker": 0,
+        "exact_result": 0
+      },
+      "fallback": {
+        "post_requests": 0,
+        "nonempty_bodies": 0,
+        "with_marker": 0,
+        "exact_result": 0
+      },
+      "checks": {
+        "client_received_exact_allowed_reply": true,
+        "event_order": true,
+        "halt_reason": true,
+        "primary_counts": true,
+        "fallback_counts": true
+      },
+      "verdict": "PASS"
+    },
+    {
+      "scenario": "changed_endpoint",
+      "reason": "UNAPPROVED_PROFILE",
+      "source_reads": 0,
+      "events": [
+        "reply"
+      ],
+      "client_contains_marker": false,
+      "primary": {
+        "post_requests": 0,
+        "nonempty_bodies": 0,
+        "with_marker": 0,
+        "exact_result": 0
+      },
+      "fallback": {
+        "post_requests": 0,
+        "nonempty_bodies": 0,
+        "with_marker": 0,
+        "exact_result": 0
+      },
+      "checks": {
+        "client_received_exact_allowed_reply": true,
+        "event_order": true,
+        "halt_reason": true,
+        "primary_counts": true,
+        "fallback_counts": true
+      },
+      "verdict": "PASS"
+    },
+    {
+      "scenario": "changed_model",
+      "reason": "UNAPPROVED_PROFILE",
+      "source_reads": 0,
+      "events": [
+        "reply"
+      ],
+      "client_contains_marker": false,
+      "primary": {
+        "post_requests": 0,
+        "nonempty_bodies": 0,
+        "with_marker": 0,
+        "exact_result": 0
+      },
+      "fallback": {
+        "post_requests": 0,
+        "nonempty_bodies": 0,
+        "with_marker": 0,
+        "exact_result": 0
+      },
+      "checks": {
+        "client_received_exact_allowed_reply": true,
+        "event_order": true,
+        "halt_reason": true,
+        "primary_counts": true,
+        "fallback_counts": true
+      },
+      "verdict": "PASS"
+    },
+    {
+      "scenario": "missing_retention",
+      "reason": "UNAPPROVED_PROFILE",
+      "source_reads": 0,
+      "events": [
+        "reply"
+      ],
+      "client_contains_marker": false,
+      "primary": {
+        "post_requests": 0,
+        "nonempty_bodies": 0,
+        "with_marker": 0,
+        "exact_result": 0
+      },
+      "fallback": {
+        "post_requests": 0,
+        "nonempty_bodies": 0,
+        "with_marker": 0,
+        "exact_result": 0
+      },
+      "checks": {
+        "client_received_exact_allowed_reply": true,
+        "event_order": true,
+        "halt_reason": true,
+        "primary_counts": true,
+        "fallback_counts": true
+      },
+      "verdict": "PASS"
+    },
+    {
+      "scenario": "incomplete",
+      "reason": "INVALID_RESULT",
+      "source_reads": 1,
+      "events": [
+        "read",
+        "reply"
+      ],
+      "client_contains_marker": false,
+      "primary": {
+        "post_requests": 0,
+        "nonempty_bodies": 0,
+        "with_marker": 0,
+        "exact_result": 0
+      },
+      "fallback": {
+        "post_requests": 0,
+        "nonempty_bodies": 0,
+        "with_marker": 0,
+        "exact_result": 0
+      },
+      "checks": {
+        "client_received_exact_allowed_reply": true,
+        "event_order": true,
+        "halt_reason": true,
+        "primary_counts": true,
+        "fallback_counts": true
+      },
+      "verdict": "PASS"
+    },
+    {
+      "scenario": "wrong_identity",
+      "reason": "INVALID_RESULT",
+      "source_reads": 1,
+      "events": [
+        "read",
+        "reply"
+      ],
+      "client_contains_marker": false,
+      "primary": {
+        "post_requests": 0,
+        "nonempty_bodies": 0,
+        "with_marker": 0,
+        "exact_result": 0
+      },
+      "fallback": {
+        "post_requests": 0,
+        "nonempty_bodies": 0,
+        "with_marker": 0,
+        "exact_result": 0
+      },
+      "checks": {
+        "client_received_exact_allowed_reply": true,
+        "event_order": true,
+        "halt_reason": true,
+        "primary_counts": true,
+        "fallback_counts": true
+      },
+      "verdict": "PASS"
+    },
+    {
+      "scenario": "primary_unavailable",
+      "reason": "PRIMARY_UNAVAILABLE",
+      "source_reads": 1,
+      "events": [
+        "read",
+        "reply",
+        "primary"
+      ],
+      "client_contains_marker": true,
+      "primary": {
+        "post_requests": 1,
+        "nonempty_bodies": 1,
+        "with_marker": 1,
+        "exact_result": 1
+      },
+      "fallback": {
+        "post_requests": 0,
+        "nonempty_bodies": 0,
+        "with_marker": 0,
+        "exact_result": 0
+      },
+      "checks": {
+        "client_received_exact_allowed_reply": true,
+        "event_order": true,
+        "halt_reason": true,
+        "primary_counts": true,
+        "fallback_counts": true
+      },
+      "verdict": "PASS"
+    }
+  ]
+}
