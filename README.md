@@ -106,3 +106,7 @@ GitHub repozitár: `erikbabcan-commits/forenzx-analysis-brief`, **private**. Vyt
 ## Zmeny katalógu
 
 Zmena významu akceptačných kritérií nesmie zdediť starý stav „hotovo“. Definície úloh sú verziované. Zhodné kritériá zachovajú priradené checkboxy, nové kritériá zostanú nesplnené a dôkazy sa zachovajú. Zmenená dokončená úloha a jej dokončené závislé úlohy sa znovu otvoria na posúdenie so záznamom histórie. Nové samostatné úlohy dostanú nové ID. Klient musí pri ukladaní poslať aj aktuálny identifikátor definície, aby stará otvorená stránka nepotvrdila nové kritériá.
+
+## Overenie z 22. novembra 2026
+
+[Aktuálne výsledky, testované revízie a otvorené podmienky](docs/reviews/FX_AUDIT_2026-11-22.md).

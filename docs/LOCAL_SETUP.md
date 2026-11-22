@@ -72,3 +72,7 @@ Lokálne dáta môžeš uložiť tlačidlom exportu v dashboarde. Export z loká
 - **Iné odškrtnuté úlohy než na hostovanej stránke:** je to samostatná lokálna databáza, nie synchronizovaná kópia hostovanej služby.
 
 Aktuálny výsledok a počty testov sú v konzolovom výstupe daného spustenia. Referenčné produktové dáta sú syntetické a nesmú byť prezentované ako úspešné overenie na reálnom dôkaznom materiáli.
+
+## Overenie z 22. novembra 2026
+
+[Aktuálne výsledky, testované revízie a otvorené podmienky](reviews/FX_AUDIT_2026-11-22.md).

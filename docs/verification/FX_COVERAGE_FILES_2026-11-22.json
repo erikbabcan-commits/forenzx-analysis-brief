@@ -1,0 +1,1215 @@
+{
+  "date": "2026-11-22",
+  "columns": [
+    "covered_lines",
+    "executable_lines",
+    "covered_branches",
+    "branch_arms"
+  ],
+  "counts": {
+    "js-before": {
+      "app/api/export/route.ts": [
+        0,
+        8,
+        0,
+        4
+      ],
+      "app/api/tasks/[id]/route.ts": [
+        0,
+        14,
+        0,
+        8
+      ],
+      "app/api/tasks/route.ts": [
+        0,
+        7,
+        0,
+        4
+      ],
+      "app/chatgpt-auth.ts": [
+        0,
+        33,
+        0,
+        24
+      ],
+      "app/dashboard.tsx": [
+        0,
+        85,
+        0,
+        221
+      ],
+      "app/layout.tsx": [
+        0,
+        2,
+        0,
+        0
+      ],
+      "app/page.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/connector-error.tsx": [
+        0,
+        2,
+        0,
+        2
+      ],
+      "components/ui/accordion.tsx": [
+        0,
+        4,
+        0,
+        0
+      ],
+      "components/ui/alert-dialog.tsx": [
+        0,
+        12,
+        0,
+        5
+      ],
+      "components/ui/alert.tsx": [
+        0,
+        4,
+        0,
+        0
+      ],
+      "components/ui/aspect-ratio.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/ui/attachment.tsx": [
+        0,
+        12,
+        0,
+        14
+      ],
+      "components/ui/avatar.tsx": [
+        0,
+        6,
+        0,
+        1
+      ],
+      "components/ui/badge.tsx": [
+        0,
+        3,
+        0,
+        4
+      ],
+      "components/ui/breadcrumb.tsx": [
+        0,
+        8,
+        0,
+        4
+      ],
+      "components/ui/bubble.tsx": [
+        0,
+        7,
+        0,
+        7
+      ],
+      "components/ui/button-group.tsx": [
+        0,
+        5,
+        0,
+        4
+      ],
+      "components/ui/button.tsx": [
+        0,
+        3,
+        0,
+        5
+      ],
+      "components/ui/calendar.tsx": [
+        0,
+        15,
+        0,
+        17
+      ],
+      "components/ui/card.tsx": [
+        0,
+        7,
+        0,
+        0
+      ],
+      "components/ui/carousel.tsx": [
+        0,
+        42,
+        0,
+        33
+      ],
+      "components/ui/chart.tsx": [
+        0,
+        61,
+        0,
+        107
+      ],
+      "components/ui/checkbox.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/ui/collapsible.tsx": [
+        0,
+        3,
+        0,
+        0
+      ],
+      "components/ui/combobox.tsx": [
+        0,
+        17,
+        0,
+        14
+      ],
+      "components/ui/command.tsx": [
+        0,
+        9,
+        0,
+        3
+      ],
+      "components/ui/context-menu.tsx": [
+        0,
+        15,
+        0,
+        1
+      ],
+      "components/ui/dialog.tsx": [
+        0,
+        10,
+        0,
+        6
+      ],
+      "components/ui/direction.tsx": [
+        0,
+        2,
+        0,
+        2
+      ],
+      "components/ui/drawer.tsx": [
+        0,
+        10,
+        0,
+        0
+      ],
+      "components/ui/dropdown-menu.tsx": [
+        0,
+        15,
+        0,
+        2
+      ],
+      "components/ui/empty.tsx": [
+        0,
+        7,
+        0,
+        1
+      ],
+      "components/ui/field.tsx": [
+        0,
+        24,
+        0,
+        14
+      ],
+      "components/ui/form.tsx": [
+        0,
+        28,
+        0,
+        10
+      ],
+      "components/ui/hover-card.tsx": [
+        0,
+        3,
+        0,
+        2
+      ],
+      "components/ui/input-group.tsx": [
+        0,
+        11,
+        0,
+        6
+      ],
+      "components/ui/input-otp.tsx": [
+        0,
+        6,
+        0,
+        4
+      ],
+      "components/ui/input.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/ui/item.tsx": [
+        0,
+        13,
+        0,
+        6
+      ],
+      "components/ui/kbd.tsx": [
+        0,
+        2,
+        0,
+        0
+      ],
+      "components/ui/label.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/ui/marker.tsx": [
+        0,
+        5,
+        0,
+        4
+      ],
+      "components/ui/menubar.tsx": [
+        0,
+        16,
+        0,
+        4
+      ],
+      "components/ui/message-scroller.tsx": [
+        0,
+        6,
+        0,
+        10
+      ],
+      "components/ui/message.tsx": [
+        0,
+        6,
+        0,
+        1
+      ],
+      "components/ui/native-select.tsx": [
+        0,
+        3,
+        0,
+        1
+      ],
+      "components/ui/navigation-menu.tsx": [
+        0,
+        9,
+        0,
+        3
+      ],
+      "components/ui/pagination.tsx": [
+        0,
+        7,
+        0,
+        5
+      ],
+      "components/ui/popover.tsx": [
+        0,
+        7,
+        0,
+        2
+      ],
+      "components/ui/progress.tsx": [
+        0,
+        1,
+        0,
+        2
+      ],
+      "components/ui/radio-group.tsx": [
+        0,
+        2,
+        0,
+        0
+      ],
+      "components/ui/resizable.tsx": [
+        0,
+        3,
+        0,
+        2
+      ],
+      "components/ui/scroll-area.tsx": [
+        0,
+        2,
+        0,
+        5
+      ],
+      "components/ui/select.tsx": [
+        0,
+        10,
+        0,
+        7
+      ],
+      "components/ui/separator.tsx": [
+        0,
+        1,
+        0,
+        2
+      ],
+      "components/ui/sheet.tsx": [
+        0,
+        10,
+        0,
+        12
+      ],
+      "components/ui/sidebar.tsx": [
+        0,
+        78,
+        0,
+        73
+      ],
+      "components/ui/skeleton.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/ui/slider.tsx": [
+        0,
+        4,
+        0,
+        6
+      ],
+      "components/ui/sonner.tsx": [
+        0,
+        3,
+        0,
+        1
+      ],
+      "components/ui/spinner.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/ui/switch.tsx": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "components/ui/table.tsx": [
+        0,
+        8,
+        0,
+        0
+      ],
+      "components/ui/tabs.tsx": [
+        0,
+        5,
+        0,
+        2
+      ],
+      "components/ui/textarea.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/ui/toggle-group.tsx": [
+        0,
+        4,
+        0,
+        9
+      ],
+      "components/ui/toggle.tsx": [
+        0,
+        2,
+        0,
+        0
+      ],
+      "components/ui/tooltip.tsx": [
+        0,
+        4,
+        0,
+        2
+      ],
+      "db/index.ts": [
+        0,
+        3,
+        0,
+        2
+      ],
+      "db/schema.ts": [
+        0,
+        4,
+        0,
+        0
+      ],
+      "hooks/use-mobile.ts": [
+        0,
+        10,
+        0,
+        0
+      ],
+      "lib/catalog.ts": [
+        0,
+        3,
+        0,
+        0
+      ],
+      "lib/connector-context.ts": [
+        0,
+        3,
+        0,
+        0
+      ],
+      "lib/connectors.ts": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "lib/legacy-task-definitions.ts": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "lib/task-definition.ts": [
+        11,
+        13,
+        16,
+        19
+      ],
+      "lib/task-state.ts": [
+        148,
+        161,
+        129,
+        149
+      ],
+      "lib/types.ts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "lib/utils.ts": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "scripts/local-dashboard.mjs": [
+        199,
+        246,
+        105,
+        176
+      ],
+      "worker/index.ts": [
+        0,
+        12,
+        0,
+        11
+      ]
+    },
+    "js-after": {
+      "app/api/export/route.ts": [
+        0,
+        8,
+        0,
+        4
+      ],
+      "app/api/tasks/[id]/route.ts": [
+        0,
+        14,
+        0,
+        8
+      ],
+      "app/api/tasks/route.ts": [
+        0,
+        7,
+        0,
+        4
+      ],
+      "app/chatgpt-auth.ts": [
+        0,
+        33,
+        0,
+        24
+      ],
+      "app/dashboard.tsx": [
+        0,
+        85,
+        0,
+        221
+      ],
+      "app/layout.tsx": [
+        0,
+        2,
+        0,
+        0
+      ],
+      "app/page.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/connector-error.tsx": [
+        0,
+        2,
+        0,
+        2
+      ],
+      "components/ui/accordion.tsx": [
+        0,
+        4,
+        0,
+        0
+      ],
+      "components/ui/alert-dialog.tsx": [
+        0,
+        12,
+        0,
+        5
+      ],
+      "components/ui/alert.tsx": [
+        0,
+        4,
+        0,
+        0
+      ],
+      "components/ui/aspect-ratio.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/ui/attachment.tsx": [
+        0,
+        12,
+        0,
+        14
+      ],
+      "components/ui/avatar.tsx": [
+        0,
+        6,
+        0,
+        1
+      ],
+      "components/ui/badge.tsx": [
+        0,
+        3,
+        0,
+        4
+      ],
+      "components/ui/breadcrumb.tsx": [
+        0,
+        8,
+        0,
+        4
+      ],
+      "components/ui/bubble.tsx": [
+        0,
+        7,
+        0,
+        7
+      ],
+      "components/ui/button-group.tsx": [
+        0,
+        5,
+        0,
+        4
+      ],
+      "components/ui/button.tsx": [
+        0,
+        3,
+        0,
+        5
+      ],
+      "components/ui/calendar.tsx": [
+        0,
+        15,
+        0,
+        17
+      ],
+      "components/ui/card.tsx": [
+        0,
+        7,
+        0,
+        0
+      ],
+      "components/ui/carousel.tsx": [
+        0,
+        42,
+        0,
+        33
+      ],
+      "components/ui/chart.tsx": [
+        0,
+        61,
+        0,
+        107
+      ],
+      "components/ui/checkbox.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/ui/collapsible.tsx": [
+        0,
+        3,
+        0,
+        0
+      ],
+      "components/ui/combobox.tsx": [
+        0,
+        17,
+        0,
+        14
+      ],
+      "components/ui/command.tsx": [
+        0,
+        9,
+        0,
+        3
+      ],
+      "components/ui/context-menu.tsx": [
+        0,
+        15,
+        0,
+        1
+      ],
+      "components/ui/dialog.tsx": [
+        0,
+        10,
+        0,
+        6
+      ],
+      "components/ui/direction.tsx": [
+        0,
+        2,
+        0,
+        2
+      ],
+      "components/ui/drawer.tsx": [
+        0,
+        10,
+        0,
+        0
+      ],
+      "components/ui/dropdown-menu.tsx": [
+        0,
+        15,
+        0,
+        2
+      ],
+      "components/ui/empty.tsx": [
+        0,
+        7,
+        0,
+        1
+      ],
+      "components/ui/field.tsx": [
+        0,
+        24,
+        0,
+        14
+      ],
+      "components/ui/form.tsx": [
+        0,
+        28,
+        0,
+        10
+      ],
+      "components/ui/hover-card.tsx": [
+        0,
+        3,
+        0,
+        2
+      ],
+      "components/ui/input-group.tsx": [
+        0,
+        11,
+        0,
+        6
+      ],
+      "components/ui/input-otp.tsx": [
+        0,
+        6,
+        0,
+        4
+      ],
+      "components/ui/input.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/ui/item.tsx": [
+        0,
+        13,
+        0,
+        6
+      ],
+      "components/ui/kbd.tsx": [
+        0,
+        2,
+        0,
+        0
+      ],
+      "components/ui/label.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/ui/marker.tsx": [
+        0,
+        5,
+        0,
+        4
+      ],
+      "components/ui/menubar.tsx": [
+        0,
+        16,
+        0,
+        4
+      ],
+      "components/ui/message-scroller.tsx": [
+        0,
+        6,
+        0,
+        10
+      ],
+      "components/ui/message.tsx": [
+        0,
+        6,
+        0,
+        1
+      ],
+      "components/ui/native-select.tsx": [
+        0,
+        3,
+        0,
+        1
+      ],
+      "components/ui/navigation-menu.tsx": [
+        0,
+        9,
+        0,
+        3
+      ],
+      "components/ui/pagination.tsx": [
+        0,
+        7,
+        0,
+        5
+      ],
+      "components/ui/popover.tsx": [
+        0,
+        7,
+        0,
+        2
+      ],
+      "components/ui/progress.tsx": [
+        0,
+        1,
+        0,
+        2
+      ],
+      "components/ui/radio-group.tsx": [
+        0,
+        2,
+        0,
+        0
+      ],
+      "components/ui/resizable.tsx": [
+        0,
+        3,
+        0,
+        2
+      ],
+      "components/ui/scroll-area.tsx": [
+        0,
+        2,
+        0,
+        5
+      ],
+      "components/ui/select.tsx": [
+        0,
+        10,
+        0,
+        7
+      ],
+      "components/ui/separator.tsx": [
+        0,
+        1,
+        0,
+        2
+      ],
+      "components/ui/sheet.tsx": [
+        0,
+        10,
+        0,
+        12
+      ],
+      "components/ui/sidebar.tsx": [
+        0,
+        78,
+        0,
+        73
+      ],
+      "components/ui/skeleton.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/ui/slider.tsx": [
+        0,
+        4,
+        0,
+        6
+      ],
+      "components/ui/sonner.tsx": [
+        0,
+        3,
+        0,
+        1
+      ],
+      "components/ui/spinner.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/ui/switch.tsx": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "components/ui/table.tsx": [
+        0,
+        8,
+        0,
+        0
+      ],
+      "components/ui/tabs.tsx": [
+        0,
+        5,
+        0,
+        2
+      ],
+      "components/ui/textarea.tsx": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "components/ui/toggle-group.tsx": [
+        0,
+        4,
+        0,
+        9
+      ],
+      "components/ui/toggle.tsx": [
+        0,
+        2,
+        0,
+        0
+      ],
+      "components/ui/tooltip.tsx": [
+        0,
+        4,
+        0,
+        2
+      ],
+      "db/index.ts": [
+        0,
+        3,
+        0,
+        2
+      ],
+      "db/schema.ts": [
+        0,
+        4,
+        0,
+        0
+      ],
+      "hooks/use-mobile.ts": [
+        0,
+        10,
+        0,
+        0
+      ],
+      "lib/catalog.ts": [
+        0,
+        3,
+        0,
+        0
+      ],
+      "lib/connector-context.ts": [
+        0,
+        3,
+        0,
+        0
+      ],
+      "lib/connectors.ts": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "lib/legacy-task-definitions.ts": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "lib/task-definition.ts": [
+        11,
+        13,
+        16,
+        19
+      ],
+      "lib/task-state.ts": [
+        148,
+        161,
+        129,
+        149
+      ],
+      "lib/types.ts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "lib/utils.ts": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "scripts/local-dashboard.mjs": [
+        210,
+        257,
+        106,
+        177
+      ],
+      "worker/index.ts": [
+        0,
+        12,
+        0,
+        11
+      ]
+    },
+    "py-before": {
+      "integration/fx007/run_probe.py": [
+        150,
+        437,
+        20,
+        94
+      ],
+      "integration/fx008/run_authorization_probe.py": [
+        0,
+        241,
+        0,
+        42
+      ],
+      "product/reference/build_fixtures.py": [
+        102,
+        126,
+        44,
+        60
+      ],
+      "product/run_reference_suite.py": [
+        235,
+        275,
+        92,
+        124
+      ],
+      "product/validate_input.py": [
+        369,
+        382,
+        192,
+        212
+      ]
+    },
+    "py-after": {
+      "integration/fx007/run_probe.py": [
+        170,
+        439,
+        23,
+        94
+      ],
+      "integration/fx008/run_authorization_probe.py": [
+        0,
+        241,
+        0,
+        42
+      ],
+      "integration/fx009/provider_probe.py": [
+        142,
+        149,
+        21,
+        26
+      ],
+      "product/reference/build_fixtures.py": [
+        102,
+        126,
+        44,
+        60
+      ],
+      "product/run_reference_suite.py": [
+        235,
+        275,
+        92,
+        124
+      ],
+      "product/validate_input.py": [
+        369,
+        382,
+        192,
+        212
+      ]
+    },
+    "hub-all-coverage": {
+      "core/__init__.py": [
+        2,
+        2,
+        0,
+        0
+      ],
+      "core/acl.py": [
+        100,
+        121,
+        32,
+        44
+      ],
+      "core/config.py": [
+        90,
+        93,
+        23,
+        26
+      ],
+      "core/db.py": [
+        49,
+        49,
+        1,
+        2
+      ],
+      "core/jobs.py": [
+        97,
+        108,
+        14,
+        20
+      ],
+      "core/main.py": [
+        188,
+        334,
+        33,
+        80
+      ],
+      "core/maintenance.py": [
+        67,
+        86,
+        8,
+        12
+      ],
+      "core/mcp_registry.py": [
+        132,
+        232,
+        19,
+        68
+      ],
+      "core/migrations.py": [
+        51,
+        54,
+        14,
+        16
+      ],
+      "core/models/forensic.py": [
+        162,
+        162,
+        4,
+        4
+      ],
+      "core/pack_registry.py": [
+        88,
+        110,
+        15,
+        24
+      ],
+      "core/server.py": [
+        89,
+        152,
+        28,
+        54
+      ],
+      "core/signing.py": [
+        28,
+        41,
+        1,
+        4
+      ],
+      "core/threat_intel.py": [
+        68,
+        70,
+        12,
+        12
+      ],
+      "core/utils/logger.py": [
+        15,
+        35,
+        1,
+        12
+      ],
+      "core/vault.py": [
+        84,
+        92,
+        29,
+        34
+      ],
+      "core/vault_downloader.py": [
+        64,
+        69,
+        17,
+        22
+      ],
+      "packs/__init__.py": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "packs/base.py": [
+        15,
+        18,
+        0,
+        0
+      ],
+      "packs/mobile_compromise/__init__.py": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "packs/mobile_compromise/adapter.py": [
+        56,
+        60,
+        22,
+        22
+      ],
+      "workers/__init__.py": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "workers/isolation.py": [
+        43,
+        47,
+        10,
+        12
+      ],
+      "workers/pool.py": [
+        113,
+        155,
+        16,
+        24
+      ]
+    }
+  }
+}

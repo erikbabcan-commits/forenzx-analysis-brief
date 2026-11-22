@@ -72,3 +72,6 @@ O vydaní rozhodujú [brány kvality](QUALITY_GATES.md), nie existencia tohto te
 
 Podklady: [metodika](METHODOLOGY.md), [zdroje](SOURCES.md), [pripnutý upstream model](https://github.com/erikbabcan-commits/forenzx-mcp-hub/blob/0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f/core/models/forensic.py), [AI boundary](https://github.com/erikbabcan-commits/forenzx-mcp-hub/blob/0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f/docs/security/AI_EVIDENCE_BOUNDARY.md).
 
+## Overenie z 22. novembra 2026
+
+[Aktuálne výsledky, testované revízie a otvorené podmienky](reviews/FX_AUDIT_2026-11-22.md).

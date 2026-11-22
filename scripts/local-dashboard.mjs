@@ -274,15 +274,27 @@ async function smokeTest() {
     assert.ok(task, "Need an unfinished synthetic task for the local save test.");
     const evidence = "Synthetic local HTTP smoke test; no hosted data was used.";
     const patch = { status: task.status, evidence, checks: task.checks, revision: task.revision, definitionKey: task.definitionKey };
-    const response = await fetch(`${origin}/api/tasks/${encodeURIComponent(task.id)}`, {
-      method: "PATCH", headers: { Origin: origin, "Content-Type": "application/json" }, body: JSON.stringify(patch),
+    const save = (value) => fetch(`${origin}/api/tasks/${encodeURIComponent(task.id)}`, {
+      method: "PATCH", headers: { Origin: origin, "Content-Type": "application/json" }, body: JSON.stringify(value),
     });
-    assert.equal(response.status, 200, `Task save must succeed: ${await response.text()}`);
+    const contenders = [patch, { ...patch, evidence: "Concurrent synthetic review note." }];
+    const initialExport = await (await fetch(`${origin}/api/export`)).json();
+    const responses = await Promise.all(contenders.map(save));
+    assert.deepEqual(responses.map((item) => item.status).sort(), [200, 409]);
+    const accepted = contenders[responses.findIndex((item) => item.status === 200)];
+    for (const item of responses) await item.arrayBuffer();
+    const retry = await save(accepted);
+    assert.equal(retry.status, 409, "Retrying a committed old revision must preserve the winner.");
+    await retry.arrayBuffer();
     const snapshotResponse = await fetch(`${origin}/api/export`);
     assert.equal(snapshotResponse.status, 200);
     const snapshot = await snapshotResponse.json();
-    assert.equal(snapshot.tasks.find((item) => item.id === task.id)?.evidence, evidence);
-    assert.ok(snapshot.events.some((event) => event.taskId === task.id && event.evidence === evidence));
+    const saved = snapshot.tasks.find((item) => item.id === task.id);
+    assert.equal(saved?.evidence, accepted.evidence);
+    assert.equal(saved.revision, task.revision + 1);
+    assert.equal(snapshot.events.length, initialExport.events.length + 1);
+    assert.equal(snapshot.events.filter((event) => event.taskId === task.id && event.revision === saved.revision
+      && event.evidence === accepted.evidence).length, 1);
     const foreign = await fetch(`${origin}/api/tasks/${encodeURIComponent(task.id)}`, {
       method: "PATCH", headers: { Origin: "https://foreign.example", "Content-Type": "application/json" }, body: JSON.stringify(patch),
     });
@@ -291,8 +303,8 @@ async function smokeTest() {
     await dashboard.stop();
     dashboard = await startDashboard({ directory, port: 0 });
     const restarted = await (await fetch(`${dashboard.origin}/api/tasks`)).json();
-    assert.equal(restarted.tasks.find((item) => item.id === task.id)?.evidence, evidence, "Local D1 state must survive a restart.");
-    console.log(`PASS: local HTML, ${initial.tasks.length} seeded tasks, save, export/history, foreign-Origin rejection and D1 restart persistence.`);
+    assert.equal(restarted.tasks.find((item) => item.id === task.id)?.evidence, accepted.evidence, "Local D1 state must survive a restart.");
+    console.log(`PASS: local HTML, ${initial.tasks.length} seeded tasks, concurrent save/409, stale retry, export/history, foreign-Origin rejection and D1 restart persistence.`);
   } finally {
     await dashboard?.stop();
     rmSync(directory, { recursive: true, force: true }); // only our mkdtemp directory
