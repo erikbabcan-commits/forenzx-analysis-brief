@@ -434,6 +434,17 @@ async def legacy_sdk_probe(port: int, token: str) -> dict:
                 "error_type": type(exc).__name__, "errors": leaves(exc)}
 
 
+def synthetic_reporter_claims(case_id: str, job_id: str, expires_at: int) -> dict:
+    return {
+        "sub": "synthetic-reporter",
+        "roles": ["reporter"],
+        "organization": ORGANIZATION,
+        "report_case_ids": [case_id],
+        "report_job_ids": [job_id],
+        "exp": expires_at,
+    }
+
+
 def run(args) -> int:
     import jwt
 
@@ -531,14 +542,7 @@ def run(args) -> int:
             job_id = expected["job_id"]
             report["synthetic_job_id"] = job_id
             json_write(output / "seeded-result.json", expected)
-            reporter_claims = {
-                "sub": "synthetic-reporter",
-                "roles": ["reporter"],
-                "organization": ORGANIZATION,
-                "report_case_ids": [expected["case_id"]],
-                "report_job_ids": [job_id],
-                "exp": int(time.time()) + 600,
-            }
+            reporter_claims = synthetic_reporter_claims(expected["case_id"], job_id, int(time.time()) + 600)
             reporter_token = jwt.encode(reporter_claims, secret, algorithm="HS256")
             sensitive.append(reporter_token)
             if server and server.stdin:

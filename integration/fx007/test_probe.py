@@ -15,6 +15,9 @@ import sys
 import tempfile
 import time
 import unittest
+from contextlib import redirect_stderr
+from io import StringIO
+from unittest.mock import patch
 
 
 @unittest.skipUnless(os.name == "posix", "Process-group signal checks require POSIX")
@@ -79,40 +82,41 @@ class InterruptedClientCleanupTests(unittest.TestCase):
 
 
 class RoleConfigurationTests(unittest.TestCase):
-    def test_default_role_is_analyst(self):
-        import argparse
-        sys.path.insert(0, str(Path(__file__).resolve().parent))
+    def test_cli_dispatches_the_selected_role(self):
         import run_probe
-        # Test default parsing
-        parser = argparse.ArgumentParser()
-        parser.add_argument("--upstream", type=Path, required=True)
-        parser.add_argument("--upstream-commit", default=run_probe.BASELINE)
-        parser.add_argument("--output", type=Path)
-        parser.add_argument("--with-codex", action="store_true")
-        parser.add_argument("--codex-role", choices=["analyst", "reporter"], default="analyst")
-        args = parser.parse_args(["--upstream", "/dummy", "--output", "/dummy"])
-        self.assertEqual(args.codex_role, "analyst")
 
-        args_reporter = parser.parse_args(["--upstream", "/dummy", "--output", "/dummy", "--codex-role", "reporter"])
-        self.assertEqual(args_reporter.codex_role, "reporter")
+        for flags, role in [([], "analyst"), (["--codex-role", "analyst"], "analyst"),
+                            (["--codex-role", "reporter"], "reporter")]:
+            argv = ["run_probe.py", "--upstream", ".", "--output", "unused", "--with-codex", *flags]
+            with self.subTest(flags=flags), patch.object(sys, "argv", argv), \
+                    patch.object(run_probe, "install_signal_handlers"), \
+                    patch.object(run_probe, "run", return_value=0) as run:
+                self.assertEqual(run_probe.main(), 0)
+                run.assert_called_once()
+                self.assertEqual(run.call_args.args[0].codex_role, role)
+
+    def test_cli_rejects_unknown_role_before_dispatch(self):
+        import run_probe
+
+        argv = ["run_probe.py", "--upstream", ".", "--output", "unused", "--codex-role", "unknown"]
+        with patch.object(sys, "argv", argv), patch.object(run_probe, "run") as run, \
+                redirect_stderr(StringIO()), self.assertRaises(SystemExit) as error:
+            run_probe.main()
+        self.assertEqual(error.exception.code, 2)
+        run.assert_not_called()
 
     def test_reporter_claims_structure(self):
-        import jwt
-        claims = {
+        import run_probe
+
+        claims = run_probe.synthetic_reporter_claims("CASE-001", "JOB-001", 123456)
+        self.assertEqual(claims, {
             "sub": "synthetic-reporter",
             "roles": ["reporter"],
-            "organization": "test-org",
+            "organization": run_probe.ORGANIZATION,
             "report_case_ids": ["CASE-001"],
             "report_job_ids": ["JOB-001"],
-            "exp": int(time.time()) + 600,
-        }
-        test_secret = "synthetic-test-secret-at-least-32-bytes-long"
-        token = jwt.encode(claims, test_secret, algorithm="HS256")
-        decoded = jwt.decode(token, test_secret, algorithms=["HS256"])
-        self.assertEqual(decoded["roles"], ["reporter"])
-        self.assertEqual(decoded["report_case_ids"], ["CASE-001"])
-        self.assertEqual(decoded["report_job_ids"], ["JOB-001"])
-        self.assertEqual(decoded["organization"], "test-org")
+            "exp": 123456,
+        })
 
 
 class CodexEvaluationLogicTests(unittest.TestCase):
