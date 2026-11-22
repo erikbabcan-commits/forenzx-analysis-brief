@@ -19,6 +19,8 @@ next-env.d.ts
 
 # Test output
 /coverage/
+.coverage
+.coverage.*
 __pycache__/
 *.py[cod]
 
