@@ -218,6 +218,20 @@ class CodexEvaluationLogicTests(unittest.TestCase):
         self.assertTrue(res["tool_verifications"]["forenzx_analysis_status"]["verified_event_present"])
         self.assertTrue(res["tool_verifications"]["forenzx_analysis_results"]["verified_event_present"])
 
+    def test_analyst_expected_with_bound_reporter_tokens_rejects(self):
+        calls = [
+            self._event("forenzx_analysis_status", bound=True, role="reporter"),
+            self._event("forenzx_analysis_results", bound=True, role="reporter"),
+        ]
+        res = self.run_probe.evaluate_codex_events(
+            calls, self.job_id, self.expected_hashes, self.expected_final,
+            self.expected_final, self.codex_meta_ok, expected_role="analyst"
+        )
+        self.assertFalse(res["accepted"])
+        self.assertFalse(res["tool_verifications"]["forenzx_analysis_status"]["verified_event_present"])
+        self.assertFalse(res["tool_verifications"]["forenzx_analysis_results"]["verified_event_present"])
+        self.assertEqual(res["server_observed_successful_tools"], [])
+
     def test_unexpected_tool_call_rejects(self):
         calls = [
             self._event("forenzx_analysis_status", bound=True, role="reporter"),

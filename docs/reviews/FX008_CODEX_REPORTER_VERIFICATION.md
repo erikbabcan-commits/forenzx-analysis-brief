@@ -63,11 +63,12 @@ Pre zaistenie rigoróznosti dôkazu identity dokumentácia striktne rozlišuje z
 ### 3.3 HTTP a regresné testy
 - **HTTP kontroly sondy:** 13 / 13 PASS
 - **Hub bezpečnostná suita (PR #29):** 77 / 77 reporter testov PASS, 12 / 12 ACL testov PASS
-- **Cielené testy vyhodnocovacej logiky (`test_probe.py`):** **10 / 10 PASS**
+- **Cielené testy vyhodnocovacej logiky (`test_probe.py`):** **11 / 11 PASS**
   - Úspech oboch čítaní s viazaným poverením: PASS
   - Odmietnutie pri chýbajúcej väzbe na jednom čítaní: PASS
   - Odmietnutie pri prítomnosti role reporter iba na chybovej udalosti: PASS
   - Zachovanie predvoleného správania pre rolu `analyst`: PASS
+  - Odmietnutie, ak sa očakáva `analyst`, ale udalosti majú viazané `reporter` tokeny (`accepted: false`): PASS
   - Odmietnutie pri neočakávaných volaniach: PASS
   - In-memory porovnanie v `Recorder` a nulový únik tajomstiev do logov/udalostí: PASS
 

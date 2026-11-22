@@ -47,13 +47,14 @@
     "accepted": true
   },
   "targeted_tests": {
-    "total": 10,
-    "passed": 10,
+    "total": 11,
+    "passed": 11,
     "evaluation_logic_covered": [
       "both_reads_succeed_with_bound_reporter_credential",
       "missing_credential_binding_on_one_read_rejects",
       "reporter_only_on_unsuccessful_event_rejects",
       "analyst_role_default_behavior_preserved",
+      "analyst_expected_with_bound_reporter_tokens_rejects",
       "unexpected_tool_call_rejects",
       "in_memory_recorder_credential_binding_no_leakage"
     ]

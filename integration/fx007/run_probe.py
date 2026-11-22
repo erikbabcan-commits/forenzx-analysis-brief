@@ -299,7 +299,7 @@ def evaluate_codex_events(
             and e.get("returned_job_id") == job_id
             and e.get("tool_result_sha256") == expected_hashes.get(tool)
             and e.get("caller_credential_matched") is True
-            and (expected_role != "reporter" or e.get("auth_role") == "reporter")
+            and e.get("auth_role") == expected_role
         ]
         tool_verifications[tool] = {
             "verified_event_present": bool(valid_events),
