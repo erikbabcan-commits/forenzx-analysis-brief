@@ -1,0 +1,74 @@
+{
+  "scope": "INDEPENDENT_FEDORA_VERIFICATION",
+  "task": "FX-010",
+  "date_utc": "2026-11-22",
+  "environment": "Fedora Linux vorkei",
+  "git": {
+    "repository": "erikbabcan-commits/forenzx-analysis-brief",
+    "branch": "feat/fx010-deterministic-brief",
+    "expected_sha": "0d2a394f69fb593f3fa301645010d23f7981cf28",
+    "verified_sha": "0d2a394f69fb593f3fa301645010d23f7981cf28",
+    "base_sha": "5c922ac0a67a66504cb1557e833b7458d3d4df32",
+    "pr": "https://github.com/erikbabcan-commits/forenzx-analysis-brief/pull/6",
+    "worktree_path": "/home/vorkei/Projekty/fx010-review-06d36b4t/checkout"
+  },
+  "runtime": {
+    "python": "3.15.2",
+    "node": "22.23.1",
+    "npm": "10.9.8"
+  },
+  "invariants": {
+    "report_generation_allowed": false
+  },
+  "demos": {
+    "completed-hit": {
+      "path": "/home/vorkei/Projekty/fx010-review-06d36b4t/completed-hit.md",
+      "sha256": "1ee78a92081d07ca3a1e75cafb897abdfebfc8b2055d0085c2fa80876003f665",
+      "cmp_reference": "IDENTICAL",
+      "matches_fx010_results_json": true
+    },
+    "completed-no-ioc": {
+      "path": "/home/vorkei/Projekty/fx010-review-06d36b4t/completed-no-ioc.md",
+      "sha256": "f01a27663ed118d3e2d33c7047cbac09a58caa4f35e74b9bea7d678390cec978",
+      "cmp_reference": "IDENTICAL",
+      "matches_fx010_results_json": true
+    }
+  },
+  "test_counts": {
+    "product_tests": {
+      "total": 63,
+      "passed": 63,
+      "failures": 0,
+      "errors": 0,
+      "status": "PASS"
+    },
+    "reference_suite": {
+      "cases_total": 50,
+      "cases_passed": 50,
+      "status": "PASS"
+    },
+    "bootstrap": {
+      "command": "bash scripts/local-bootstrap.sh --check-only --port 0",
+      "exit_code": 0,
+      "state_tests": 22,
+      "launcher_tests": 9,
+      "typecheck": "PASS",
+      "build": "PASS",
+      "temporary_http_d1_restart": "PASS",
+      "status": "ALL_PASS"
+    }
+  },
+  "controlled_mutation": {
+    "description": "Omit final warning in isolated renderer copy (_source_list for warnings)",
+    "command": "python3 -m unittest product.tests.test_render_brief.RendererTests.test_independent_reference_content",
+    "exit_code": 1,
+    "failing_subtests": 2,
+    "verdict": "MUTANT_DETECTED"
+  },
+  "environment_integrity": {
+    "local_dashboard_url": "http://127.0.0.1:38711",
+    "local_dashboard_running": true,
+    "local_d1_preserved": true,
+    "open_applications_preserved": true
+  }
+}
