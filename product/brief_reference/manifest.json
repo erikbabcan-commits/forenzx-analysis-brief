@@ -1,0 +1,10 @@
+{
+  "completed-hit": {
+    "sha256": "461a511f6ca015ef1552b86fd1442e37e65288b0323987d4421adf6086a6c192",
+    "job_id": "demo-job-hit", "case_id": "demo-case", "evidence_id": "demo-evidence"
+  },
+  "completed-no-ioc": {
+    "sha256": "feacf239b2667363425309f334966e6b0db64d992ab923bf067fee0a38a36aa6",
+    "job_id": "demo-job-no-ioc", "case_id": "demo-case", "evidence_id": "demo-evidence"
+  }
+}

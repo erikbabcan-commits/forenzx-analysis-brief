@@ -1,0 +1,90 @@
+{
+  "scope": "INDEPENDENT_FEDORA_VERIFICATION_0_1_1",
+  "task": "FX-010",
+  "version": "0.1.1",
+  "date_utc": "2026-11-22",
+  "environment": "Fedora Linux vorkei",
+  "git": {
+    "repository": "erikbabcan-commits/forenzx-analysis-brief",
+    "branch": "feat/fx010-deterministic-brief",
+    "expected_sha": "85e4eb1e9c83ce2c9add4ac0ab0e6a84dc8c94fb",
+    "verified_sha": "85e4eb1e9c83ce2c9add4ac0ab0e6a84dc8c94fb",
+    "base_sha": "5c922ac0a67a66504cb1557e833b7458d3d4df32",
+    "pr": "https://github.com/erikbabcan-commits/forenzx-analysis-brief/pull/6",
+    "worktree_path": "/home/vorkei/Projekty/fx010-v011-Jyza45r2/checkout"
+  },
+  "runtime": {
+    "python": "3.15.2",
+    "node": "22.23.1",
+    "npm": "10.9.8"
+  },
+  "invariants": {
+    "report_generation_allowed": false
+  },
+  "demos": {
+    "completed-hit": {
+      "path": "/home/vorkei/Projekty/fx010-v011-Jyza45r2/completed-hit.md",
+      "sha256": "4b81f94ba9fb43c753921c4aa0cd47e614b139a39450f12c1fa79694460e2a89",
+      "cmp_reference": "IDENTICAL",
+      "matches_review_column_0_1_1": true
+    },
+    "completed-no-ioc": {
+      "path": "/home/vorkei/Projekty/fx010-v011-Jyza45r2/completed-no-ioc.md",
+      "sha256": "5429135bdebd665ec87ef7c0796d97c76168a64a8f4b2ec91c669f1453685705",
+      "cmp_reference": "IDENTICAL",
+      "matches_review_column_0_1_1": true
+    }
+  },
+  "bug_fixes_confirmed": {
+    "closed_stdout": {
+      "test": "product.tests.test_brief_cli.DemoCLITests.test_closed_stdout_returns_documented_error_once",
+      "exit_code": 2,
+      "stderr": "Prehľad nevytvorený (DEMO_IO_OR_CONFIGURATION_ERROR).\n",
+      "single_diagnostic_only": true,
+      "status": "CONFIRMED"
+    },
+    "validator_items_provenance": {
+      "test": "product.tests.test_render_brief.RendererTests.test_validator_items_have_their_own_provenance",
+      "validator_provenance_label": "Diagnostické položky vytvoril validátor.",
+      "timezone_unspecified_separated": true,
+      "status": "CONFIRMED"
+    }
+  },
+  "test_counts": {
+    "product_tests": {
+      "total": 65,
+      "passed": 65,
+      "failures": 0,
+      "errors": 0,
+      "status": "PASS"
+    },
+    "reference_suite": {
+      "cases_total": 50,
+      "cases_passed": 50,
+      "status": "PASS"
+    },
+    "bootstrap": {
+      "command": "bash scripts/local-bootstrap.sh --check-only --port 0",
+      "exit_code": 0,
+      "state_tests": 22,
+      "launcher_tests": 9,
+      "typecheck": "PASS",
+      "build": "PASS",
+      "temporary_http_d1_restart": "PASS",
+      "status": "ALL_PASS"
+    }
+  },
+  "controlled_mutation": {
+    "description": "Omit final warning in isolated renderer copy (_source_list for warnings)",
+    "command": "python3 -m unittest product.tests.test_render_brief.RendererTests.test_independent_reference_content",
+    "exit_code": 1,
+    "failing_subtests": 2,
+    "verdict": "MUTANT_DETECTED"
+  },
+  "environment_integrity": {
+    "local_dashboard_running": true,
+    "local_d1_preserved": true,
+    "original_v010_report_preserved": true,
+    "open_applications_preserved": true
+  }
+}

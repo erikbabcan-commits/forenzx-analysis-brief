@@ -114,3 +114,7 @@ Nadväzujúca [referenčná sada FX-006](reference/README.md) rozširuje dva pr�
 6. Posúdenie distribúcie v Agensi vrátane veľkosti a čitateľnosti skriptu, aktuálnych pravidiel doručovania a skutočného toku ukážky. Pracovný validátor nie je hotový predajný ZIP.
 
 Platený produkt, podpora konkrétneho modelu, kryptografické overenie ani nezávislé odborné posúdenie sa týmto krokom nevyhlasujú za dokončené.
+
+## Overenie z 22. novembra 2026
+
+[Aktuálne výsledky, testované revízie a otvorené podmienky](../docs/reviews/FX_AUDIT_2026-11-22.md).

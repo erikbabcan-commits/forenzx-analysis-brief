@@ -1,0 +1,32 @@
+{
+  "completed-hit": {
+    "job_id": "demo-job-hit", "case_id": "demo-case", "evidence_id": "demo-evidence",
+    "summary_classification": "HIT", "finding_id": "demo-finding-001", "severity": "MEDIUM",
+    "ioc_type": "synthetic-domain", "ioc_name": "SYNTHETIC-IOC-001",
+    "ref_path": "synthetic/events.jsonl", "ref_line": 1,
+    "timestamp": "2026-01-01T11:59:00+00:00", "timezone": "UTC",
+    "findings": 1, "events": 1,
+    "warnings": [
+      "SYNTHETIC DEMO: all identifiers, events and hash metadata are fictional; no live server or original artifact was examined."
+    ],
+    "limitations": [
+      "This fixture demonstrates structure only and provides no evidence about a real device."
+    ]
+  },
+  "completed-no-ioc": {
+    "job_id": "demo-job-no-ioc", "case_id": "demo-case", "evidence_id": "demo-evidence",
+    "summary_classification": "NO_KNOWN_IOC", "finding_id": "demo-finding-negative", "severity": "INFO",
+    "ioc_type": "synthetic-indicator-set", "ioc_name": null, "ref_path": null, "ref_line": null,
+    "timestamp": "2026-01-01T11:59:00", "timezone": null,
+    "findings": 1, "events": 1,
+    "warnings": [
+      "SYNTHETIC DEMO: all identifiers, events and hash metadata are fictional; no live server or original artifact was examined.",
+      "The source fixture has no artifact reference for the negative finding."
+    ],
+    "limitations": [
+      "SYNTHETIC DEMO ONLY.",
+      "The fictional indicator set and examined subset are limited; absence of a match does not establish a safe device.",
+      "The event timezone is unknown."
+    ]
+  }
+}

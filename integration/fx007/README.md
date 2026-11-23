@@ -66,3 +66,7 @@ The synthetic fixture's original warnings are deliberately preserved even when t
 The direct probe supplies the supported protocol in `params._meta` and `MCP-Protocol-Version`, with client information/capabilities and method/tool headers. Discovery and unsupported-version error semantics remain separate observations; successful supported-version calls do not prove full specification compliance.
 
 See `codex-config.example.toml` for a credential-free configuration shape. Use only an endpoint you control or are authorized to access. A client allowlist does not create server-side report-only authorization; FX-008 remains a separate gate.
+
+## Overenie z 22. novembra 2026
+
+[Aktuálne výsledky, testované revízie a otvorené podmienky](../../docs/reviews/FX_AUDIT_2026-11-22.md).

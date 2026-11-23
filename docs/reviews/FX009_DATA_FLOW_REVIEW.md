@@ -147,3 +147,7 @@ Odkazy na súkromný produktový repozitár vyžadujú existujúci prístup vlas
 [H5]: https://github.com/erikbabcan-commits/forenzx-mcp-hub/blob/0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f/core/db.py "H5 — SQLite WAL a ukladanie udalostí"
 [H6]: https://github.com/erikbabcan-commits/forenzx-mcp-hub/blob/0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f/core/maintenance.py "H6 — backup_database 33–80 a prune_events 129–134"
 [H7]: https://github.com/erikbabcan-commits/forenzx-mcp-hub/blob/0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f/core/config.py#L20-L47 "H7 — cesty a nastavenie retencie udalostí"
+
+## Overenie z 22. novembra 2026
+
+[Aktuálne výsledky, testované revízie a otvorené podmienky](FX_AUDIT_2026-11-22.md).

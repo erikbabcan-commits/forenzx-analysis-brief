@@ -2,7 +2,9 @@
 
 Dátum: **21. 11. 2026**, Europe/Bratislava. Finálny integračný beh: 01:10:37–01:10:43 CET (UTC časy sú v JSON reporte).
 
-## Verdikt
+Dodatok z 22. 11. 2026. Na Fedore uspela samostatná skúška s Codex CLI 0.170.0. Hostovaný board eviduje FX-007 ako hotovú, 4/4. [Stopa klienta a hashe odpovedí](verification/FX007_FEDORA_TRACE_2026-11-22.json).
+
+## Verdikt pôvodného behu z 21. 11. 2026
 
 **Skutočný ForenZX HTTP server: 13/13 kontrol PASS. Skutočný AI klient: spojenie nepreukázané. FX-007 zostáva BLOKOVANÁ, 2/4 kritérií doložené.**
 

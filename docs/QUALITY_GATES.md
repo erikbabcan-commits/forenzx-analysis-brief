@@ -58,3 +58,7 @@ Matica konfigurácií má stavy **overené v uvedenom rozsahu / experimentálne 
 Každá dokončená úloha uchová: ID požiadavky, commit, verziu balíka, klienta a servera, model a dostupné nastavenia, identifikátor testovacieho vstupu, očakávanie, pozorovanie, výsledok, dátum a hodnotiteľa. Odkaz smeruje na reálny testovací záznam alebo kontrolu. Ak prostredie chýbalo, stav je `NOT_VERIFIED`; simulácia sa označí ako simulácia.
 
 Checkbox v dashboarde vyjadruje pracovný stav. **Pripravenosť na vydanie sa posudzuje aj podľa dôkazov a otvorených blokérov.** Druhý AI model môže pomôcť s kontrolou, ale nezapočítava sa ako nezávislý forenzný odborník. Opravený vydaný prehľad musí zachovať väzbu na pôvodnú verziu a vysvetlenie zmeny. [SWGDE-REPORT]
+
+## Overenie z 22. novembra 2026
+
+[Aktuálne výsledky, testované revízie a otvorené podmienky](reviews/FX_AUDIT_2026-11-22.md).

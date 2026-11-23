@@ -1,0 +1,144 @@
+{
+  "task": "FX-007",
+  "assessed_on": "2026-11-22",
+  "run_id": "20261122T010902Z-dee2c7c4",
+  "client": "codex-cli 0.170.0",
+  "board_commit": "fb6b03f57297358381bf7b91ee7c811fc08146c6",
+  "hub_commit": "0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f",
+  "fixture": "product/fixtures/completed-hit.json",
+  "source": {
+    "fedora_evidence": "Redigovaný výpis pôvodnej stopy dodal operátor Fedory. Lokálny extraktor pred výpisom overil SHA-256 reportu voči PR #2 a SHA-256 stopy voči artifacts_sha256 v reporte.",
+    "report_sha256": "f0fb9cd12b53138ac21454067241da358bda47ea7b21c0dd924fecd5d43c4c4c",
+    "http_traffic_sha256": "cea755f7d5f63fc17c198443dceee87a9ec65b6243eed6ee0310a410f7b9eb4e",
+    "report_record": "https://github.com/erikbabcan-commits/forenzx-analysis-brief/blob/c031f6629f4c1e7e47870e3ff933290dd5ab6e05/docs/verification/FX007_FEDORA_VERIFICATION.json",
+    "original_files_read_directly_from_fedora_by_work": false
+  },
+  "events": [
+    {
+      "line": 15,
+      "phase": "legacy_sdk",
+      "rpc_method": "initialize",
+      "tool_name": null,
+      "http_status": 200,
+      "rpc_error_code": null,
+      "has_result": true,
+      "protocol_header": null,
+      "protocol_meta": null,
+      "response_sha256": "0f0dbd1c300d0f6b6081a37f1ab014723fc8ec55cfce8fc99da3595d1efca53c"
+    },
+    {
+      "line": 16,
+      "phase": "codex",
+      "rpc_method": "initialize",
+      "tool_name": null,
+      "http_status": 200,
+      "rpc_error_code": null,
+      "has_result": true,
+      "protocol_header": null,
+      "protocol_meta": null,
+      "response_sha256": "0f0dbd1c300d0f6b6081a37f1ab014723fc8ec55cfce8fc99da3595d1efca53c"
+    },
+    {
+      "line": 17,
+      "phase": "codex",
+      "rpc_method": "notifications/initialized",
+      "tool_name": null,
+      "http_status": 200,
+      "rpc_error_code": -32601,
+      "has_result": false,
+      "protocol_header": "2026-07-28",
+      "protocol_meta": null,
+      "response_sha256": "d614c3fef56ca9c2fb5f9874de8ca1e5daaf139b51cdc9eca74cd3b11bfbd0dd"
+    },
+    {
+      "line": 18,
+      "phase": "codex",
+      "rpc_method": "tools/list",
+      "tool_name": null,
+      "http_status": 200,
+      "rpc_error_code": null,
+      "has_result": true,
+      "protocol_header": "2026-07-28",
+      "protocol_meta": "2026-07-28",
+      "response_sha256": "16bfb3c14488c97c9bd0267bc20a4a91830a6aed9534d324cb884c91b8ec9e3e"
+    },
+    {
+      "line": 19,
+      "phase": "codex",
+      "rpc_method": "tools/call",
+      "tool_name": "forenzx_analysis_status",
+      "http_status": 200,
+      "rpc_error_code": null,
+      "has_result": true,
+      "protocol_header": "2026-07-28",
+      "protocol_meta": "2026-07-28",
+      "response_sha256": "815f4055019a43f43dc07f6e2162f4b3f1bba5aad46e264e453e1091876bac7c"
+    },
+    {
+      "line": 20,
+      "phase": "codex",
+      "rpc_method": "tools/call",
+      "tool_name": "forenzx_analysis_results",
+      "http_status": 200,
+      "rpc_error_code": null,
+      "has_result": true,
+      "protocol_header": "2026-07-28",
+      "protocol_meta": "2026-07-28",
+      "response_sha256": "45122b1b4f0713c65604748a427749ac4d62dc018d578f848cb607499414df2c"
+    }
+  ],
+  "work_verification": {
+    "transport": "in-process ASGI POST /mcp",
+    "without_auth_http_status": 401,
+    "responses": [
+      {
+        "method": "initialize",
+        "response_sha256": "0f0dbd1c300d0f6b6081a37f1ab014723fc8ec55cfce8fc99da3595d1efca53c",
+        "http_status": 200,
+        "returned_protocol": "2026-07-28"
+      },
+      {
+        "method": "notifications/initialized",
+        "response_sha256": "d614c3fef56ca9c2fb5f9874de8ca1e5daaf139b51cdc9eca74cd3b11bfbd0dd",
+        "http_status": 200,
+        "rpc_error_code": -32601
+      },
+      {
+        "method": "tools/list",
+        "response_sha256": "16bfb3c14488c97c9bd0267bc20a4a91830a6aed9534d324cb884c91b8ec9e3e",
+        "http_status": 200,
+        "available_read_tools": [
+          "forenzx_analysis_status",
+          "forenzx_analysis_results"
+        ]
+      }
+    ]
+  },
+  "observed": {
+    "authenticated_discovery_and_reads": true,
+    "returned_protocol": "2026-07-28",
+    "protocol_used_on_successful_list_and_both_calls": "2026-07-28",
+    "initial_client_offered_version": null,
+    "initial_client_offered_version_reason": "Recorder v tejto revízii neukladal params.protocolVersion zo žiadosti initialize.",
+    "notifications_initialized_rpc_error": -32601,
+    "read_tools": [
+      "forenzx_analysis_status",
+      "forenzx_analysis_results"
+    ],
+    "final_exact_match_six_fields_from_original_report": true,
+    "http_checks_passed_from_original_report": 13
+  },
+  "limits": [
+    "Riadky 19 a 20 patria pôvodnému fedorskému behu. Work nezopakoval živé čítania s tým istým ID úlohy.",
+    "Klient napriek chybe notifikácie pokračoval. Toto zistenie platí pre testovanú dvojicu klienta a servera.",
+    "Výsledok legacy SDK 1.29.0 zostáva diagnostikou samostatného klienta."
+  ],
+  "decision": {
+    "criterion_discovery_and_reads": "PASS",
+    "criterion_protocol_path": "PASS",
+    "accepted_criteria": 4,
+    "total_criteria": 4,
+    "remaining_release_gate": "FX-008 – produkčné vydávanie a revokácia poverení a pretrvanie oprávnení prípadu po reštarte.",
+    "report_generation_allowed": false
+  }
+}

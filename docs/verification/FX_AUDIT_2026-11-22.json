@@ -1,0 +1,282 @@
+{
+  "date": "2026-11-22",
+  "board_cli_base": "42eea755c959cbc2eaf23513c6040d2e2141d6c5",
+  "board_cli_checked_source": "19080b1c8966d3872cacb959c59c50caf46f9e0c",
+  "fx009_candidate": "4268ff406c915ea1056ed0437582bd7d55d0a637",
+  "hub_candidate": "3b4effdb08cda68f733c56d995ccb54380729e8b",
+  "suites": {
+    "board_state": 22,
+    "launcher": 9,
+    "product": 46,
+    "reference": 50,
+    "probe_tests_before": 11,
+    "probe_tests_after": 17,
+    "default_role_mutation_failures": 1,
+    "reference_boundary_unit": 4,
+    "reference_boundary_scenarios": 8,
+    "hub_full": 297,
+    "hub_focused_subset": 113,
+    "hub_reporter_subset": 77,
+    "hub_acl_subset": 12,
+    "probe_tests_after_initial_fix": 12
+  },
+  "coverage": {
+    "dashboard": {
+      "before": {
+        "files": 82,
+        "covered_lines": 359,
+        "num_statements": 1178,
+        "covered_branches": 250,
+        "num_branches": 1046
+      },
+      "after": {
+        "files": 82,
+        "covered_lines": 370,
+        "num_statements": 1189,
+        "covered_branches": 251,
+        "num_branches": 1047
+      }
+    },
+    "product": {
+      "before": {
+        "files": 3,
+        "covered_lines": 706,
+        "num_statements": 783,
+        "covered_branches": 328,
+        "num_branches": 396
+      },
+      "after": {
+        "files": 3,
+        "covered_lines": 706,
+        "num_statements": 783,
+        "covered_branches": 328,
+        "num_branches": 396
+      }
+    },
+    "probes": {
+      "before": {
+        "files": 2,
+        "covered_lines": 150,
+        "num_statements": 678,
+        "covered_branches": 20,
+        "num_branches": 136
+      },
+      "after": {
+        "files": 3,
+        "covered_lines": 320,
+        "num_statements": 829,
+        "covered_branches": 49,
+        "num_branches": 162
+      },
+      "after_initial_fix": {
+        "files": 3,
+        "covered_lines": 312,
+        "num_statements": 829,
+        "covered_branches": 44,
+        "num_branches": 162
+      }
+    },
+    "hub": {
+      "same_revision_full_suite": {
+        "files": 24,
+        "covered_lines": 1603,
+        "num_statements": 2093,
+        "covered_branches": 299,
+        "num_branches": 492
+      }
+    }
+  },
+  "work_live_runs": {
+    "live-analyst": {
+      "sha256": "c2b07570f01c3495f6ff6c38b6f76b696becad17eb01a01400ddc80aa0ab3cb5",
+      "upstream": "0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f",
+      "harness_sha256": "03dc62bdfc0543e3d95c060dbf3292f869e21f75581dcf4b5d4af9e3c898a60a",
+      "run_utc": "2026-11-22T03:47:23.994833+00:00",
+      "http_passed": 13,
+      "http_total": 13,
+      "codex_status": "FAILED",
+      "codex_accepted": false,
+      "exit_code_cli": 1,
+      "requested_acceptance": false,
+      "legacy_sdk": {
+        "status": "INCOMPATIBLE_OR_FAILED",
+        "client": "mcp-python 1.29.0",
+        "error_type": "ImportError",
+        "errors": [
+          "ImportError: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`."
+        ]
+      }
+    },
+    "live-reporter": {
+      "sha256": "07f07bba0a4d79d7a39d8d46315a3f75ff3a1a94b775cf1a302dd696832c2cab",
+      "upstream": "3b4effdb08cda68f733c56d995ccb54380729e8b",
+      "harness_sha256": "03dc62bdfc0543e3d95c060dbf3292f869e21f75581dcf4b5d4af9e3c898a60a",
+      "run_utc": "2026-11-22T03:44:34.070531+00:00",
+      "http_passed": 13,
+      "http_total": 13,
+      "codex_status": "FAILED",
+      "codex_accepted": false,
+      "exit_code_cli": 1,
+      "requested_acceptance": false,
+      "legacy_sdk": {
+        "status": "NOT_REQUESTED"
+      }
+    },
+    "live-reporter-retry": {
+      "sha256": "59aaf83e757aae0624835f791bd716124c5af2b29459a5193ee8da0e69b3896f",
+      "upstream": "3b4effdb08cda68f733c56d995ccb54380729e8b",
+      "harness_sha256": "03dc62bdfc0543e3d95c060dbf3292f869e21f75581dcf4b5d4af9e3c898a60a",
+      "run_utc": "2026-11-22T03:46:54.865877+00:00",
+      "http_passed": 13,
+      "http_total": 13,
+      "codex_status": "FAILED",
+      "codex_accepted": false,
+      "exit_code_cli": 1,
+      "requested_acceptance": false,
+      "legacy_sdk": {
+        "status": "NOT_REQUESTED"
+      }
+    },
+    "legacy-only": {
+      "sha256": "e72212f5ab5d8d41fafd5ba01e9bf399bf276491431b6069d4c28c96dc66cb62",
+      "upstream": "0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f",
+      "harness_sha256": "03dc62bdfc0543e3d95c060dbf3292f869e21f75581dcf4b5d4af9e3c898a60a",
+      "run_utc": "2026-11-22T03:48:34.411721+00:00",
+      "http_passed": 13,
+      "http_total": 13,
+      "codex_status": "NOT_REQUESTED",
+      "codex_accepted": null,
+      "exit_code_cli": null,
+      "requested_acceptance": true,
+      "legacy_sdk": {
+        "status": "INCOMPATIBLE_OR_FAILED",
+        "client": "mcp-python 1.29.0",
+        "error_type": "ExceptionGroup",
+        "errors": [
+          "RuntimeError: Unsupported protocol version from the server: 2026-07-28"
+        ]
+      }
+    }
+  },
+  "hosted": {
+    "tasks": 18,
+    "checked_before": 25,
+    "checked_after": 28,
+    "criteria": 94,
+    "events_before": 18,
+    "events_after": 25,
+    "old_events_preserved": 18,
+    "pending_second_pass_changes": 0,
+    "snapshot_before_sha256": "2c1c4e4d4aa0e8d0a157b5798a764f521d615cae331fc62036fcb0a0dec2963d",
+    "snapshot_after_sha256": "a6dbb2b658320b8c9e54a8902b685d01e0f5295b7b3eb14aa71907a2b6e06f01",
+    "revisions_after": {
+      "FX-005": 4,
+      "FX-007": 3,
+      "FX-008": 4,
+      "FX-009": 3
+    },
+    "snapshot_initial_sync_sha256": "ae13c4974b39c0966b83be9258e031020e622085129fc8a43e10944866135444",
+    "snapshot_before_extra_note_sha256": "32332cfcbbf5d99230e06848a2122690b71b39fcab2dbd9b01b78d405dc50085",
+    "first_snapshot_utc": "2026-11-22T03:39:39.870Z",
+    "final_snapshot_utc": "2026-11-22T08:19:19.567Z",
+    "semantic_matches_with_audit_seed": 18,
+    "old_seed_revisions_preserved": [
+      "FX-003",
+      "FX-004",
+      "FX-006",
+      "FX-010",
+      "FX-014",
+      "FX-015",
+      "FX-016",
+      "FX-017"
+    ],
+    "statuses_after": {
+      "done": 5,
+      "blocked": 3,
+      "in_progress": 2,
+      "todo": 8
+    }
+  },
+  "fedora_this_session": "Prístup z Work bol offline. Operátor dodal výpis po kontrole SHA-256 pôvodného reportu a stopy FX-007. Work nezávisle zopakoval tri odpovede pripnutého Hubu.",
+  "report_generation_allowed": false,
+  "final_pr3_head": "23bc7573b523ba4ddfefda29cb5e6ea0f0c826b8",
+  "final_pr3": {
+    "source_changes_since_19080b1": [
+      ".gitignore",
+      "integration/fx007/test_probe.py"
+    ],
+    "mutation_failed_tests": 1,
+    "pr_triggered_workflows": 0,
+    "commit_statuses": 0,
+    "draft": true,
+    "previous_approval_utc": "2026-11-22T03:38:45Z",
+    "commit_utc": "2026-11-22T03:52:28Z"
+  },
+  "hosted_before_fedora_trace": {
+    "tasks": 18,
+    "checked_before": 25,
+    "checked_after": 26,
+    "criteria": 94,
+    "events_before": 18,
+    "events_after": 23,
+    "old_events_preserved": 18,
+    "pending_second_pass_changes": 0,
+    "snapshot_before_sha256": "2c1c4e4d4aa0e8d0a157b5798a764f521d615cae331fc62036fcb0a0dec2963d",
+    "snapshot_after_sha256": "f933e60ec56a65c7dab35d1cb17ca324a04d19a56ff42fc1572af180a07b00dd",
+    "revisions_after": {
+      "FX-005": 4,
+      "FX-007": 2,
+      "FX-008": 3,
+      "FX-009": 3
+    },
+    "snapshot_initial_sync_sha256": "ae13c4974b39c0966b83be9258e031020e622085129fc8a43e10944866135444",
+    "snapshot_before_extra_note_sha256": "32332cfcbbf5d99230e06848a2122690b71b39fcab2dbd9b01b78d405dc50085",
+    "first_snapshot_utc": "2026-11-22T03:39:39.870Z",
+    "final_snapshot_utc": "2026-11-22T04:05:48.118Z",
+    "semantic_matches_with_audit_seed": 18,
+    "old_seed_revisions_preserved": [
+      "FX-003",
+      "FX-004",
+      "FX-006",
+      "FX-010",
+      "FX-014",
+      "FX-015",
+      "FX-016",
+      "FX-017"
+    ]
+  },
+  "fedora_trace_followup": {
+    "record": "docs/verification/FX007_FEDORA_TRACE_2026-11-22.json",
+    "snapshot_before_utc": "2026-11-22T08:13:32.959Z",
+    "snapshot_before_sha256": "ceb061c038d1b90c01498d977fc34460a89326588115a5e3af50b946136be1b7",
+    "hosted_events_before": 23,
+    "old_events_preserved": 23,
+    "events_added": 2,
+    "semantic_matches_with_audit_seed": 18,
+    "full_fx008_note_checked_in_ui": true,
+    "new_live_cli_run_on_fedora_by_work": false,
+    "local_d1_sync_confirmed": false,
+    "work_rerun": {
+      "cli_regressions_on_pr3": 17,
+      "reference_boundary_unit": 4,
+      "reference_boundary_scenarios": 8,
+      "backlog_state": 22,
+      "launcher": 9,
+      "product": 46,
+      "reference": 50,
+      "typecheck": "PASS",
+      "build": "PASS",
+      "local_D1_smoke_and_restart": "PASS",
+      "installed_dependencies": "existing validated locked versions"
+    },
+    "local_sync_rehearsal": {
+      "environment": "isolated Work D1 with a previous seed",
+      "missing_local_proof_events": 0,
+      "matching_synthetic_proof_events": 1,
+      "repeat_events": 0,
+      "state_after_repeat": "done",
+      "second_read_hosted_state_matches": 18,
+      "second_read_hosted_events_match": 25
+    }
+  }
+}

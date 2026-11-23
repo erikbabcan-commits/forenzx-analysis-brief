@@ -41,3 +41,7 @@ Výstupný JSON musí byť nový. Existujúci dôkaz skript neprepíše. Návrat
 | `report_generation_allowed: false` | Tento audit nepovoľuje produkčné generovanie prehľadov. |
 
 Úplný rozbor, zistenia a ďalšie akceptačné kritériá sú v [review FX-008](../../docs/reviews/FX008_AUTHORIZATION_REVIEW.md).
+
+## Overenie z 22. novembra 2026
+
+[Aktuálne výsledky, testované revízie a otvorené podmienky](../../docs/reviews/FX_AUDIT_2026-11-22.md).
