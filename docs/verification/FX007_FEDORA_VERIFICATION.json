@@ -1,0 +1,42 @@
+{
+  "schema": "forenzx.fedora-verification/1",
+  "task": "FX-007",
+  "run_id": "20261122T010902Z-dee2c7c4",
+  "date": "2026-11-22",
+  "timezone": "Europe/Bratislava",
+  "dashboard_commit": "fb6b03f57297358381bf7b91ee7c811fc08146c6",
+  "upstream_mcp_commit": "0e4c7fae5944d44c1746ab3101acfbd70ab1ab8f",
+  "report_relative_path": ".fx007-runtime/runs/20261122T010902Z-dee2c7c4/report.json",
+  "report_sha256": "f0fb9cd12b53138ac21454067241da358bda47ea7b21c0dd924fecd5d43c4c4c",
+  "environment": {
+    "os": "Fedora Linux 45",
+    "python": "3.15.2",
+    "node": "22.23.1",
+    "npm": "10.9.8",
+    "codex_client": "codex-cli 0.170.0"
+  },
+  "results": {
+    "exit_code": 0,
+    "http_checks_passed": 13,
+    "http_checks_total": 13,
+    "http_acceptance": true,
+    "requested_acceptance": true,
+    "codex": {
+      "status": "COMPLETED",
+      "accepted": true,
+      "exit_code": 0,
+      "final_exact_match": true,
+      "server_observed_successful_tools": [
+        "forenzx_analysis_status",
+        "forenzx_analysis_results"
+      ]
+    },
+    "legacy_sdk": {
+      "status": "INCOMPATIBLE_OR_FAILED",
+      "client": "mcp-python 1.29.0",
+      "error_type": "ExceptionGroup",
+      "error": "RuntimeError: Unsupported protocol version from the server: 2026-07-28"
+    }
+  },
+  "backlog_state": "UNCHANGED_PENDING_SEPARATE_ASSESSMENT"
+}
