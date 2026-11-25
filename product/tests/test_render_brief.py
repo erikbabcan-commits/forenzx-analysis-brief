@@ -1,5 +1,6 @@
 """Frozen semantic expectations are authored independently from the Markdown snapshots."""
 import json
+import re
 from pathlib import Path
 import unittest
 from unittest.mock import patch
@@ -47,6 +48,44 @@ class RendererTests(unittest.TestCase):
                 self.assertIn("### Nález `/findings/0`", text)
                 self.assertIn("AI vysvetlenie nebolo vytvorené.", text)
                 self.assertIn("report_generation_allowed = false", text)
+
+    def assert_finding_provenance(self, document, data):
+        section = document.split("## Zdrojové nálezy\n", 1)[1].split("\n## ", 1)[0]
+        blocks = section.split("### Nález ")
+        self.assertEqual(len(blocks) - 1, len(data["findings"]))
+        seen = []
+        for block in blocks[1:]:
+            heading, body = block.split("\n", 1)
+            match = re.fullmatch(r"`/findings/(0|[1-9][0-9]*)`", heading)
+            self.assertIsNotNone(match, heading)
+            index = int(match[1])
+            self.assertLess(index, len(data["findings"]), heading)
+            seen.append(index)
+            record = data["findings"][index]
+            for key in ("id", "classification", "severity", "artifact_path", "raw_evidence_ref"):
+                self.assertEqual(rows(body, key), [record[key]], f"{heading} {key}")
+        self.assertCountEqual(seen, range(len(data["findings"])))
+
+    def test_finding_provenance_in_pinned_demos(self):
+        for scenario in CASES:
+            with self.subTest(scenario=scenario):
+                snapshot = source(scenario)
+                document = brief.render_demo(scenario, snapshot).decode()
+                self.assert_finding_provenance(document, json.loads(snapshot))
+
+    def test_finding_pointers_distinguish_existing_records(self):
+        # Exercise formatting only. The public CLI accepts each pinned fixture separately.
+        snapshot = source("completed-hit")
+        data = json.loads(snapshot)
+        data["findings"].extend(json.loads(source("completed-no-ioc"))["findings"])
+        check = brief.validator.validate_bytes(
+            json.dumps(data).encode(), profile=brief.DEMO_PROFILE,
+            expected_job_id=data["job_id"], expected_case_id=data["case_id"],
+            expected_evidence_id=data["evidence_id"],
+        )
+        self.assertTrue(check["passed"], check["issues"])
+        document = brief._markdown(data, check).decode()
+        self.assert_finding_provenance(document, data)
 
     def test_frozen_bytes(self):
         for scenario in CASES:
