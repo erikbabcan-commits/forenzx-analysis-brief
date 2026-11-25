@@ -56,6 +56,29 @@ až po úspešnej validácii. Na výstup vypisuje iba stavový kód.
 | Neúplná fixture | 1 | 0 | 0 |
 | Primárny prijímač vracia 503 | 1 | 1 | 0 |
 
-Ide o syntetický CLI prototyp. Reálny Codex klient, prihlasovanie k Hubu,
+### Overenie so skutočným Hubom
+
+Z koreňa Release Boardu použi Python prostredie Hubu so závislosťami z jeho
+lockfile. Cestu nastav na checkout commitu
+`f68fd9cb7b279c0e626414cd5d07b94b82c21685` z Hub PR #32.
+
+```bash
+FX009_HUB_CHECKOUT=/path/to/hub /path/to/hub-venv/bin/python \
+  -m unittest discover -s integration/fx009 -p test_live_hub.py -v
+```
+
+Test spúšťa Uvicorn na loopbacku s dočasnou SQLite, syntetickou úlohou a
+krátkodobým reporter tokenom. Prepínače `--job-id` a `--token-file` použije
+na autentifikované čítanie. Bearer hlavička smeruje iba na MCP. Test počíta
+dotazy na `job_results` priamo v Hube a POST požiadavky na oboch prijímačoch.
+
+| Scenár so skutočným Hubom | SQLite čítania výsledku | Primárny POST | Náhradný POST |
+| --- | ---: | ---: | ---: |
+| Neschválený endpoint | 0 | 0 | 0 |
+| Schválený profil a platný reporter token | 1 | 1 | 0 |
+| Schválený profil a odvolaný token | 0 | 0 | 0 |
+
+Pri úspechu sa porovnávajú úplné bajty výsledku serializovaného Hubom.
+MCP server je reálny, modelový prijímač je syntetický. Reálny Codex klient,
 nasadený provider a jeho retencia zostávajú neoverené.
 `report_generation_allowed=false`.
