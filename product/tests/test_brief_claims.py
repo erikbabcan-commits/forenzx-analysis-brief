@@ -53,8 +53,16 @@ class BriefClaimTests(unittest.TestCase):
                     f"Počet udalostí v prijatom JSON: {len(data['timeline'])}. "
                     "Zachované je poradie zdroja a pôvodný zápis času.",
                 ))
+                scope = "V skúmanom rozsahu sa nenašli známe IOC z použitého balíka."
                 if data["summary_classification"] == "NO_KNOWN_IOC":
-                    allowed.add("V skúmanom rozsahu sa nenašli známe IOC z použitého balíka.")
+                    allowed.add(scope)
+                    heading = "## Zdrojové nálezy\n"
+                    self.assertIn(heading, output)
+                    findings_intro = output.split(heading, 1)[1].split("\n#", 1)[0]
+                    self.assertIn(scope, findings_intro.splitlines(),
+                                  f"Missing scoped conclusion in finding summary: {findings_intro.strip()}")
+                else:
+                    self.assertNotIn(scope, output)
                 if any(not f["raw_evidence_ref"] and not f["artifact_path"] for f in data["findings"]):
                     allowed.add("Referencia na pôvodný artefakt chýba.")
                 if any(not e["timezone"] for e in data["timeline"]):
